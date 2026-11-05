@@ -1,5 +1,5 @@
 // Offline cache for UCKER Sales HQ. Bump VERSION whenever app files change.
-const VERSION = 'ucker-hq-v3';
+const VERSION = 'ucker-hq-v4';
 const FILES = ['./', 'index.html', 'local-db.js', 'manifest.webmanifest', 'logo-dark.png', 'logo.png',
   'data/leads.json', 'data/settings.json', 'icons/favicon.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png', 'vendor/jspdf.umd.min.js'];
 

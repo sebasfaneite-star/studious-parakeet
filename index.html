@@ -328,13 +328,18 @@ const ES={
 'Due date = invoice date + these days. 0 = due on receipt':'Vencimiento = fecha de factura + estos días. 0 = al recibir','New shop':'Negocio nuevo','New shops (licensed in last 90 days)':'Negocios nuevos (licencia en últimos 90 días)',
 'Import more leads':'Importar más prospectos','e.g. 1ST TRY CORP':'ej. 1ST TRY CORP','Stock by size':'Inventario por talla','Sold out':'Agotada','Low':'Bajo','Cases per size':'Cajas por talla',
 'Taken from current stock':'Sale del inventario actual','Starting stock for this push':'Inventario inicial de esta campaña','Sales logged here are subtracted automatically by size':'Las ventas registradas aquí se restan automáticamente por talla',
-'Leave at 0 if the stock above is what you have now':'Deja 0 si el inventario de arriba es lo que tienes ahora',
+'Matches your Shopify stock (Case of 1,000) as of Nov 5, 2026. Sales logged in this app are subtracted automatically.':'Coincide con tu inventario de Shopify (caja de 1,000) al 5 de nov. de 2026. Las ventas registradas aquí se restan automáticamente.','Leave at 0 if the stock above is what you have now':'Deja 0 si el inventario de arriba es lo que tienes ahora',
 'This phone':'Este teléfono','Your visits, clients and sales are saved on this phone only. Download a backup often, and use it to move your data to a new phone.':'Tus visitas, clientes y ventas se guardan solo en este teléfono. Descarga una copia de seguridad seguido y úsala para pasar tus datos a un teléfono nuevo.',
 'Your name':'Tu nombre','Shown in the Team table':'Aparece en la tabla del equipo','Save name':'Guardar nombre','Download backup':'Descargar copia','Restore backup':'Restaurar copia',
 'Name saved':'Nombre guardado','Backup downloaded':'Copia descargada','Backup restored':'Copia restaurada','Restore backup?':'¿Restaurar copia?','Restore':'Restaurar',
 'This replaces the visits, clients and sales on this phone with the ones in the backup.':'Esto reemplaza las visitas, clientes y ventas de este teléfono con las de la copia.',
 'That file is not a Sales HQ backup':'Ese archivo no es una copia de Sales HQ','Loading…':'Cargando…','Save link':'Guardar enlace','Saving…':'Guardando…','Open Shopify':'Abrir Shopify',
-'Paste the Shopify payment link first':'Primero pega el enlace de pago de Shopify','Card payment link saved':'Enlace de pago guardado'
+'Paste the Shopify payment link first':'Primero pega el enlace de pago de Shopify','💳 Tap to Pay':'💳 Tap to Pay','Tap to Pay':'Tap to Pay','Charge':'Cobrar','Payment received':'Pago recibido',
+'Later':'Después','Copy amount':'Copiar monto','Amount copied':'Monto copiado','Send invoice / card link':'Enviar factura / enlace de pago','Nothing owed on this sale':'No se debe nada en esta venta',
+'Sale saved. Collect the payment now, or tap Later.':'Venta guardada. Cobra ahora o toca Después.','Open the':'Abre la app de','app and start a sale.':'y empieza una venta.',
+'Selling in the Shopify app also takes the cases out of your Shopify stock.':'Vender en la app de Shopify también descuenta las cajas de tu inventario de Shopify.',
+'Come back here and tap':'Vuelve aquí y toca','The customer taps their card or phone on the back of your phone.':'El cliente acerca su tarjeta o teléfono a la parte de atrás de tu teléfono.',
+'Set the price to':'Pon el precio en','per case':'por caja','Check the total is':'Revisa que el total sea','Add':'Agrega','Card payment link saved':'Enlace de pago guardado'
 };
 const casesES=n=>n==='1'?'1 caja':n+' cajas';
 const ES_RX=[[/^Selling starts (.+)$/,(m,a)=>'Ventas desde '+a],[/^Sold since (.+)$/,(m,a)=>'Vendido desde '+a],[/^(\d[\d,]*) behind$/,(m,a)=>a+' atrasado'],[/^(\d[\d,]*) should be sold by now to finish on time$/,(m,a)=>a+' deberían estar vendidas para terminar a tiempo'],[/^([\d,]+) work days$/,(m,a)=>a+' días laborales'],[/^([\d,]+) cases ÷ ([\d,]+) work days$/,(m,a,b)=>`${a} cajas ÷ ${b} días laborales`],[/^uses ~(.+) cases\/mo$/,(m,a)=>`usa ~${a} cajas/mes`],
@@ -400,7 +405,7 @@ const ES_RX=[[/^Selling starts (.+)$/,(m,a)=>'Ventas desde '+a],[/^Sold since (.
 [/^Makes a secure Shopify checkout for (.+)\. It's printed on the invoice and added to the WhatsApp message\.$/,(m,a)=>`Crea un pago seguro de Shopify por ${a}. Se imprime en la factura y se agrega al mensaje de WhatsApp.`],
 [/^(\d+) invoices were paid by card on Shopify and are now marked paid$/,(m,a)=>`${a} facturas se pagaron con tarjeta en Shopify y ya están marcadas como pagadas`],
 [/^Couldn't create the Shopify link(.*)$/,(m,a)=>'No se pudo crear el enlace de Shopify'+a],
-[/^Sale saved: (.+)$/,(m,a)=>'Venta guardada: '+a],[/^Marked paid: (.+)$/,(m,a)=>'Marcado pagado: '+a],
+[/^Sale saved: (.+)$/,(m,a)=>'Venta guardada: '+a],[/^Marked paid: (.+)$/,(m,a)=>'Marcado pagado: '+a],[/^💰 Paid by Tap to Pay: (.+)$/,(m,a)=>'💰 Pagado con Tap to Pay: '+a],
 [/^(.+) visits today — goal hit 🎯$/,(m,a)=>a+' visitas hoy — meta cumplida 🎯']
 ];
 function tr(t){if(LANG!=='es')return t;const k=t.trim();if(!k)return t;
@@ -469,7 +474,7 @@ function pipelineIn(b,includeUndated){const t=today();
 function forecast(p){const booked=salesIn(p.start,p.end);const rec=recurringDue(p.start,p.end);
   const cr=closeRate().rate;const pipe=pipelineIn(p.end,p.key==='month');const weighted=pipe.value*cr;
   return{booked,rec,pipe,weighted,expected:booked.revenue+rec.total+weighted,goal:goalFor(p.key)}}
-const PAY_KEYS=['paymentStatus','amountPaid','paidDate','dueDate'];
+const PAY_KEYS=['paymentStatus','amountPaid','paidDate','dueDate','paidVia'];
 const canMoney=()=>!!S.isOwner;
 /* who sees payment status: the owner sees every sale; a team member sees only the sales credited to them (mirrored by the owner's app into repPay/<their id>) */
 const canSeePay=s=>!!S.isOwner||!!(s&&s._myPay);
@@ -490,7 +495,7 @@ async function syncRepPay(){if(!S.isOwner||!S.db||!S.ready.sales)return;
       await S.db.doc(path).set(want);repSynced[path]=key}catch(e){repSynced[path]=key}}}
 function splitPay(x){const pay={},rest={};Object.entries(x||{}).forEach(([k,v])=>{(PAY_KEYS.includes(k)?pay:rest)[k]=v});return{pay,rest}}
 async function savePay(id,pay){if(!canMoney()||!pay||!Object.keys(pay).length)return;const cur=S.payments[id]||{};await S.db.doc('ownerOnly/ledger/payments/'+id).set({...cur,...pay,updatedAt:iso()})}
-function payCell(s){return `<td>${isUnpaid(s)?`<span class="chip ${isOverdue(s)?'bad':'warn'}">${isOverdue(s)?'Overdue':s.paymentStatus==='partial'?'Partly paid':'Not paid'}</span>${validDate(s.dueDate)?`<div class="sub">due ${fmtDate(s.dueDate)}</div>`:''}${s.paymentStatus==='partial'?`<div class="sub">owes ${money2(owedOf(s))}</div>`:''}`:'<span class="chip ok">Paid</span>'}</td>`}
+function payCell(s){return `<td>${isUnpaid(s)?`<span class="chip ${isOverdue(s)?'bad':'warn'}">${isOverdue(s)?'Overdue':s.paymentStatus==='partial'?'Partly paid':'Not paid'}</span>${validDate(s.dueDate)?`<div class="sub">due ${fmtDate(s.dueDate)}</div>`:''}${s.paymentStatus==='partial'?`<div class="sub">owes ${money2(owedOf(s))}</div>`:''}`:`<span class="chip ok">Paid</span>${s.paidVia?`<div class="sub">${esc(s.paidVia)}</div>`:''}`}</td>`}
 const isUnpaid=s=>s.paymentStatus==='unpaid'||s.paymentStatus==='partial';
 const grandOf=s=>num(s.invoiceTotal)||num(s.total);
 const taxOf=s=>num(s.tax);
@@ -512,7 +517,7 @@ function readPay(f,total,prev={}){if(!f.paymentStatus)return{invoiceNo:f.invoice
   dueDate:st==='paid'?'':(validDate(f.dueDate.value)?f.dueDate.value:''),amountPaid:st==='paid'?total:st==='partial'?Math.min(total,num(f.amountPaid.value)):0};
   if(st==='paid')o.paidDate=prev.paymentStatus==='paid'&&prev.paidDate?prev.paidDate:today();else o.paidDate='';return o}
 async function markPaid(id){if(!needWrite())return;const s=S.sales.find(x=>x.id===id);if(!s)return;
-  try{await savePay(id,{paymentStatus:'paid',amountPaid:grandOf(s),paidDate:today(),dueDate:''});toast(`Marked paid: ${money2(grandOf(s))}`)}catch(e){writeErr(e)}}
+  try{await savePay(id,{paymentStatus:'paid',amountPaid:grandOf(s),paidDate:today(),dueDate:'',paidVia:''});toast(`Marked paid: ${money2(grandOf(s))}`)}catch(e){writeErr(e)}}
 function openEditSale(s){const body=`<div class="grid2">
   <label>Order date<input type="date" name="date" value="${esc(s.date||'')}"></label>
   <label>Glove size<select name="size">${SIZES.map(z=>opt(z,z||'—',s.size||'')).join('')}</select></label>
@@ -686,7 +691,7 @@ function openOrderModal({mode,visit,client}){
       if(mode==='won'){await S.db.doc('visits/'+visit.id).update({status:'won',clientId,wonDate:d});if(visit.leadId)await S.db.doc('leads/'+visit.leadId).update({status:'won',clientId}).catch(()=>{})}
       if(mode!=='won'&&cl&&cl.recurring&&FREQ[cl.frequency]&&(!validDate(cl.nextOrderDate)||cl.nextOrderDate<=d))
         await S.db.doc('clients/'+cl.id).update({nextOrderDate:nextOrder(d,cl.frequency)});
-      toast(`Sale saved: ${money2(a.invoiceTotal)}`)}})}
+      toast(`Sale saved: ${money2(a.invoiceTotal)}`);if(canMoney()&&rp.pay.paymentStatus&&rp.pay.paymentStatus!=='paid')setTimeout(()=>openTapToPay(saleRef.id,true),400)}})}
 
 /* ---------- client modal ---------- */
 function openClientModal(c){const isNew=!c;c=c||{};
@@ -801,7 +806,7 @@ views.dashboard={
         <td>${int(s.cases)} cases${s.size?` ${esc(s.size)}`:''} @ ${money2(s.pricePerCase)}${taxOf(s)?' + tax':''}${s.invoiceNo?`<div class="sub">#${esc(s.invoiceNo)}</div>`:''}${s.date?`<div class="sub">${fmtDate(s.date)}</div>`:''}</td>
         <td class="n">${validDate(s.dueDate)?`<span class="chip ${isOverdue(s)?'bad':''}">${isOverdue(s)?'Overdue · ':''}${fmtDate(s.dueDate)}</span>`:'<span class="sub">—</span>'}</td>
         <td class="n"><b>${money2(owedOf(s))}</b>${s.paymentStatus==='partial'?'<div class="sub">partly paid</div>':''}</td>
-        <td class="n">${S.isOwner&&S.db?`<button class="btn sm g" data-markpaid="${esc(s.id)}">Mark paid</button>`:''}</td></tr>`).join('')}</tbody></table></div>`;
+        <td class="n nowrap">${S.isOwner&&S.db?`<button class="btn sm p" data-tap="${esc(s.id)}">💳 Tap to Pay</button> <button class="btn sm g" data-markpaid="${esc(s.id)}">Mark paid</button>`:''}</td></tr>`).join('')}</tbody></table></div>`;
       const totals=Object.values(byClient).map(x=>`${esc(x.name)} ${money(x.list.reduce((a,s)=>a+owedOf(s),0))}`);
       if(totals.length>1)h+=`<p class="sub" style="margin:10px 0 0">By client: ${totals.join(' · ')}</p>`}
     else h+=`<div class="empty" style="padding:14px">Nothing owed. Every invoice is paid.</div>`;
@@ -920,7 +925,7 @@ views.sales={
       ${list.slice(0,500).map(s=>{const c=s.clientId&&S.clients.find(x=>x.id===s.clientId);return `<tr><td class="nowrap">${s.date?fmtDate(s.date):'<span class="sub">No date</span>'}</td><td><b>${esc(c?c.name:s.clientName)}</b>${c&&c.recurring?' <span class="chip ok">★</span>':''}<div class="sub">${s.size?`Size ${esc(s.size)}`:''}${s.invoiceNo?`${s.size?' · ':''}#${esc(s.invoiceNo)}`:''}${s.notes?`${s.size||s.invoiceNo?' · ':''}${esc(s.notes)}`:''}</div></td>
       <td>${esc(nameOf(s.repId))}</td><td class="n">${int(s.cases)}</td><td class="n">${money2(s.pricePerCase)}</td><td class="n"><b>${money2(grandOf(s))}</b>${taxOf(s)?`<div class="sub">incl. ${money2(taxOf(s))} tax</div>`:''}</td>
       ${moneyView()?(canSeePay(s)?payCell(s):'<td><span class="sub">—</span></td>'):''}
-      <td class="n nowrap">${S.canWrite&&S.db?`${S.isOwner&&isUnpaid(s)?`<button class="btn sm g" data-markpaid="${esc(s.id)}">Mark paid</button> `:''}<button class="btn sm" data-invoice="${esc(s.id)}">Invoice</button> <button class="btn sm" data-sedit="${esc(s.id)}">Edit</button> <button class="btn sm d" data-sdel="${esc(s.id)}">✕</button>`:''}</td></tr>`}).join('')}</tbody></table></div></div>`
+      <td class="n nowrap">${S.canWrite&&S.db?`${S.isOwner&&isUnpaid(s)?`<button class="btn sm p" data-tap="${esc(s.id)}">💳 Tap to Pay</button> <button class="btn sm g" data-markpaid="${esc(s.id)}">Mark paid</button> `:''}<button class="btn sm" data-invoice="${esc(s.id)}">Invoice</button> <button class="btn sm" data-sedit="${esc(s.id)}">Edit</button> <button class="btn sm d" data-sdel="${esc(s.id)}">✕</button>`:''}</td></tr>`}).join('')}</tbody></table></div></div>`
       :`<div class="empty">No sales in this period.</div>`;
     el.querySelectorAll('[data-sdel]').forEach(b=>b.onclick=()=>confirmDelete('this sale',S.db.doc('sales/'+b.dataset.sdel)));
     el.querySelectorAll('[data-sedit]').forEach(b=>b.onclick=()=>{const s=S.sales.find(x=>x.id===b.dataset.sedit);s&&openEditSale(s)})}};
@@ -935,7 +940,7 @@ const GOAL_FIELDS=[
   ['monthlyCasesGoal','Monthly cases goal','Only used when there is no sell-by date or stock','1'],
   ['visitsPerRepPerDay','Visits per rep per day','Daily visit target for each salesperson','1'],
   ['workDaysPerWeek','Work days per week','Used to split weekly goals into daily ones','1'],
-  ['_h2','Stock','','heading'],
+  ['_h2','Stock','Matches your Shopify stock (Case of 1,000) as of Nov 5, 2026. Sales logged in this app are subtracted automatically.','heading'],
   ['stockS','Cases in stock: S','Starting stock for this push','1'],
   ['stockM','Cases in stock: M','','1'],
   ['stockL','Cases in stock: L','','1'],
@@ -1209,17 +1214,45 @@ async function openInvoice(id){let s=S.sales.find(x=>x.id===id);if(!s)return;con
   const linkHTML=s.payLinkUrl?`<div class="paylink"><span class="chip ok">Card payment link ready</span><a href="${esc(s.payLinkUrl)}" target="_blank" rel="noopener" class="sub" style="word-break:break-all">${esc(s.payLinkUrl)}</a></div>`
     :showLink?`<div class="paylink"><span class="sub"><b>Card payment:</b> in the Shopify app, create an invoice or payment link for ${money2(balanceOf(s))} and paste it here. It's printed on the invoice and added to the WhatsApp message. In person, use <b>Tap to Pay</b> in the Shopify app, then mark the sale paid.</span><input data-paylink type="url" inputmode="url" placeholder="https://…" autocomplete="off"><div class="btnrow"><button type="button" class="btn" data-inv="link">Save link</button><a class="btn" href="https://admin.shopify.com/" target="_blank" rel="noopener">Open Shopify</a></div></div>`:'';
   const body=`<p class="muted" style="margin:0 0 14px">${esc(s.clientName||'')} · ${int(s.cases)} cases · <b>${money2(grandOf(s))}</b></p>${linkHTML}
-    <div class="btnrow">${dl?`<button type="button" class="btn p" data-inv="pdf">Download PDF</button>`:''}<a class="btn g" href="${esc(waHref(s,no))}" target="_blank" rel="noopener">Send on WhatsApp</a></div>
+    <div class="btnrow">${showLink?`<button type="button" class="btn k" data-inv="tap">💳 Tap to Pay</button>`:''}${dl?`<button type="button" class="btn p" data-inv="pdf">Download PDF</button>`:''}<a class="btn g" href="${esc(waHref(s,no))}" target="_blank" rel="noopener">Send on WhatsApp</a></div>
     <p class="sub" style="margin:12px 0 0">${dl?'Download the PDF first, then attach it in the WhatsApp chat that opens.':'Downloads aren\'t available in this view. You can still send the invoice details on WhatsApp.'}</p>`;
   openModal({title:`Invoice ${no}`,body,submit:'Done',onSubmit:async()=>true,onOpen:f=>{const lb=$('[data-inv=link]',f);lb&&(lb.onclick=async()=>{lb.disabled=true;lb.textContent='Saving…';
       try{const u=(($('[data-paylink]',f)||{}).value||'').trim();if(!/^https?:\/\//i.test(u)){toast('Paste the Shopify payment link first');lb.disabled=false;lb.textContent='Save link';return}
         await S.db.doc('sales/'+s.id).update({payLinkUrl:u});toast('Card payment link saved');closeModal();setTimeout(()=>openInvoice(s.id),300)}
       catch(e){const c=e&&e.code;toast(c==='no_mcp'||c==='not_granted'||c==='server_not_connected'?'Connect Shopify to Claude to create card links.':c==='approval_required'||c==='consent_required'?'Allow Shopify access when asked, then try again.':c==='needs_reauth'?'Reconnect Shopify in Claude settings, then try again.':'Couldn\'t create the Shopify link'+(e&&e.message&&c==='shopify'?': '+e.message:'.'));lb.disabled=false;lb.textContent='Save link'}});
+    const tp=$('[data-inv=tap]',f);tp&&(tp.onclick=()=>{closeModal();setTimeout(()=>openTapToPay(s.id),0)});
     const b=$('[data-inv=pdf]',f);b&&(b.onclick=async()=>{b.disabled=true;b.textContent='Preparing…';
     try{const blob=await buildInvoicePDF(s,no);const safe=String(s.clientName||'client').replace(/[^\w]+/g,'-').replace(/^-|-$/g,'');await dl.save({filename:`${no}-${safe}.pdf`,data:blob});toast('Invoice saved')}
     catch(e){if(!(e&&e.code==='declined'))toast(e&&e.message==='jspdf'?'Couldn\'t load the PDF maker. Check your connection.':'Couldn\'t create the PDF.')}
     finally{b.disabled=false;b.textContent='Download PDF'}})}})}
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-invoice]');if(b){e.preventDefault();openInvoice(b.dataset.invoice)}});
+
+/* ---------- Tap to Pay (taken in the Shopify app; recorded here) ---------- */
+function openTapToPay(id,justSaved){const s=S.sales.find(x=>x.id===id);if(!s)return;const bal=balanceOf(s);if(!(bal>0)){toast('Nothing owed on this sale');return}
+  const sz=saleSizes(s);const keys=STOCK_SIZES.filter(k=>num(sz[k])>0);const es=LANG==='es';const cw=n=>es?(n===1?'caja':'cajas'):(n===1?'case':'cases');
+  const lines=keys.length?keys.map(k=>`${es?'Talla':'Size'} ${k} × ${int(sz[k])} ${cw(num(sz[k]))}`):[`${s.size&&s.size!=='Mixed'?`${es?'Talla':'Size'} ${esc(s.size)} × `:''}${int(s.cases)} ${cw(num(s.cases))}`];
+  const partial=s.paymentStatus==='partial'&&num(s.amountPaid)>0;
+  const body=`<div class="pcard" style="text-align:center;margin-bottom:16px"><div class="k">Charge</div><div class="big">${money2(bal)}</div><div class="sub" data-notr>${esc(s.clientName||'')} · ${int(s.cases)} ${cw(num(s.cases))}${taxOf(s)?(es?' · impuesto incluido':' · incl. tax'):''}</div></div>
+    <ol class="route" style="margin-bottom:14px" data-notr>${(es?[
+      `Abre la app de <b>Shopify</b> y empieza una venta.`,
+      `Agrega <b>UCKER Black Nitrile Exam Gloves – Case of 1,000</b>:<div class="sub">${lines.join(' · ')}</div>`,
+      partial?`Cobra un monto personalizado de <b>${money2(bal)}</b> (ya se pagó una parte).`:`Pon el precio en <b>${money2(s.pricePerCase)}</b> por caja. Revisa que el total sea <b>${money2(bal)}</b>.`,
+      `Toca <b>Cobrar → Tap to Pay</b>. El cliente acerca su tarjeta o teléfono a la parte de atrás de tu teléfono.`,
+      `Vuelve aquí y toca <b>Pago recibido</b>.`]:[
+      `Open the <b>Shopify</b> app and start a sale.`,
+      `Add <b>UCKER Black Nitrile Exam Gloves – Case of 1,000</b>:<div class="sub">${lines.join(' · ')}</div>`,
+      partial?`Charge a custom amount of <b>${money2(bal)}</b> (part is already paid).`:`Set the price to <b>${money2(s.pricePerCase)}</b> per case. Check the total is <b>${money2(bal)}</b>.`,
+      `Tap <b>Charge → Tap to Pay</b>. The customer taps their card or phone on the back of your phone.`,
+      `Come back here and tap <b>Payment received</b>.`]).map(x=>`<li><div>${x}</div></li>`).join('')}
+    </ol>
+    <div class="btnrow"><button type="button" class="btn" data-tp="copy">Copy amount</button><a class="btn" href="https://admin.shopify.com/" target="_blank" rel="noopener">Open Shopify</a><button type="button" class="btn" data-tp="inv">Send invoice / card link</button></div>
+    <p class="sub" style="margin:12px 0 0">Selling in the Shopify app also takes the cases out of your Shopify stock.</p>`;
+  openModal({title:'Tap to Pay',sub:justSaved?'Sale saved. Collect the payment now, or tap Later.':'',body,submit:'Payment received',
+    onOpen:f=>{const x=$('[data-x]',f);if(x)x.textContent=justSaved?'Later':'Cancel';
+      $('[data-tp=copy]',f).onclick=async()=>{try{await navigator.clipboard.writeText(bal.toFixed(2));toast('Amount copied')}catch(e){toast(money2(bal))}};
+      $('[data-tp=inv]',f).onclick=()=>{closeModal();setTimeout(()=>openInvoice(s.id),0)}},
+    onSubmit:async()=>{if(!needWrite())return false;await savePay(s.id,{paymentStatus:'paid',amountPaid:grandOf(s),paidDate:today(),dueDate:'',paidVia:'Tap to Pay'});toast(`💰 Paid by Tap to Pay: ${money2(bal)}`)}})}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-tap]');if(b){e.preventDefault();openTapToPay(b.dataset.tap)}});
 
 /* ---------- names ---------- */
 let namesBusy=false;

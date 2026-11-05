@@ -14,12 +14,12 @@ The UCKER sales team app: leads, visits, clients, sales, invoices and goals, in 
 - **Log a visit:** place, quote, cases and size. Prices fill in from the price tiers, and quotes below the floor price get flagged.
 - **Leads:** 4,609 Miami-area businesses (medical, dental, beauty, food and more), sorted closest and easiest first. Each lead has call and directions buttons, and you can build today's route in Google Maps.
 - **Clients and sales:** recurring reorders, payment status, and PDF invoices you can send on WhatsApp.
-- **Goals:** stock push dates, stock by size, prices and tax, invoice details and payment options. Preloaded with the current UCKER settings.
+- **Goals:** stock push dates, stock by size (matches Shopify's Case of 1,000 stock as of Nov 5, 2026: S 139 · M 487 · L 487 · XL 487), stock by size, prices and tax, invoice details and payment options. Preloaded with the current UCKER settings.
 - **ES / EN** button switches the whole app between Spanish and English.
 
 ## Shopify payments
 - **Card payment link:** open a sale → **Invoice**. Create an invoice or payment link for the amount in the Shopify app, paste it in, and tap **Save link**. It's printed on the PDF invoice and added to the WhatsApp message.
-- **Tap to Pay:** charge the customer with Tap to Pay in the Shopify app, then tap **Mark paid** on the sale in Sales HQ.
+- **Tap to Pay:** a website can't read cards (Apple and Google only allow it inside native apps), so the tap itself happens in the **Shopify app**. Sales HQ guides it: after saving an unpaid sale, or from the **💳 Tap to Pay** button on any unpaid sale, it shows the amount, exactly what to ring up in Shopify (product, size, cases, price per case), **Copy amount** and **Open Shopify** buttons, then **Payment received**, which marks the sale *Paid · Tap to Pay*. Ringing it up in Shopify also takes the cases out of your Shopify stock.
 
 ## Where the data lives
 - The leads and the starting goals/settings come from `data/leads.json` and `data/settings.json` in this repository. **This repository is public, so don't add customer, sales or cost data to these files.**
