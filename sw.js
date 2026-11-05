@@ -1,5 +1,5 @@
 // Offline cache for Ucker Sales HQ. Bump VERSION whenever app files change.
-const VERSION = 'ucker-sales-hq-v1';
+const VERSION = 'ucker-sales-hq-v2';
 const FILES = ['./', 'index.html', 'styles.css', 'app.js', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 

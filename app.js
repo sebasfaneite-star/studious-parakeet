@@ -245,7 +245,7 @@
           <button class="btn danger" data-action="reset">Erase all data</button>
         </div>
       </div>
-      <p class="muted" style="text-align:center;font-size:12px;margin-top:24px">Ucker Sales HQ · v1.0</p>`;
+      <p class="muted" style="text-align:center;font-size:12px;margin-top:24px">Ucker Sales HQ · v1.1</p>`;
   }
 
   // ---------- events ----------
@@ -495,19 +495,20 @@
       <h3 style="margin-top:6px">2 · Tap to Pay in person</h3>
       <div class="card" style="font-size:14px">
         <ol style="margin:0;padding-left:18px">
-          <li>Open the <b>Shopify POS</b> app on your phone.</li>
-          <li>Add the products, or a custom sale of <b>${money(d.value)}</b>.</li>
-          <li>Tap <b>Checkout → Tap to Pay</b> and have the customer tap their card or phone.</li>
+          <li>Tap <b>Copy amount</b>, then open the <b>Shopify</b> app on your phone.</li>
+          <li>Start a sale and add the products, or a custom amount of <b>${money(d.value)}</b>.</li>
+          <li>Choose <b>Tap to Pay</b> and have the customer tap their card or phone.</li>
           <li>Come back here and tap <b>Mark as paid</b>.</li>
         </ol>
         <div class="btn-row" style="margin-top:10px">
-          <button type="button" class="btn ghost small" data-copyamt>Copy amount</button>
+          <button type="button" class="btn small" data-copyamt>Copy amount</button>
+          <a class="btn ghost small" href="https://admin.shopify.com/" target="_blank" rel="noopener">Open Shopify</a>
         </div>
       </div>
 
       <div class="btn-row" style="margin-top:4px">
         ${d.paid ? `<button type="button" class="btn danger" data-unpaid style="flex:1">Mark as unpaid</button>`
-                 : `<select id="paidVia" class="search" style="margin:0;flex:1"><option>Shopify checkout</option><option>Tap to Pay (POS)</option><option>Other</option></select>
+                 : `<select id="paidVia" class="search" style="margin:0;flex:1"><option>Shopify checkout</option><option>Tap to Pay (Shopify app)</option><option>Other</option></select>
                     <button type="button" class="btn" data-paid>Mark as paid</button>`}
       </div>`;
 

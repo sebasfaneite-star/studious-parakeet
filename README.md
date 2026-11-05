@@ -15,7 +15,7 @@ A sales app for the Ucker team: dashboard, deal pipeline, contacts, follow-up ta
 - **Tasks:** follow-ups with due dates, plus overdue and today views.
 - **Collect payment** (open a deal → 💳):
   - **Shopify checkout link:** pick products from your store, or paste a Shopify invoice link, then text, email or share it. The customer pays through Shopify checkout.
-  - **Tap to Pay:** step-by-step guide for charging in the **Shopify POS** app, then mark the deal paid.
+  - **Tap to Pay:** copy the amount, take the payment with Tap to Pay in the **Shopify** app, then mark the deal paid.
 - **More:** your name, monthly goal, currency, Shopify connection, backup/import, CSV export.
 
 ## Connecting Shopify
@@ -25,7 +25,7 @@ In the app, go to **More → Shopify payments**:
 
 > Use a **Storefront** token only. Never put an **Admin API** token in this app.
 
-Tap to Pay works only in Shopify's own **Shopify POS** app (Apple and Google don't let web apps use the phone's NFC chip for payments). Each rep needs Shopify POS installed and a POS staff login.
+Tap to Pay happens in the **Shopify** app (Apple and Google don't let web apps use the phone's NFC chip for payments). Each rep needs the Shopify app installed, signed in to your store, with Tap to Pay set up.
 
 ## Data
 Each rep's deals, contacts and tasks are saved **on their own device**. Use *More → Export backup* to move data or share it. A shared team database would need a backend (for example Supabase or Firebase) and can be added later.
