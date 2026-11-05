@@ -1,22 +1,22 @@
 {
-  "name": "Ucker Sales HQ",
-  "short_name": "Sales HQ",
-  "description": "Pipeline, contacts and follow-ups for the Ucker sales team.",
+  "name": "UCKER Sales HQ",
+  "short_name": "UCKER HQ",
+  "description": "Leads, visits, clients, sales and goals for the UCKER sales team.",
   "id": "./",
   "start_url": "./#dashboard",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "Pipeline", "url": "./#pipeline" },
-    { "name": "Tasks", "url": "./#tasks" }
+    { "name": "Log a visit", "url": "./#log" },
+    { "name": "Leads", "url": "./#leads" },
+    { "name": "Sales", "url": "./#sales" }
   ]
 }

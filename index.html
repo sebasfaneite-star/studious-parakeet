@@ -1,50 +1,1260 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Ucker Sales HQ</title>
-  <meta name="description" content="Ucker Sales HQ: pipeline, contacts and follow-ups for the sales team.">
-  <meta name="theme-color" content="#0f172a">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Sales HQ">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="UCKER Sales HQ: leads, visits, clients, sales and goals for the UCKER sales team.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="UCKER HQ">
+<meta name="theme-color" content="#ffffff">
+<title>UCKER Sales HQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* UCKER website palette: white, ink black, soft pink, rose */
+:root{
+  --bg:#ffffff;--card:#ffffff;--card2:#fbeef3;--line:#ece4e8;--line2:#ddd3d8;--text:#111111;--mut:#6f646c;--dim:#8a7d84;
+  --pink:#e79cb9;--pink2:#a8336a;--pinkbg:#fbeef3;--ink:#111111;
+  --green:#1f7a52;--greenbg:#e5f3ec;--amber:#a15c00;--amberbg:#fdf1de;--red:#b4235a;--redbg:#fbe3ec;
+  --r:14px;--fd:"Montserrat",Arial,sans-serif;--fb:"Work Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 var(--fb);-webkit-font-smoothing:antialiased}
+a{color:var(--pink2)}
+h1,h2,h3{font-family:var(--fd);margin:0;letter-spacing:-.01em;color:var(--ink)}
+h1{font-size:28px;font-weight:900}
+h2{font-size:17px;font-weight:800}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+header::before{content:"";display:block;height:5px;background:linear-gradient(115deg,var(--ink) 0 72%,var(--pink) 72% 76%,var(--ink) 76% 100%)}
+.bar{display:flex;align-items:center;gap:18px;height:66px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.brand img{height:46px;width:auto;display:block}
+.brand small{padding-left:12px;border-left:2px solid var(--pink);white-space:nowrap}
+@media (max-width:440px){.brand small{display:none}}
+.brand small{color:var(--ink);font:800 11px var(--fd);text-transform:uppercase;letter-spacing:.16em}
+nav.tabs{display:flex;gap:4px;margin-left:auto;align-items:center}
+nav.tabs a{color:var(--mut);text-decoration:none;font-weight:600;font-size:14px;padding:8px 13px;border-radius:999px}
+nav.tabs a:hover{color:var(--ink);background:var(--card2)}
+nav.tabs a.on{color:#fff;background:var(--ink)}
+nav.tabs a.cta{background:var(--pink);color:var(--ink);margin-right:6px;font-weight:700}
+nav.tabs a.cta.on,nav.tabs a.cta:hover{background:#dc86a7;color:var(--ink)}
+.langbtn{font:700 13px var(--fb);color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;letter-spacing:.06em}
+.langbtn:hover{background:var(--card2)}
+.goalsLink{display:none;margin-left:auto;color:var(--ink);text-decoration:none;font-weight:600;font-size:14px;padding:7px 12px;border-radius:999px;border:2px solid var(--line)}
+#bottomnav{display:none}
+@media (max-width:820px){
+  nav.tabs{display:none}
+  .goalsLink{display:inline-block}
+  .langbtn{margin-left:8px}
+  #bottomnav{display:grid;grid-template-columns:repeat(6,1fr);position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 18px rgba(17,17,17,.06);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+  #bottomnav a{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--mut);text-decoration:none;font-size:11px;font-weight:600;padding:4px 0}
+  #bottomnav a .ic{font-size:18px;line-height:1}
+  #bottomnav a.on{color:var(--pink2)}
+  #bottomnav a.cta .ic{background:var(--pink);color:var(--ink);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-weight:800}
+  main{padding-bottom:90px!important}
+}
+main{padding:26px 0 50px}
+#banner:empty{display:none}
+.banner{margin:14px 0 0;padding:11px 14px;border-radius:12px;font-size:14px;border:1px solid var(--line);background:var(--card2)}
+.banner.warn{border-color:#f0d3a6;background:var(--amberbg)}
+.banner.err{border-color:#f0b9cd;background:var(--redbg)}
+.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.pagehead h1{position:relative;padding-bottom:8px}
+.pagehead h1::after{content:"";position:absolute;left:0;bottom:0;width:44px;height:4px;border-radius:2px;background:var(--pink)}
+.pagehead p{margin:6px 0 0;color:var(--mut)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.panel h2{margin-bottom:12px}
+.panel .ph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.panel .ph h2{margin:0}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+@media (max-width:900px){.cards3{grid-template-columns:1fr}}
+/* the three forecast cards use the website's black band with a pink stripe */
+.pcard{--text:#fff;--mut:#cbbfc5;--dim:#a99ca3;--card2:#2a2629;--line:#2f2a2d;--green:#6fd3a2;--greenbg:rgba(111,211,162,.16);--amber:#ffc46b;--amberbg:rgba(255,196,107,.16);--red:#ff8fb3;--redbg:rgba(255,143,179,.16);--pink2:#f2b8cf;
+  background:var(--ink);color:#fff;border-radius:var(--r);padding:18px;position:relative;overflow:hidden}
+.pcard::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(115deg,var(--pink) 0 34%,transparent 34% 37%,var(--pink) 37% 40%,transparent 40%)}
+.pcard h2,.pcard h3{color:#fff}
+.pcard .k{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--pink);font-weight:700;font-family:var(--fd)}
+.pcard .big{font-family:var(--fd);font-weight:900;font-size:34px;margin:6px 0 0;font-variant-numeric:tabular-nums}
+.sub{color:var(--mut);font-size:13px}
+.prog{height:8px;border-radius:99px;background:var(--card2);margin:12px 0 6px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--pink);border-radius:99px}
+.prog.g i{background:var(--green)}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.exp{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.exp b{font-family:var(--fd);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:#f3eef0;color:var(--mut);white-space:nowrap}
+.chip.ok{background:var(--greenbg);color:var(--green)}
+.chip.bad{background:var(--redbg);color:var(--red)}
+.chip.warn{background:var(--amberbg);color:var(--amber)}
+.chip.pink{background:var(--pinkbg);color:var(--pink2)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cols>.panel{margin-bottom:16px}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.stats{display:grid;gap:0}
+.stat{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.stat:last-child{border-bottom:0}
+.stat .l{color:var(--mut);font-size:14px}
+.stat .l small{display:block;color:var(--dim);font-size:12px}
+.stat .v{font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.stat .v.hi{color:var(--pink2);font-family:var(--fd);font-weight:800;font-size:18px}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.mini>div{background:var(--card2);border-radius:12px;padding:12px 14px}
+.mini b{display:block;font-family:var(--fd);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.mini span{font-size:12px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--mut);font-weight:700;text-align:left;padding:8px 8px;border-bottom:2px solid var(--ink)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#fdf7f9}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tscroll{overflow-x:auto}
+.list{display:grid;gap:10px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.item:hover{border-color:var(--pink);box-shadow:0 4px 16px rgba(168,51,106,.07)}
+.item .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.item h3{font-size:16px;font-weight:800}
+.item .meta{color:var(--mut);font-size:13px;margin-top:2px}
+.item .money{font-family:var(--fd);font-weight:800;font-size:18px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.item .notes{margin-top:8px;color:#4a4045;font-size:14px;white-space:pre-wrap}
+.item .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.filters input[type=search]{flex:1;min-width:180px}
+input,select,textarea{font:inherit;color:var(--text);background:#fff;border:2px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--ink)}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--pink2);padding:0}
+input:disabled,select:disabled{opacity:.6;background:#faf7f8}
+.filters select{width:auto}
+label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#4a4045}
+label.check{flex-direction:row;align-items:center;gap:10px;color:var(--text);font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid2 .full{grid-column:1/-1}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.hint{font-size:13px;color:var(--mut);font-weight:500}
+.hint.bad{color:var(--amber)}
+/* pill buttons like the website: pink = main action, black = strong, white with border = normal */
+.btn{font:inherit;font-weight:600;font-size:14px;border-radius:999px;padding:9px 18px;border:2px solid var(--line2);background:#fff;color:var(--ink);cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;transition:transform .15s,background .15s,border-color .15s}
+.btn:hover{border-color:var(--ink)}
+.btn.p{background:var(--pink);border-color:var(--pink);color:var(--ink);font-weight:700}
+.btn.p:hover{background:#dc86a7;border-color:#dc86a7;transform:translateY(-1px)}
+.btn.k{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.g{background:var(--greenbg);border-color:#bfe3cf;color:var(--green)}
+.btn.g:hover{border-color:var(--green)}
+.btn.d{color:var(--red)}
+.btn.d:hover{border-color:var(--red)}
+.btn.sm{padding:5px 12px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.formfoot{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.empty{color:var(--mut);text-align:center;padding:28px 10px;font-size:14px}
+.callout{border:1px solid #f2c9d9;background:var(--pinkbg);border-radius:var(--r);padding:14px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.gh{border-top:1px solid var(--line);padding-top:16px;margin-top:6px}.gh:first-child{border-top:0;padding-top:0;margin-top:0}.gh h3{font-size:15px;font-weight:800;color:var(--text)}.gh .hint{display:block;margin-top:4px}
+.paylink{display:flex;flex-direction:column;gap:6px;align-items:flex-start;background:var(--card2);border-radius:12px;padding:12px;margin-bottom:14px}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.tiers{display:flex;gap:6px;flex-wrap:wrap;font-size:12px;color:var(--mut)}.tiers span{background:var(--card2);border-radius:99px;padding:3px 10px}.tiers b{color:var(--text)}
+ol.route{margin:0 0 16px;padding-left:22px;display:grid;gap:10px}ol.route li{padding-left:4px}ol.route li>div{display:inline-block;width:calc(100% - 90px);vertical-align:top}ol.route li button{float:right}
+a.btn{display:inline-flex;align-items:center}
+.sel-inline{width:auto;padding:6px 10px;font-size:13px}
+#modal{position:fixed;inset:0;z-index:50;background:rgba(17,17,17,.45);display:flex;align-items:flex-start;justify-content:center;padding:40px 14px;overflow-y:auto}
+#modal[hidden]{display:none}
+.mbox{background:#fff;border-radius:18px;width:100%;max-width:620px;padding:22px;box-shadow:0 20px 60px rgba(17,17,17,.25);border-top:6px solid var(--pink)}
+.mbox h2{font-size:20px;margin-bottom:6px}
+.mbox .msub{color:var(--mut);margin:0 0 16px;font-size:14px}
+.total{font-family:var(--fd);font-weight:800;font-size:18px}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.2s;background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;z-index:60;pointer-events:none;max-width:90vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:820px){#toast{bottom:92px}}
+.sec-title{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--pink2);font-weight:700;font-family:var(--fd);margin:22px 0 10px}
+.muted{color:var(--mut)}
+.nowrap{white-space:nowrap}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <img src="icons/icon.svg" alt="" width="32" height="32">
-      <div>
-        <h1>Ucker Sales HQ</h1>
-        <p id="greeting" class="muted"></p>
-      </div>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#dashboard"><img src="logo-dark.png" alt="UCKER" width="130" height="46"><small id="brandSub">Sales HQ</small></a>
+    <nav class="tabs" id="tabs"></nav>
+    <a class="goalsLink" href="#goals" id="goalsLink">Goals</a>
+    <button type="button" class="langbtn" id="langBtn" data-notr aria-label="Cambiar a español">ES</button>
+  </div>
+</header>
+<div class="wrap"><div id="banner"></div></div>
+<main class="wrap" id="main"></main>
+<nav id="bottomnav"></nav>
+<div id="modal" hidden></div>
+<div id="toast"></div>
+
+<script src="local-db.js"></script>
+<script>
+"use strict";
+/* ---------- constants ---------- */
+const ROUTES=['dashboard','log','leads','visits','clients','sales','goals'];
+const LABELS={dashboard:'Dashboard',log:'+ Log visit',leads:'Leads',visits:'Visits',clients:'Clients',sales:'Sales',goals:'Goals'};
+const TYPES=['Barbershop','Hair salon','Nail / lash salon','Tattoo studio','Restaurant / food truck','Cleaning service','Medical / dental','Auto shop','Nursery / farm','Other'];
+const SIZES=['','S','M','L','XL','Mixed'];
+const STATUS={quoted:'Quoted',followup:'Follow-up',won:'Won',lost:'Lost'};
+const STATUS_CHIP={quoted:'pink',followup:'warn',won:'ok',lost:'bad'};
+const FREQ={weekly:{label:'Weekly',perMonth:52/12},biweekly:{label:'Every 2 weeks',perMonth:26/12},monthly:{label:'Monthly',perMonth:1},bimonthly:{label:'Every 2 months',perMonth:.5}};
+const DEFAULTS={monthlyRevenueGoal:0,monthlyCasesGoal:0,visitsPerRepPerDay:0,workDaysPerWeek:6,inventoryCases:0,stockS:0,stockM:0,stockL:0,stockXL:0,casesSoldBefore:0,sellByDate:'',pushStartDate:'',goalAvgPrice:0,floorPrice:0,listPrice:0,defaultCloseRatePct:20,taxRatePct:7,tierPrice1:0,payZelle:'',payCheckTo:'',payLink:'',payCash:'',payOther:'',paymentTermsDays:0,tierPrice2:0,tierPrice3:0,tierPrice4:0,companyName:'',companyAddress:'',companyPhone:'',companyEmail:'',companyWeb:'',paymentInstructions:''};
+
+/* ---------- helpers ---------- */
+const pad=n=>String(n).padStart(2,'0');
+const ds=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const validDate=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s);
+const pd=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const today=()=>ds(new Date());
+const addDays=(s,n)=>{const d=pd(s);d.setDate(d.getDate()+n);return ds(d)};
+const addMonths=(s,n)=>{const d=pd(s);const day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+n);const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return ds(d)};
+const weekStart=s=>{const d=pd(s);d.setDate(d.getDate()-((d.getDay()+6)%7));return ds(d)};
+const monthStart=s=>s.slice(0,8)+'01';
+const monthEnd=s=>{const d=pd(s);return ds(new Date(d.getFullYear(),d.getMonth()+1,0))};
+const daysBetween=(a,b)=>Math.round((pd(b)-pd(a))/864e5);
+const nextOrder=(s,f)=>f==='weekly'?addDays(s,7):f==='biweekly'?addDays(s,14):f==='bimonthly'?addMonths(s,2):addMonths(s,1);
+const num=v=>{const n=parseFloat(v);return isFinite(n)?n:0};
+const money=n=>{n=+n||0;return (n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString('en-US')};
+const money2=n=>'$'+(+n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const int=n=>Math.round(+n||0).toLocaleString('en-US');
+const one=n=>(+n||0).toLocaleString('en-US',{maximumFractionDigits:1});
+const pct=n=>Math.round((+n||0)*100)+'%';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate=s=>validDate(s)?pd(s).toLocaleDateString(LOC(),{month:'short',day:'numeric'}):'—';
+const fmtDateY=s=>validDate(s)?pd(s).toLocaleDateString(LOC(),{month:'short',day:'numeric',year:'numeric'}):'—';
+const iso=()=>new Date().toISOString();
+const lc=s=>String(s||'').trim().toLowerCase();
+const $=(sel,root=document)=>root.querySelector(sel);
+
+/* ---------- language (English / Español) ---------- */
+let LANG='en';try{LANG=localStorage.getItem('ucker-sales-lang')==='es'?'es':'en'}catch(e){}
+const LOC=()=>LANG==='es'?'es-US':'en-US';
+const ES={
+'Sales HQ':'Central de ventas','Dashboard':'Panel','+ Log visit':'+ Registrar visita','Visits':'Visitas','Clients':'Clientes','Sales':'Ventas','Goals':'Metas',
+'Home':'Inicio','Log':'Registrar','+ Log a visit':'+ Registrar visita','Log a visit':'Registrar una visita',
+'Today':'Hoy','This week':'Esta semana','This month':'Este mes','On track':'En camino','Expected revenue':'Ingreso esperado','Goal —':'Meta —',
+'What it takes':'Lo que hace falta','Cases left to sell':'Cajas por vender','Days until sell-by date':'Días hasta la fecha límite',
+'Cases needed per week':'Cajas necesarias por semana','Revenue needed per week':'Ingreso necesario por semana','Deals to close per week':'Ventas a cerrar por semana',
+'Visits needed per week':'Visitas necesarias por semana','Visits needed per work day':'Visitas necesarias por día laboral','Team visits this week':'Visitas del equipo esta semana',
+'Gross profit this month':'Ganancia bruta este mes','only you see this':'solo tú lo ves',
+'Pipeline':'Oportunidades','open quotes':'cotizaciones abiertas','quoted value':'valor cotizado','close rate':'tasa de cierre','Follow-ups due':'Seguimientos pendientes',
+'No follow-ups due in the next 2 days.':'No hay seguimientos en los próximos 2 días.',
+'Money owed':'Dinero por cobrar','All sales':'Todas las ventas','collected to date':'cobrado a la fecha','Client':'Cliente','Order':'Pedido','Due':'Vence','Owed':'Por cobrar',
+'Mark paid':'Marcar pagado','partly paid':'pago parcial','Nothing owed. Every invoice is paid.':'No te deben nada. Todas las facturas están pagadas.',
+'Sales tax charged so far:':'Impuesto cobrado hasta ahora:',
+'. That money goes to the Florida Department of Revenue, so it is left out of revenue and goals.':'. Ese dinero va al Departamento de Ingresos de Florida, así que no cuenta en los ingresos ni en las metas.',
+'Recurring clients':'Clientes recurrentes','All clients':'Todos los clientes','recurring clients':'clientes recurrentes','expected per month':'esperado por mes','new this month':'nuevos este mes',
+'No recurring clients yet. When you mark a visit as won, tick “Recurring client”.':'Aún no hay clientes recurrentes. Al marcar una visita como ganada, marca “Cliente recurrente”.',
+'Bought 2+ times but not marked recurring:':'Compraron 2+ veces pero no están marcados como recurrentes:',
+'. Mark them recurring in Clients so their reorders count in the forecast.':'. Márcalos como recurrentes en Clientes para que sus recompras cuenten en el pronóstico.',
+'Schedule':'Frecuencia','Per month':'Por mes','Next order':'Próximo pedido','New':'Nuevo',
+'Team this month':'Equipo este mes','No visits logged this month yet.':'Aún no hay visitas registradas este mes.','Rep':'Vendedor','Visits this week':'Visitas esta semana',
+'Visits (month)':'Visitas (mes)','Open quotes':'Cotizaciones abiertas','Won':'Ganadas','Cases':'Cajas','Revenue':'Ingresos',
+'No sales goal set yet. Set the monthly target so the team can see what to hit.':'Aún no hay meta de ventas. Define la meta mensual para que el equipo sepa qué alcanzar.','Set goals':'Definir metas',
+'Where you went, what you quoted, and how it went.':'Dónde fuiste, qué cotizaste y cómo te fue.',
+'Place / business name *':'Lugar / nombre del negocio *','Business type':'Tipo de negocio','Barbershop':'Barbería','Hair salon':'Salón de belleza','Nail / lash salon':'Salón de uñas / pestañas',
+'Tattoo studio':'Estudio de tatuajes','Restaurant / food truck':'Restaurante / food truck','Cleaning service':'Servicio de limpieza','Medical / dental':'Médico / dental',
+'Auto shop':'Taller mecánico','Nursery / farm':'Vivero / finca','Other':'Otro','Visit date':'Fecha de visita','Address / area':'Dirección / zona','Contact person':'Persona de contacto',
+'Phone':'Teléfono','Price quoted per case *':'Precio cotizado por caja *','Cases quoted':'Cajas cotizadas','Glove size':'Talla de guante','Mixed':'Mixta','Result':'Resultado',
+'Quoted':'Cotizada','Follow-up':'Seguimiento','Lost':'Perdida','Follow-up date':'Fecha de seguimiento','Notes':'Notas','Save visit':'Guardar visita',
+'Your visits today':'Tus visitas de hoy','Nothing logged yet today.':'Nada registrado hoy todavía.','e.g. Fresh Cuts Barbershop':'ej. Barbería Fresh Cuts','Street, city':'Calle, ciudad',
+'Name & role':'Nombre y cargo','e.g. 5':'ej. 5','What they use now, monthly usage, who decides, objections…':'Qué usan ahora, consumo mensual, quién decide, objeciones…',
+'Quote value:':'Valor cotizado:','(per case)':'(por caja)','Below floor':'Bajo el mínimo','Mark won':'Marcar ganada','Edit':'Editar','Delete':'Eliminar',
+'Every place the team visited and the price quoted.':'Cada lugar que visitó el equipo y el precio cotizado.','All results':'Todos los resultados','Open (quoted + follow-up)':'Abiertas (cotizado + seguimiento)',
+'All time':'Todo','Everyone':'Todos','Just me':'Solo yo','No visits match. Log the first one!':'Ninguna visita coincide. ¡Registra la primera!',
+'No visits match. Try “All time”.':'Ninguna visita coincide. Prueba “Todo”.','Search place, area, notes…':'Buscar lugar, zona, notas…',
+'Who\'s buying, and who reorders on a schedule.':'Quién compra y quién recompra con frecuencia.','+ Add client':'+ Agregar cliente','Recurring':'Recurrente','Owes money':'Deben dinero',
+'Bought 2+ times':'Compraron 2+ veces','Recurring since this month':'Recurrentes desde este mes','Repeat buyer':'Compra repetida','Log order':'Registrar pedido',
+'Search clients…':'Buscar clientes…','No clients match.':'Ningún cliente coincide.','No clients yet. They appear here when a visit is marked won, or add one directly.':'Aún no hay clientes. Aparecen aquí cuando una visita se marca como ganada, o agrégalos directamente.',
+'Every order and invoice, paid or not.':'Cada pedido y factura, pagado o no.','Every order and invoice.':'Cada pedido y factura.','+ Add sale':'+ Agregar venta','Paid & unpaid':'Pagadas y sin pagar','Not paid':'Sin pagar','Paid':'Pagada',
+'revenue (before tax)':'ingresos (antes de impuesto)','cases':'cajas','sales tax charged':'impuesto cobrado','not paid yet':'sin pagar aún','Date':'Fecha','Price':'Precio','Total':'Total',
+'Payment':'Pago','No date':'Sin fecha','Overdue':'Vencida','Partly paid':'Pago parcial','No sales in this period.':'No hay ventas en este período.',
+'Goals & settings':'Metas y ajustes','Targets the dashboard measures the team against.':'Las metas con las que el panel mide al equipo.',
+'Set by Sebastian. Shown here so everyone knows the targets.':'Definidas por Sebastian. Se muestran para que todos conozcan las metas.',
+'Monthly revenue goal ($)':'Meta de ingresos mensual ($)','Week = month × 12 ÷ 52 · day = week ÷ work days':'Semana = mes × 12 ÷ 52 · día = semana ÷ días laborales',
+'Monthly cases goal':'Meta mensual de cajas','Visits per rep per day':'Visitas por vendedor por día','Daily visit target for each salesperson':'Meta diaria de visitas para cada vendedor',
+'Work days per week':'Días laborales por semana','Used to split weekly goals into daily ones':'Se usa para dividir las metas semanales en diarias','Cases in stock to sell':'Cajas en inventario por vender',
+'Total cases this push is meant to sell':'Total de cajas a vender en esta campaña','Cases already sold before using this app':'Cajas vendidas antes de usar esta app',
+'Sales logged here are subtracted automatically':'Las ventas registradas aquí se restan automáticamente','Sell-by date':'Fecha límite de venta','When the stock should be sold out':'Cuándo se debe agotar el inventario',
+'Floor price per case ($)':'Precio mínimo por caja ($)','Quotes below this get flagged for approval':'Las cotizaciones por debajo requieren aprobación','List price per case ($)':'Precio de lista por caja ($)',
+'Shown as a hint when logging a quote':'Se muestra como guía al cotizar','Expected close rate (%)':'Tasa de cierre esperada (%)',
+'Used until 10 visits are won or lost; then the real rate takes over':'Se usa hasta tener 10 visitas ganadas o perdidas; luego se usa la tasa real',
+'Sales tax rate (%)':'Tasa de impuesto de venta (%)','Miami-Dade: 6% Florida + 1% county = 7%':'Miami-Dade: 6% Florida + 1% condado = 7%',
+'DDP cost per case ($) — only you can see this':'Costo DDP por caja ($) — solo tú lo ves','Used to show gross profit on your dashboard. Hidden from the team.':'Para mostrar la ganancia bruta en tu panel. Oculto para el equipo.',
+'Save goals':'Guardar metas','Records the sale. Cancel keeps the visit as it was.':'Registra la venta. Cancelar deja la visita como estaba.','Order date':'Fecha del pedido',
+'Cases sold *':'Cajas vendidas *','Price per case *':'Precio por caja *','Not paid yet':'Sin pagar aún','Payment due':'Fecha de pago','Amount paid so far ($)':'Monto pagado hasta ahora ($)',
+'Invoice / PO #':'Factura / OC #','Order notes':'Notas del pedido','Recurring client — they\'ll reorder on a schedule':'Cliente recurrente — recompra con frecuencia','How often':'Cada cuánto',
+'Weekly':'Semanal','Every 2 weeks':'Cada 2 semanas','Monthly':'Mensual','Every 2 months':'Cada 2 meses','Next expected order':'Próximo pedido esperado','Cancel':'Cancelar','Save sale':'Guardar venta',
+'Optional':'Opcional','e.g. 13 M + 2 L':'ej. 13 M + 2 L','Edit visit':'Editar visita','Save':'Guardar','This removes it from this phone and can\'t be undone.':'Se elimina de este teléfono y no se puede deshacer.',
+'Add client':'Agregar cliente','Edit client':'Editar cliente','Business name *':'Nombre del negocio *','Usual glove size':'Talla habitual','Address':'Dirección',
+'Charge Florida sales tax (uncheck if they gave you a resale/exemption certificate)':'Cobrar impuesto de venta de Florida (desmarca si te dieron un certificado de reventa/exención)',
+'Recurring client':'Cliente recurrente','Cases per order':'Cajas por pedido','Price per case':'Precio por caja','Add a sale':'Agregar una venta','— New / one-time buyer —':'— Nuevo / comprador ocasional —',
+'Buyer name *':'Nombre del comprador *','Business name':'Nombre del negocio','Cases *':'Cajas *','Already in clients as':'Ya está en clientes como',
+'— this sale will be added to their history.':'— esta venta se agregará a su historial.','Next order overdue':'Próximo pedido vencido','/case':'/caja','goal hit 🎯':'meta cumplida 🎯',
+'Loading team data…':'Cargando datos del equipo…','Teammate':'Compañero','You':'Tú','(estimated)':'(estimado)',
+'Couldn\'t load the app data. Check your connection and reload the page.':'No se pudieron cargar los datos. Revisa tu conexión y recarga la página.',
+'Access to this page\'s data has changed. Reload the page to continue.':'El acceso a los datos cambió. Recarga la página para continuar.',
+'Some data couldn\'t load. Reload the page to try again.':'Algunos datos no cargaron. Recarga la página para intentar de nuevo.',
+'Can\'t reach the data yet — numbers below may be incomplete or out of date.':'Aún no se pueden cargar los datos — los números pueden estar incompletos o desactualizados.',
+'View-only access: you can see the numbers but can\'t log visits or sales. Ask Sebastian to give you Contributor access.':'Acceso de solo lectura: puedes ver los números pero no registrar visitas ni ventas. Pídele a Sebastian acceso para editar.',
+'Visit saved':'Visita guardada','Visit updated':'Visita actualizada','Updated':'Actualizado','Deleted':'Eliminado','Client added':'Cliente agregado','Client updated':'Cliente actualizado',
+'Sale updated':'Venta actualizada','Goals saved':'Metas guardadas','Add the place name':'Agrega el nombre del lugar','Add the price you quoted per case':'Agrega el precio cotizado por caja',
+'Enter cases and price per case':'Ingresa cajas y precio por caja','Add the buyer name':'Agrega el nombre del comprador','Add the business name':'Agrega el nombre del negocio',
+'A client with that name already exists':'Ya existe un cliente con ese nombre','Only editors can change goals':'Solo los editores pueden cambiar las metas',
+'Data is not connected in this view.':'Los datos no están conectados aquí.','Your access is view-only.':'Tu acceso es de solo lectura.',
+'Couldn\'t save: your access is view-only.':'No se pudo guardar: tu acceso es de solo lectura.','Storage is full — delete old records, then try again.':'El almacenamiento está lleno — elimina registros viejos e intenta de nuevo.',
+'Couldn\'t save — check your connection and try again.':'No se pudo guardar — revisa tu conexión e intenta de nuevo.','Leads':'Prospectos','Businesses to visit, sorted by who to see next.':'Negocios por visitar, ordenados por a quién ver primero.','Today\'s route':'Ruta de hoy','+ Add lead':'+ Agregar prospecto',
+'Search name, address, type…':'Buscar nombre, dirección, tipo…','To do (not visited, follow-ups)':'Pendientes (sin visitar, seguimientos)','Not visited':'Sin visitar','Not interested':'No interesado',
+'All leads':'Todos los prospectos','Selling starts':'Inicio de ventas','First day of this push':'Primer día de esta campaña','Every case in stock should be sold by this day':'Todas las cajas en inventario deben venderse para este día','Expected average price per case ($)':'Precio promedio esperado por caja ($)','Turns the cases goal into a dollar goal. Leave empty to use your real average from sales':'Convierte la meta de cajas en dólares. Déjelo vacío para usar su promedio real de ventas','Only used when there is no sell-by date or stock':'Solo se usa si no hay fecha límite o inventario','Set a start date and a sell-by date and the app works out the day, week and month goals from the cases left in stock.':'Ponga una fecha de inicio y una fecha límite y la app calcula las metas del día, semana y mes según las cajas en inventario.','Cases needed per work day':'Cajas necesarias por día laboral','Selling window':'Periodo de ventas','Push ended':'Campaña terminada','Day off':'Día libre','to sell out by the sell-by date':'para venderlo todo a tiempo','On pace':'Al día','starts at':'desde','per case':'por caja','Starting price. Suggested automatically when quoting, and shown on every lead':'Precio inicial. Se sugiere al cotizar y aparece en cada prospecto','All business types':'Todos los negocios','Medical & dental':'Médico y dental','Beauty & body art':'Belleza y arte corporal','Food':'Comida','Other':'Otros','Your money owed':'Lo que le deben a usted','your sales not paid yet':'sus ventas sin pagar','Only the sales credited to you. Ask the owner to mark an invoice paid.':'Solo las ventas a su nombre. Pídale al dueño que marque una factura como pagada.','Every order and invoice. Payment status shows on your own sales only.':'Cada pedido y factura. El estado de pago solo aparece en sus propias ventas.','Businesses that use gloves themselves, closest and easiest to sell first. Medical and dental lead the list.':'Negocios que usan guantes, primero los más cercanos y fáciles de vender. Médicos y dentistas van primero.','All areas':'Todas las zonas','All types':'Todos los tipos','End users & resellers':'Usuarios finales y revendedores','End users':'Usuarios finales','Resellers':'Revendedores',
+'Reseller':'Revendedor','Called':'Llamado','Visited':'Visitado','Directions':'Cómo llegar','+ Route':'+ Ruta','✓ In route':'✓ En ruta','Log visit':'Registrar visita','No leads yet.':'Aún no hay prospectos.',
+'Import 224 businesses from your call list':'Importar 224 negocios de tu lista','No leads match these filters.':'Ningún prospecto coincide con estos filtros.','Remove':'Quitar',
+'Open route in Google Maps':'Abrir ruta en Google Maps','Stops are grouped by ZIP code. Google Maps starts from where you are; tap its menu to reorder stops if needed.':'Las paradas se agrupan por código postal. Google Maps empieza desde donde estás; usa su menú para reordenar paradas si hace falta.',
+'No stops yet. On the Leads page, tap “+ Route” on the businesses you want to visit today.':'Aún no hay paradas. En Prospectos, toca “+ Ruta” en los negocios que quieras visitar hoy.','Done':'Listo','Status':'Estado',
+'Start price per case':'Precio inicial por caja','Add lead':'Agregar prospecto','Type of business':'Tipo de negocio','Area':'Zona','e.g. Barber':'ej. Barbería','e.g. Doral':'ej. Doral','Lead updated':'Prospecto actualizado',
+'Lead added':'Prospecto agregado','Added to today\'s route':'Agregado a la ruta de hoy','Removed from today\'s route':'Quitado de la ruta de hoy','Invoice':'Factura','Download PDF':'Descargar PDF','Send on WhatsApp':'Enviar por WhatsApp',
+'Download the PDF first, then attach it in the WhatsApp chat that opens.':'Descarga el PDF primero y luego adjúntalo en el chat de WhatsApp que se abre.','Preparing…':'Preparando…','Invoice saved':'Factura guardada',
+'Downloads aren\'t available in this view. You can still send the invoice details on WhatsApp.':'Las descargas no están disponibles aquí. Igual puedes enviar los datos de la factura por WhatsApp.',
+'Couldn\'t create the PDF.':'No se pudo crear el PDF.','Couldn\'t load the PDF maker. Check your connection.':'No se pudo cargar el creador de PDF. Revisa tu conexión.','Couldn\'t load the call list file.':'No se pudo cargar la lista.',
+'Starting price. Suggested automatically when quoting, and shown on every lead':'Se sugiere automáticamente al cotizar','Shown at the top of every invoice':'Aparece arriba en cada factura','e.g. Zelle or check details, printed on every invoice':'ej. datos de Zelle o cheque; se imprime en cada factura',
+'Delete this sale?':'¿Eliminar esta venta?','Card payment link ready':'Enlace de pago con tarjeta listo','Create card payment link (Shopify)':'Crear enlace de pago con tarjeta (Shopify)',
+'Creating link…':'Creando enlace…','Card payment link created':'Enlace de pago creado','Connect Shopify to Claude to create card links.':'Conecta Shopify a Claude para crear enlaces de pago.',
+'Allow Shopify access when asked, then try again.':'Permite el acceso a Shopify cuando se te pida y vuelve a intentar.','Reconnect Shopify in Claude settings, then try again.':'Vuelve a conectar Shopify en la configuración de Claude e intenta de nuevo.',
+'1 invoice was paid by card on Shopify and is now marked paid':'1 factura se pagó con tarjeta en Shopify y ya está marcada como pagada','Sales goals':'Metas de venta','Stock':'Inventario','Pricing & tax':'Precios e impuestos','Invoices':'Facturas',
+'Payment options on invoices':'Formas de pago en facturas','Fill in the ones you accept. Empty ones are left off the invoice.':'Llena las que aceptas. Las vacías no aparecen en la factura.',
+'Zelle':'Zelle','Email or phone your Zelle is under':'Correo o teléfono de tu Zelle','Checks payable to':'Cheques a nombre de','Card / online payment link':'Enlace de pago con tarjeta / en línea',
+'e.g. a Square or Stripe payment link':'ej. un enlace de pago de Square o Stripe','Cash':'Efectivo','e.g. Accepted on delivery':'ej. Se acepta al entregar','Other payment option':'Otra forma de pago',
+'e.g. ACH / bank transfer — details on request':'ej. ACH / transferencia — datos a solicitud','Payment terms (days)':'Plazo de pago (días)',
+'Due date = invoice date + these days. 0 = due on receipt':'Vencimiento = fecha de factura + estos días. 0 = al recibir','New shop':'Negocio nuevo','New shops (licensed in last 90 days)':'Negocios nuevos (licencia en últimos 90 días)',
+'Import more leads':'Importar más prospectos','e.g. 1ST TRY CORP':'ej. 1ST TRY CORP','Stock by size':'Inventario por talla','Sold out':'Agotada','Low':'Bajo','Cases per size':'Cajas por talla',
+'Taken from current stock':'Sale del inventario actual','Starting stock for this push':'Inventario inicial de esta campaña','Sales logged here are subtracted automatically by size':'Las ventas registradas aquí se restan automáticamente por talla',
+'Leave at 0 if the stock above is what you have now':'Deja 0 si el inventario de arriba es lo que tienes ahora',
+'This phone':'Este teléfono','Your visits, clients and sales are saved on this phone only. Download a backup often, and use it to move your data to a new phone.':'Tus visitas, clientes y ventas se guardan solo en este teléfono. Descarga una copia de seguridad seguido y úsala para pasar tus datos a un teléfono nuevo.',
+'Your name':'Tu nombre','Shown in the Team table':'Aparece en la tabla del equipo','Save name':'Guardar nombre','Download backup':'Descargar copia','Restore backup':'Restaurar copia',
+'Name saved':'Nombre guardado','Backup downloaded':'Copia descargada','Backup restored':'Copia restaurada','Restore backup?':'¿Restaurar copia?','Restore':'Restaurar',
+'This replaces the visits, clients and sales on this phone with the ones in the backup.':'Esto reemplaza las visitas, clientes y ventas de este teléfono con las de la copia.',
+'That file is not a Sales HQ backup':'Ese archivo no es una copia de Sales HQ','Loading…':'Cargando…','Save link':'Guardar enlace','Saving…':'Guardando…','Open Shopify':'Abrir Shopify',
+'Paste the Shopify payment link first':'Primero pega el enlace de pago de Shopify','Card payment link saved':'Enlace de pago guardado'
+};
+const casesES=n=>n==='1'?'1 caja':n+' cajas';
+const ES_RX=[[/^Selling starts (.+)$/,(m,a)=>'Ventas desde '+a],[/^Sold since (.+)$/,(m,a)=>'Vendido desde '+a],[/^(\d[\d,]*) behind$/,(m,a)=>a+' atrasado'],[/^(\d[\d,]*) should be sold by now to finish on time$/,(m,a)=>a+' deberían estar vendidas para terminar a tiempo'],[/^([\d,]+) work days$/,(m,a)=>a+' días laborales'],[/^([\d,]+) cases ÷ ([\d,]+) work days$/,(m,a,b)=>`${a} cajas ÷ ${b} días laborales`],[/^uses ~(.+) cases\/mo$/,(m,a)=>`usa ~${a} cajas/mes`],
+[/^(\$[\d,.]+) short$/,(m,a)=>'Faltan '+a],
+[/^booked$/,()=>'vendido'],
+[/^([\d,]+) cases?$/,(m,a)=>casesES(a)],
+[/^([\d,]+) orders?$/,(m,a)=>a+(a==='1'?' pedido':' pedidos')],
+[/^([\d,]+) visits?$/,(m,a)=>a+(a==='1'?' visita':' visitas')],
+[/^([\d,]+) won$/,(m,a)=>a+' ganadas'],
+[/^Goal (.+)$/,(m,a)=>'Meta '+a],
+[/^(\$[\d,.]+) booked \+ (\$[\d,.]+) recurring reorders \+ (\$[\d,.]+) likely from open quotes$/,(m,a,b,c)=>`${a} vendido + ${b} en recompras + ${c} probable de cotizaciones abiertas`],
+[/^([\d,]+) in stock − ([\d,]+) sold$/,(m,a,b)=>`${a} en inventario − ${b} vendidas`],
+[/^to clear stock on time$/,()=>'para vender todo a tiempo'],[/^from monthly cases goal$/,()=>'según la meta mensual de cajas'],
+[/^([\d,]+) sold this week$/,(m,a)=>a+' vendidas esta semana'],
+[/^at (\$[\d,.]+) avg per case$/,(m,a)=>`a ${a} promedio por caja`],
+[/^([\d.,]+) cases per order( \(estimated\))?$/,(m,a,b)=>`${a} cajas por pedido${b?' (estimado)':''}`],
+[/^assumed ([\d.]+)% until 10 visits are won or lost$/,(m,a)=>`se asume ${a}% hasta tener 10 visitas ganadas o perdidas`],
+[/^your real rate: ([\d,]+) won of ([\d,]+) decided visits$/,(m,a,b)=>`tasa real: ${a} ganadas de ${b} visitas decididas`],
+[/^([\d]+) work days a week$/,(m,a)=>a+' días laborales por semana'],
+[/^goal ([\d,]+) \(([\d.]+)\/rep\/day × ([\d]+) reps?\)$/,(m,a,b,c)=>`meta ${a} (${b}/vendedor/día × ${c})`],
+[/^at (\$[\d,.]+) DDP cost\/case$/,(m,a)=>`a ${a} de costo DDP/caja`],
+[/^([\d,]+) unpaid invoices?$/,(m,a)=>a+(a==='1'?' factura sin pagar':' facturas sin pagar')],
+[/^([\d,]+) overdue$/,(m,a)=>a+' vencidas'],
+[/^sold to date \(before tax\)$/,()=>'vendido a la fecha (antes de impuesto)'],
+[/^([\d,]+) cases (.*)$/,(m,a,b)=>`${casesES(a)} ${b.replace('+ tax','+ impuesto')}`],
+[/^By client: (.+)$/,(m,a)=>'Por cliente: '+a],
+[/^Overdue · (.+)$/,(m,a)=>'Vencida · '+a],
+[/^([\d,]+) of ([\d,]+) visits today( — goal hit 🎯)?$/,(m,a,b,c)=>`${a} de ${b} visitas hoy${c?' — meta cumplida 🎯':''}`],
+[/^— goal hit 🎯$/,()=>'— meta cumplida 🎯'],
+[/^Size (.+)$/,(m,a)=>'Talla '+tr(a)],
+[/^Follow up (.+)$/,(m,a)=>'Seguimiento '+a],
+[/^avg quote (\$[\d,.]+)\/case(?: \(range (.+)\))?$/,(m,a,b)=>`cotización promedio ${a}/caja${b?` (rango ${b})`:''}`],
+[/^Mark as won: (.+)$/,(m,a)=>'Marcar como ganada: '+a],
+[/^Add (.+) to clients$/,(m,a)=>`Agregar ${a} a clientes`],
+[/^Delete visit to (.+)\?$/,(m,a)=>`¿Eliminar la visita a ${a}?`],
+[/^Delete client (.+)\?$/,(m,a)=>`¿Eliminar el cliente ${a}?`],
+[/^Log order: (.+)$/,(m,a)=>'Registrar pedido: '+a],
+[/^Edit sale: (.*)$/,(m,a)=>'Editar venta: '+a],
+[/^(\$[\d,.]+) \+ (\$[\d,.]+) tax =$/,(m,a,b)=>`${a} + ${b} de impuesto =`],
+[/^Below the (\$[\d,.]+) floor — needs Sebastian's approval\.$/,(m,a)=>`Bajo el mínimo de ${a} — necesita aprobación de Sebastian.`],
+[/^Below (\$[\d,.]+) floor — needs approval$/,(m,a)=>`Bajo el mínimo de ${a} — necesita aprobación`],
+[/^Owes (\$[\d,.]+)$/,(m,a)=>'Debe '+a],[/^owes (\$[\d,.]+)$/,(m,a)=>'debe '+a],
+[/^last (.+)$/,(m,a)=>'último '+a],[/^Next order (.+)$/,(m,a)=>'Próximo pedido '+a],
+[/^(\$[\d,.]+)\/month$/,(m,a)=>a+'/mes'],[/^since (.+)$/,(m,a)=>'desde '+a],
+[/^due (.+)$/,(m,a)=>'vence '+a],[/^incl\. (\$[\d,.]+) tax$/,(m,a)=>`incl. ${a} de impuesto`],
+[/^(\$[\d,.]+)\/case(.*)$/,(m,a,b)=>`${a}/caja${b}`],
+[/^([\d,]+) cases @ (.+)$/,(m,a,b)=>`${casesES(a)} a ${b}`],
+[/^Add Florida sales tax \(([\d.]+)%\)$/,(m,a)=>`Agregar impuesto de venta de Florida (${a}%)`],
+[/^Recurring (.+) — next order date moves forward automatically\.$/,(m,a)=>`Recurrente ${tr(a)} — la fecha del próximo pedido avanza sola.`],
+[/^List price (.+)$/,(m,a)=>'Precio de lista '+a],
+[/^Cases in stock: (.+)$/,(m,a)=>'Cajas en inventario: '+a],[/^SIZE (.+)$/,(m,a)=>'TALLA '+a],
+[/^([\d,]+) of ([\d,]+) cases left$/,(m,a,b)=>`quedan ${a} de ${b} cajas`],[/^of ([\d,]+) cases$/,(m,a)=>`de ${a} cajas`],[/^([\d,]+) sold$/,(m,a)=>a+' vendidas'],
+[/^Only ([\d,]+) (\S+) cases left in stock$/,(m,a,b)=>`Solo quedan ${a} cajas ${b}`],[/^([\d,]+) (S|M|L|XL) cases in stock$/,(m,a,b)=>`${a} cajas ${b} en inventario`],
+[/^([\d,]+) sold cases have no size breakdown\. (.*)$/,(m,a)=>`${a} cajas vendidas no tienen talla. Edita esas ventas y elige la talla, o Mixta con cajas por talla.`],
+[/^Log visit: (.+)$/,(m,a)=>'Registrar visita: '+a],[/^Invoice (UCK-\d+)$/,(m,a)=>'Factura '+a],[/^Stops (\d+)–(\d+)$/,(m,a,b)=>`Paradas ${a}–${b}`],
+[/^(\d+) stops?$/,(m,a)=>a+(a==='1'?' parada':' paradas')],[/^Today's route \((\d+)\)$/,(m,a)=>`Ruta de hoy (${a})`],[/^Last visit (.+)$/,(m,a)=>'Última visita '+a],
+[/^~(.+) cases\/mo$/,(m,a)=>`~${a} cajas/mes`],[/^Call (.+)$/,(m,a)=>'Llamar '+a],[/^Price: (.+) cases \(\$\)$/,(m,a)=>`Precio: ${a} cajas ($)`],
+[/^Invoice: (.+)$/,(m,a)=>'Factura: '+({'company name':'nombre de la empresa','phone':'teléfono','address':'dirección','email':'correo','website':'sitio web','how to pay':'cómo pagar'}[a]||a)],
+[/^([\d,]+) shown$/,(m,a)=>a+' mostrados'],[/^([\d,]+) not visited$/,(m,a)=>a+' sin visitar'],[/^([\d,]+) follow-ups due$/,(m,a)=>a+' seguimientos pendientes'],[/^([\d,]+) became clients$/,(m,a)=>a+' ya son clientes'],
+[/^Show more \(([\d,]+) left\)$/,(m,a)=>`Ver más (quedan ${a})`],[/^Importing… (.+)$/,(m,a)=>'Importando… '+a],[/^([\d,]+) leads imported$/,(m,a)=>a+' prospectos importados'],
+[/^(1–9|10–19|20–49|50\+) cases$/,(m,a)=>a+' cajas'],
+[/^licensed (.+)$/,(m,a)=>'licencia '+a],[/^([\d,]+) more businesses \(dental offices, clinics and other medical end users\) are ready to add\.$/,(m,a)=>`${a} negocios más (dentistas, clínicas y otros usuarios médicos) listos para agregar.`],[/^([\d.]+|<1) mi$/,(m,a)=>a+' mi'],
+[/^Makes a secure Shopify checkout for (.+)\. It's printed on the invoice and added to the WhatsApp message\.$/,(m,a)=>`Crea un pago seguro de Shopify por ${a}. Se imprime en la factura y se agrega al mensaje de WhatsApp.`],
+[/^(\d+) invoices were paid by card on Shopify and are now marked paid$/,(m,a)=>`${a} facturas se pagaron con tarjeta en Shopify y ya están marcadas como pagadas`],
+[/^Couldn't create the Shopify link(.*)$/,(m,a)=>'No se pudo crear el enlace de Shopify'+a],
+[/^Sale saved: (.+)$/,(m,a)=>'Venta guardada: '+a],[/^Marked paid: (.+)$/,(m,a)=>'Marcado pagado: '+a],
+[/^(.+) visits today — goal hit 🎯$/,(m,a)=>a+' visitas hoy — meta cumplida 🎯']
+];
+function tr(t){if(LANG!=='es')return t;const k=t.trim();if(!k)return t;
+  let r=ES[k];
+  if(r===undefined&&k.includes(' · ')){const parts=k.split(' · ');const out=parts.map(p=>tr(p));if(out.some((p,i)=>p!==parts[i]))r=out.join(' · ')}
+  if(r===undefined)for(const [rx,fn] of ES_RX){const m=k.match(rx);if(m){r=fn(...m);break}}
+  return r===undefined?t:t.replace(k,r)}
+let trBusy=false;
+function translateTree(root){if(LANG!=='es'||!root)return;trBusy=true;try{
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;const todo=[];
+  while(n=w.nextNode()){const p=n.parentElement;if(!p||p.closest('script,style,textarea,[data-notr],.notes'))continue;const v=tr(n.nodeValue);if(v!==n.nodeValue)todo.push([n,v])}
+  todo.forEach(([n,v])=>n.nodeValue=v);
+  if(root.querySelectorAll)root.querySelectorAll('[placeholder],[aria-label]').forEach(e=>{['placeholder','aria-label'].forEach(a=>{const v=e.getAttribute(a);if(v){const t=tr(v);if(t!==v)e.setAttribute(a,t)}})});
+}finally{trBusy=false}}
+new MutationObserver(ms=>{if(trBusy||LANG!=='es')return;const roots=new Set();ms.forEach(m=>{if(m.type==='characterData')roots.add(m.target.parentElement);else m.addedNodes.forEach(x=>roots.add(x.nodeType===1?x:x.parentElement))});
+  roots.forEach(r=>r&&translateTree(r))}).observe(document.body,{childList:true,subtree:true,characterData:true});
+function setLang(l){LANG=l;try{localStorage.setItem('ucker-sales-lang',l)}catch(e){}document.documentElement.lang=l;
+  const b=$('#langBtn');if(b){b.textContent=l==='es'?'EN':'ES';b.setAttribute('aria-label',l==='es'?'Switch to English':'Cambiar a español')}
+  closeModal();renderBanner();route();if(l==='es')translateTree(document.body)}
+
+/* ---------- state ---------- */
+const S={db:null,user:null,uid:null,canWrite:true,canEdit:false,isOwner:false,leads:[],salesRaw:[],payments:{},myPay:{},routeDoc:null,
+  visits:[],clients:[],sales:[],config:null,costs:null,
+  ready:{visits:false,clients:false,sales:false,config:false},status:'loading',names:{},route:'dashboard',goalsDirty:false};
+const cfg=()=>({...DEFAULTS,...(S.config||{})});
+const allReady=()=>Object.values(S.ready).every(Boolean);
+
+/* ---------- metrics ---------- */
+const isOpen=v=>v.status==='quoted'||v.status==='followup';
+const visitValue=v=>num(v.price)*(num(v.cases)||1);
+const inRange=(s,a,b)=>validDate(s)&&s>=a&&s<=b;
+function periods(){const t=today();const w=weekStart(t);return{
+  day:{key:'day',label:'Today',start:t,end:t},
+  week:{key:'week',label:'This week',start:w,end:addDays(w,6)},
+  month:{key:'month',label:'This month',start:monthStart(t),end:monthEnd(t)}}}
+function salesIn(a,b){const list=S.sales.filter(s=>inRange(s.date,a,b));return{list,revenue:list.reduce((t,s)=>t+num(s.total),0),cases:list.reduce((t,s)=>t+num(s.cases),0)}}
+function closeRate(){const won=S.visits.filter(v=>v.status==='won').length,lost=S.visits.filter(v=>v.status==='lost').length,dec=won+lost;
+  if(dec>=10)return{rate:won/dec,basis:`your real rate: ${won} won of ${dec} decided visits`};
+  return{rate:num(cfg().defaultCloseRatePct)/100,basis:`assumed ${num(cfg().defaultCloseRatePct)}% until 10 visits are won or lost`}}
+function pushNote(p){const w=pushWindow();if(!w)return 'Goal —';if(w.start&&p.end<w.start)return `Selling starts ${fmtDate(w.start)}`;if(p.start>w.end)return 'Push ended';return 'Day off'}
+/* stock push: sell every case in stock between the start date and the sell-by date. Goals come from that, not from fixed monthly numbers */
+function pushWindow(){const c=cfg();if(!validDate(c.sellByDate))return null;const ST=stockStatus();if(!ST.total)return null;return{start:validDate(c.pushStartDate)?c.pushStartDate:'',end:c.sellByDate,ST}}
+function isWorkDay(d){const wd=num(cfg().workDaysPerWeek)||6;const g=pd(d).getDay();if(wd>=7)return true;if(wd===6)return g!==0;if(wd===5)return g!==0&&g!==6;return g>=1&&g<=wd}
+function workDays(a,b){if(!a||!b||a>b)return 0;let n=0;for(let d=a;d<=b;d=addDays(d,1))if(isWorkDay(d))n++;return n}
+function stockSoldSince(a){return S.sales.filter(s=>s.countsAgainstStock!==false&&validDate(s.date)&&s.date>=a).reduce((t,s)=>t+num(s.cases),0)}
+const goalPrice=()=>num(cfg().goalAvgPrice)||avgSalePrice();
+/* cases to sell in a period = cases still unsold when the period began, spread evenly over the work days left in the push */
+function pushGoalCases(p){const w=pushWindow();if(!w)return null;const from=w.start&&w.start>p.start?w.start:p.start;const to=p.end<w.end?p.end:w.end;if(from>to)return 0;
+  const left=w.ST.totalLeft+stockSoldSince(from);const wdl=workDays(from,w.end);if(!wdl)return left;return left/wdl*workDays(from,to)}
+function goalFor(key){const pg=pushGoalCases(periods()[key]);if(pg!==null)return{cases:pg,rev:pg*goalPrice(),push:true};
+  const c=cfg();const m=num(c.monthlyRevenueGoal),mc=num(c.monthlyCasesGoal),wd=num(c.workDaysPerWeek)||6;
+  if(key==='month')return{rev:m,cases:mc};const w={rev:m*12/52,cases:mc*12/52};if(key==='week')return w;return{rev:w.rev/wd,cases:w.cases/wd}}
+function clientOrders(c){const n=lc(c.name);return S.sales.filter(s=>s.clientId===c.id||(!s.clientId&&lc(s.clientName)===n))}
+const clientMRR=c=>c.recurring&&FREQ[c.frequency]?num(c.casesPerOrder)*num(c.pricePerCase)*FREQ[c.frequency].perMonth:0;
+function recurringDue(a,b){const t=today();const from=a>t?a:t;let total=0;const orders=[];
+  for(const c of S.clients){if(!c.recurring||!FREQ[c.frequency]||!validDate(c.nextOrderDate))continue;
+    const val=num(c.casesPerOrder)*num(c.pricePerCase);if(!val)continue;
+    let d=c.nextOrderDate<t?t:c.nextOrderDate,g=0;
+    while(d<=b&&g++<80){if(d>=from){total+=val;orders.push({c,d,val})}d=nextOrder(d,c.frequency)}}
+  return{total,orders}}
+function pipelineIn(b,includeUndated){const t=today();
+  const list=S.visits.filter(v=>{if(!isOpen(v))return false;
+    if(validDate(v.followUpDate))return v.followUpDate<=b; /* overdue follow-ups count as still in play now */
+    return includeUndated&&validDate(v.date)&&daysBetween(v.date,t)<=30});
+  return{list,value:list.reduce((s,v)=>s+visitValue(v),0)}}
+function forecast(p){const booked=salesIn(p.start,p.end);const rec=recurringDue(p.start,p.end);
+  const cr=closeRate().rate;const pipe=pipelineIn(p.end,p.key==='month');const weighted=pipe.value*cr;
+  return{booked,rec,pipe,weighted,expected:booked.revenue+rec.total+weighted,goal:goalFor(p.key)}}
+const PAY_KEYS=['paymentStatus','amountPaid','paidDate','dueDate'];
+const canMoney=()=>!!S.isOwner;
+/* who sees payment status: the owner sees every sale; a team member sees only the sales credited to them (mirrored by the owner's app into repPay/<their id>) */
+const canSeePay=s=>!!S.isOwner||!!(s&&s._myPay);
+const moneyView=()=>!!S.isOwner||S.sales.some(s=>s._myPay);
+function mergeSales(){S.sales=S.salesRaw.map(s=>{const o={...s};const legacy={};PAY_KEYS.forEach(k=>{if(o[k]!==undefined)legacy[k]=o[k];delete o[k]});
+  if(S.isOwner)return{...o,paymentStatus:'unpaid',amountPaid:0,paidDate:'',dueDate:'',...legacy,...(S.payments[s.id]||{})};
+  if(S.uid&&o.repId===S.uid&&S.myPay[s.id]){const m={};PAY_KEYS.forEach(k=>{if(S.myPay[s.id][k]!==undefined)m[k]=S.myPay[s.id][k]});return{...o,...m,_myPay:true}}
+  return o});if(S.isOwner)scheduleRepSync()}
+/* owner only: copy each rep's own payment status to repPay/<repId>/sales/<saleId>, so that rep (and nobody else on the team) can see it */
+let repSyncT=null;const repSynced={};
+function scheduleRepSync(){if(!S.isOwner||!S.db||!S.uid)return;clearTimeout(repSyncT);repSyncT=setTimeout(syncRepPay,2500)}
+async function syncRepPay(){if(!S.isOwner||!S.db||!S.ready.sales)return;
+  for(const s of S.sales){if(!s.repId||s.repId===S.uid)continue;
+    const want={saleId:s.id,paymentStatus:s.paymentStatus||'unpaid',amountPaid:num(s.amountPaid),paidDate:s.paidDate||'',dueDate:s.dueDate||''};const key=JSON.stringify(want);
+    const path='repPay/'+s.repId+'/sales/'+s.id;if(repSynced[path]===key)continue;
+    try{if(repSynced[path]===undefined){const g=await S.db.doc(path).get();const d=g.exists?g.data():null;
+        if(d&&JSON.stringify({saleId:d.saleId,paymentStatus:d.paymentStatus,amountPaid:num(d.amountPaid),paidDate:d.paidDate||'',dueDate:d.dueDate||''})===key){repSynced[path]=key;continue}}
+      await S.db.doc(path).set(want);repSynced[path]=key}catch(e){repSynced[path]=key}}}
+function splitPay(x){const pay={},rest={};Object.entries(x||{}).forEach(([k,v])=>{(PAY_KEYS.includes(k)?pay:rest)[k]=v});return{pay,rest}}
+async function savePay(id,pay){if(!canMoney()||!pay||!Object.keys(pay).length)return;const cur=S.payments[id]||{};await S.db.doc('ownerOnly/ledger/payments/'+id).set({...cur,...pay,updatedAt:iso()})}
+function payCell(s){return `<td>${isUnpaid(s)?`<span class="chip ${isOverdue(s)?'bad':'warn'}">${isOverdue(s)?'Overdue':s.paymentStatus==='partial'?'Partly paid':'Not paid'}</span>${validDate(s.dueDate)?`<div class="sub">due ${fmtDate(s.dueDate)}</div>`:''}${s.paymentStatus==='partial'?`<div class="sub">owes ${money2(owedOf(s))}</div>`:''}`:'<span class="chip ok">Paid</span>'}</td>`}
+const isUnpaid=s=>s.paymentStatus==='unpaid'||s.paymentStatus==='partial';
+const grandOf=s=>num(s.invoiceTotal)||num(s.total);
+const taxOf=s=>num(s.tax);
+const owedOf=s=>isUnpaid(s)?Math.max(0,grandOf(s)-num(s.amountPaid)):0;
+const taxRate=()=>num(cfg().taxRatePct);
+const r2=n=>Math.round(n*100)/100;
+function taxFieldHTML(on){return `<label class="check full"><input type="checkbox" name="taxable" ${on?'checked':''}> Add Florida sales tax (${one(taxRate())}%)</label>`}
+function amounts(cs,pr,taxable){const sub=r2(cs*pr),rate=taxable?taxRate():0,tax=r2(sub*rate/100);return{total:sub,taxRate:rate,tax,invoiceTotal:r2(sub+tax)}}
+const isOverdue=s=>isUnpaid(s)&&validDate(s.dueDate)&&s.dueDate<today();
+function payFieldsHTML(s={}){const st=s.paymentStatus||(canMoney()?'unpaid':'paid');if(!canMoney())return `<label>Invoice / PO #<input name="invoiceNo" value="${esc(s.invoiceNo||'')}" placeholder="Optional"></label>
+  <label class="full">Order notes<input name="notes" value="${esc(s.notes||'')}" placeholder="e.g. 13 M + 2 L"></label>`;return `
+  <label>Payment<select name="paymentStatus">${[['paid','Paid'],['unpaid','Not paid yet'],['partial','Partly paid']].map(([k,l])=>opt(k,l,st)).join('')}</select></label>
+  <label data-due>Payment due<input type="date" name="dueDate" value="${esc(s.dueDate||'')}"></label>
+  <label data-amt>Amount paid so far ($)<input name="amountPaid" type="number" min="0" step="0.01" inputmode="decimal" value="${s.paymentStatus==='partial'?esc(s.amountPaid||''):''}"></label>
+  <label>Invoice / PO #<input name="invoiceNo" value="${esc(s.invoiceNo||'')}" placeholder="Optional"></label>
+  <label class="full">Order notes<input name="notes" value="${esc(s.notes||'')}" placeholder="e.g. 13 M + 2 L"></label>`}
+function bindPayFields(f){if(!f.paymentStatus)return;const sw=()=>{const v=f.paymentStatus.value;$('[data-due]',f).style.display=v==='paid'?'none':'';$('[data-amt]',f).style.display=v==='partial'?'':'none'};f.paymentStatus.addEventListener('change',sw);sw()}
+function readPay(f,total,prev={}){if(!f.paymentStatus)return{invoiceNo:f.invoiceNo.value.trim(),notes:f.notes.value.trim()};const st=f.paymentStatus.value;const o={paymentStatus:st,invoiceNo:f.invoiceNo.value.trim(),notes:f.notes.value.trim(),
+  dueDate:st==='paid'?'':(validDate(f.dueDate.value)?f.dueDate.value:''),amountPaid:st==='paid'?total:st==='partial'?Math.min(total,num(f.amountPaid.value)):0};
+  if(st==='paid')o.paidDate=prev.paymentStatus==='paid'&&prev.paidDate?prev.paidDate:today();else o.paidDate='';return o}
+async function markPaid(id){if(!needWrite())return;const s=S.sales.find(x=>x.id===id);if(!s)return;
+  try{await savePay(id,{paymentStatus:'paid',amountPaid:grandOf(s),paidDate:today(),dueDate:''});toast(`Marked paid: ${money2(grandOf(s))}`)}catch(e){writeErr(e)}}
+function openEditSale(s){const body=`<div class="grid2">
+  <label>Order date<input type="date" name="date" value="${esc(s.date||'')}"></label>
+  <label>Glove size<select name="size">${SIZES.map(z=>opt(z,z||'—',s.size||'')).join('')}</select></label>
+  <label>Cases *<input name="cases" type="number" min="0" step="1" inputmode="numeric" value="${esc(s.cases)}"></label>
+  <label>Price per case *<input name="price" type="number" min="0" step="0.01" inputmode="decimal" value="${esc(s.pricePerCase)}"></label>
+  ${mixHTML(s.sizes)}
+  ${taxFieldHTML(num(s.taxRate)>0)}<div class="full row"><span></span><span class="total" data-total></span></div>
+  ${payFieldsHTML(s)}
+  <label class="check full"><input type="checkbox" name="fromStock" ${s.countsAgainstStock===false?'':'checked'}> Taken from current stock</label></div>`;
+  openModal({title:`Edit sale: ${s.clientName||''}`,body,onOpen:f=>{bindPayFields(f);bindTotals(f);bindMix(f,s.id)},onSubmit:async f=>{if(!needWrite())return false;
+    const cs=num(f.cases.value),pr=num(f.price.value);if(!(cs>0)||!(pr>0)){toast('Enter cases and price per case');return false}
+    const a=amounts(cs,pr,f.taxable.checked);const rateKeep=num(s.taxRate)&&f.taxable.checked?num(s.taxRate):a.taxRate;
+    const b=rateKeep!==a.taxRate?{...a,taxRate:rateKeep,tax:r2(a.total*rateKeep/100),invoiceTotal:r2(a.total*(1+rateKeep/100))}:a;
+    await S.db.doc('sales/'+s.id).update({date:validDate(f.date.value)?f.date.value:'',size:f.size.value,sizes:readSizes(f),countsAgainstStock:f.fromStock.checked,cases:cs,pricePerCase:pr,...b,...splitPay(readPay(f,b.invoiceTotal,s)).rest});await savePay(s.id,splitPay(readPay(f,b.invoiceTotal,s)).pay);toast('Sale updated')}})}
+function bindTotals(f){const tot=$('[data-total]',f);const up=()=>{const c=num(f.cases.value),p=num(f.price.value);if(!(c&&p)){tot.textContent='';return}
+  const a=amounts(c,p,f.taxable&&f.taxable.checked);tot.innerHTML=a.tax?`<span class="sub" style="font-family:var(--fb);font-weight:500">${money2(a.total)} + ${money2(a.tax)} tax = </span>${money2(a.invoiceTotal)}`:money2(a.total)};
+  ['cases','price'].forEach(n=>f[n].addEventListener('input',up));f.taxable&&f.taxable.addEventListener('change',up);up()}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-markpaid]');if(b){e.preventDefault();markPaid(b.dataset.markpaid)}});
+const findClientByName=n=>S.clients.find(c=>lc(c.name)===lc(n));
+const STOCK_SIZES=['S','M','L','XL'];
+function saleSizes(s){if(s.sizes&&typeof s.sizes==='object')return s.sizes;return STOCK_SIZES.includes(s.size)?{[s.size]:num(s.cases)}:{}}
+function stockStatus(excludeId){const c=cfg();const start={};STOCK_SIZES.forEach(z=>start[z]=num(c['stock'+z]));
+  const sized=STOCK_SIZES.some(z=>start[z]>0);const total=sized?STOCK_SIZES.reduce((a,z)=>a+start[z],0):num(c.inventoryCases);
+  const sold={S:0,M:0,L:0,XL:0};let soldAll=0,unassigned=0;
+  S.sales.forEach(s=>{if(s.countsAgainstStock===false||s.id===excludeId)return;const cs=num(s.cases);soldAll+=cs;const z=saleSizes(s);let k=0;STOCK_SIZES.forEach(x=>{sold[x]+=num(z[x]);k+=num(z[x])});unassigned+=Math.max(0,cs-k)});
+  const left={};STOCK_SIZES.forEach(z=>left[z]=start[z]-sold[z]);
+  return{sized,start,sold,left,total,soldAll:soldAll+num(c.casesSoldBefore),unassigned,totalLeft:Math.max(0,total-soldAll-num(c.casesSoldBefore))}}
+function mixHTML(sz){sz=sz||{};return `<div class="full" data-mix style="display:none"><div class="hint" style="margin-bottom:6px">Cases per size</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${STOCK_SIZES.map(z=>`<label>${z}<input name="mix${z}" type="number" min="0" step="1" inputmode="numeric" value="${num(sz[z])||''}"></label>`).join('')}</div></div>
+  <div class="full hint" data-stockwarn></div>`}
+function readSizes(f){if(f.size.value==='Mixed'){const o={};STOCK_SIZES.forEach(z=>{const v=num(f['mix'+z].value);if(v>0)o[z]=v});return o}return STOCK_SIZES.includes(f.size.value)?{[f.size.value]:num(f.cases.value)}:null}
+function bindMix(f,excludeId){const box=$('[data-mix]',f),warn=$('[data-stockwarn]',f);
+  const up=()=>{const mixed=f.size.value==='Mixed';box.style.display=mixed?'':'none';
+    if(mixed){const t=STOCK_SIZES.reduce((a,z)=>a+num(f['mix'+z].value),0);f.cases.readOnly=true;if(t){f.cases.value=t;f.cases.dispatchEvent(new Event('input'))}}else f.cases.readOnly=false;
+    const st=stockStatus(excludeId);if(!st.sized){warn.textContent='';return}const want=readSizes(f)||{};const over=STOCK_SIZES.filter(z=>num(want[z])>st.left[z]);
+    warn.className='full hint'+(over.length?' bad':'');
+    warn.textContent=over.length?over.map(z=>`Only ${int(Math.max(0,st.left[z]))} ${z} cases left in stock`).join(' · '):(f.size.value&&f.size.value!=='Mixed'&&STOCK_SIZES.includes(f.size.value)?`${int(st.left[f.size.value])} ${f.size.value} cases in stock`:'')};
+  f.size.addEventListener('change',up);STOCK_SIZES.forEach(z=>f['mix'+z].addEventListener('input',up));f.cases.addEventListener('input',()=>{if(f.size.value!=='Mixed')up()});up()}
+const nameOf=id=>!id?'—':(S.names[id]||(id===S.uid?'You':'Teammate'));
+function avgSalePrice(){const c=S.sales.reduce((t,s)=>t+num(s.cases),0);if(c>0)return S.sales.reduce((t,s)=>t+num(s.total),0)/c;
+  const q=S.visits.filter(v=>num(v.price)>0);if(q.length)return q.reduce((t,v)=>t+num(v.price),0)/q.length;return num(cfg().listPrice)}
+
+/* ---------- UI plumbing ---------- */
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),3200)}
+function writeErr(e){const code=e&&e.code;
+  if(code==='invalid_argument'){S.canWrite=false;renderBanner();toast("Couldn't save: your access is view-only.")}
+  else if(code==='quota_exceeded')toast("Storage is full — delete old records, then try again.");
+  else if(code==='revoked'){S.status='revoked';renderBanner()}
+  else toast("Couldn't save — check your connection and try again.");
+  console.warn(e)}
+function needWrite(){if(!S.db){toast('Data is not connected in this view.');return false}if(!S.canWrite){toast('Your access is view-only.');return false}return true}
+
+function renderNav(){$('#brandSub').textContent='Sales HQ';$('#goalsLink').textContent='Goals';
+  $('#tabs').innerHTML=ROUTES.map(r=>`<a href="#${r}" class="${r===S.route?'on':''} ${r==='log'?'cta':''}">${LABELS[r]}</a>`).join('');
+  const b=[['dashboard','◉','Home'],['log','+','Log'],['leads','☰','Leads'],['visits','⌖','Visits'],['clients','★','Clients'],['sales','$','Sales']];
+  $('#bottomnav').innerHTML=b.map(([r,ic,l])=>`<a href="#${r}" class="${r===S.route?'on':''} ${r==='log'?'cta':''}"><span class="ic">${ic}</span>${l}</a>`).join('');
+}
+function renderBanner(){let h='';
+  if(S.status==='nodb')h=`<div class="banner err">Couldn't load the app data. Check your connection and reload the page.</div>`;
+  else if(S.status==='revoked')h=`<div class="banner err">Access to this page's data has changed. Reload the page to continue.</div>`;
+  else if(S.status==='error')h=`<div class="banner err">Some data couldn't load. Reload the page to try again.</div>`;
+  else if(S.status==='slow')h=`<div class="banner warn">Can't reach the data yet — numbers below may be incomplete or out of date.</div>`;
+  else if(S.status==='loading')h=`<div class="banner">Loading…</div>`;
+  if(S.db&&!S.canWrite)h+=`<div class="banner warn">View-only access: you can see the numbers but can't log visits or sales. Ask Sebastian to give you Contributor access.</div>`;
+  $('#banner').innerHTML=h}
+let rafPending=false;
+function refresh(){if(rafPending)return;rafPending=true;requestAnimationFrame(()=>{rafPending=false;const v=views[S.route];v.update&&v.update()})}
+function route(){let h=location.hash.slice(1);if(!ROUTES.includes(h))h='dashboard';
+  if(S.route==='goals'&&h!=='goals')S.goalsDirty=false;
+  S.route=h;renderNav();const m=$('#main');m.innerHTML=views[h].shell();views[h].bind&&views[h].bind(m);views[h].update&&views[h].update();window.scrollTo(0,0)}
+
+/* ---------- modal ---------- */
+function closeModal(){const m=$('#modal');m.hidden=true;m.innerHTML=''}
+function openModal({title,sub='',body,submit='Save',danger=false,onSubmit,onOpen}){
+  const m=$('#modal');
+  m.innerHTML=`<form class="mbox" novalidate><h2>${esc(title)}</h2>${sub?`<p class="msub">${sub}</p>`:''}${body}
+    <div class="formfoot"><button type="button" class="btn" data-x>Cancel</button><button class="btn ${danger?'d':'p'}" type="submit">${esc(submit)}</button></div></form>`;
+  m.hidden=false;const f=$('form',m);
+  $('[data-x]',f).onclick=closeModal;
+  m.onclick=e=>{if(e.target===m)closeModal()};
+  f.onsubmit=async e=>{e.preventDefault();const btn=$('button[type=submit]',f);btn.disabled=true;
+    try{const ok=await onSubmit(f);if(ok!==false)closeModal();else btn.disabled=false}catch(err){btn.disabled=false;writeErr(err)}};
+  onOpen&&onOpen(f);const first=$('input:not([type=checkbox]),select',f);first&&first.focus&&setTimeout(()=>first.focus(),30)}
+function confirmDelete(what,ref){openModal({title:`Delete ${what}?`,body:`<p class="muted" style="margin:0">This removes it from this phone and can't be undone.</p>`,submit:'Delete',danger:true,
+  onSubmit:async()=>{await ref.delete();toast('Deleted')}})}
+
+/* ---------- visit form ---------- */
+const opt=(val,label,cur)=>`<option value="${esc(val)}" ${cur===val?'selected':''}>${esc(label)}</option>`;
+function visitFormHTML(v={}){const c=cfg();return `<div class="grid2">
+  <label class="full">Place / business name *<input name="place" value="${esc(v.place)}" placeholder="e.g. Fresh Cuts Barbershop" autocomplete="off"></label>
+  <label>Business type<select name="businessType">${(v.businessType&&!TYPES.includes(v.businessType)?[v.businessType,...TYPES]:TYPES).map(t=>opt(t,t,v.businessType||TYPES[0])).join('')}</select></label>
+  <label>Visit date<input type="date" name="date" value="${esc(v.date||today())}"></label>
+  <label class="full">Address / area<input name="address" value="${esc(v.address)}" placeholder="Street, city"></label>
+  <label>Contact person<input name="contact" value="${esc(v.contact)}" placeholder="Name & role"></label>
+  <label>Phone<input name="phone" type="tel" value="${esc(v.phone)}" placeholder="(305) 555-0123"></label>
+  <label>Price quoted per case *<input name="price" type="number" step="0.01" min="0" inputmode="decimal" value="${v.price??''}" placeholder="${c.listPrice?'List price '+money2(c.listPrice):'0.00'}"></label>
+  <label>Cases quoted<input name="cases" type="number" step="1" min="0" inputmode="numeric" value="${v.cases??''}" placeholder="e.g. 5"></label>
+  <label>Glove size<select name="size">${SIZES.map(s=>opt(s,s||'—',v.size||'')).join('')}</select></label>
+  <label>Result<select name="status">${Object.entries(STATUS).map(([k,l])=>opt(k,l,v.status||'quoted')).join('')}</select></label>
+  <label>Follow-up date<input type="date" name="followUpDate" value="${esc(v.followUpDate||'')}"></label>
+  <div class="hint" data-floor style="align-self:end"></div>
+  ${tierHintHTML()}
+  <label class="full">Notes<textarea name="notes" rows="3" placeholder="What they use now, monthly usage, who decides, objections…">${esc(v.notes)}</textarea></label>
+</div>`}
+function bindVisitForm(f){const h=$('[data-floor]',f);const up=()=>{const p=num(f.price.value),cs=num(f.cases.value),fl=num(cfg().floorPrice);
+  let t='';if(p>0){t=`Quote value: <b>${money2(p*(cs||1))}</b>${cs?'':' (per case)'}`;
+    if(fl&&p<fl){h.className='hint bad';h.innerHTML=t+`<br>Below the ${money2(fl)} floor — needs Sebastian's approval.`;return}}
+  h.className='hint';h.innerHTML=t};
+  f.price.addEventListener('input',up);f.cases.addEventListener('input',up);up();bindTierPrice(f)}
+function readVisit(f){const g=n=>(f[n]&&f[n].value||'').trim();const cs=g('cases');return{
+  place:g('place'),businessType:g('businessType'),date:validDate(g('date'))?g('date'):today(),address:g('address'),contact:g('contact'),phone:g('phone'),
+  price:num(g('price')),cases:cs===''?null:num(cs),size:g('size'),status:STATUS[g('status')]?g('status'):'quoted',followUpDate:validDate(g('followUpDate'))?g('followUpDate'):'',notes:g('notes')}}
+function validVisit(v){if(!v.place){toast('Add the place name');return false}if(!(v.price>0)){toast('Add the price you quoted per case');return false}return true}
+
+/* ---------- order / won modal ---------- */
+function freqSelect(cur){return `<select name="frequency">${Object.entries(FREQ).map(([k,f])=>opt(k,f.label,cur||'monthly')).join('')}</select>`}
+function openOrderModal({mode,visit,client}){
+  const t=today();const match=mode==='won'?findClientByName(visit.place):null;
+  const cases=mode==='won'?(visit.cases||''):mode==='client'?(client.casesPerOrder||''):'';
+  const price=mode==='won'?visit.price:mode==='client'?(client.pricePerCase||''):'';
+  const size=mode==='won'?visit.size:mode==='client'?client.size:'';
+  let body='<div class="grid2">';
+  if(mode==='manual'){const cl=[...S.clients].sort((a,b)=>lc(a.name).localeCompare(lc(b.name)));
+    body+=`<label class="full">Client<select name="clientId"><option value="">— New / one-time buyer —</option>${cl.map(c=>`<option value="${esc(c.id)}">${esc(c.name)}${c.recurring?' ★':''}</option>`).join('')}</select></label>
+    <label class="full" data-newname>Buyer name *<input name="clientName" placeholder="Business name"></label>`}
+  body+=`<label>Order date<input type="date" name="date" value="${t}"></label>
+    <label>Glove size<select name="size">${SIZES.map(s=>opt(s,s||'—',size||'')).join('')}</select></label>
+    <label>Cases sold *<input name="cases" type="number" min="0" step="1" inputmode="numeric" value="${esc(cases)}"></label>
+    <label>Price per case *<input name="price" type="number" min="0" step="0.01" inputmode="decimal" value="${esc(price)}"></label>
+    `+mixHTML()+`<div class="full row"><span class="hint" data-floor></span><span class="total" data-total></span></div>`+taxFieldHTML(mode==='client'?client.taxable!==false:mode==='won'?!(match&&match.taxable===false):true)+payFieldsHTML();
+  if(mode==='won'){
+    body+=match?`<div class="full hint">Already in clients as <b>${esc(match.name)}</b> — this sale will be added to their history.</div>`
+      :`<label class="check full"><input type="checkbox" name="addClient" checked> Add ${esc(visit.place)} to clients</label>`;
+    body+=`<label class="check full"><input type="checkbox" name="recurring" ${match&&match.recurring?'checked':''}> Recurring client — they'll reorder on a schedule</label>
+      <div class="full grid2" data-rec style="display:none"><label>How often<select name="frequency">${Object.entries(FREQ).map(([k,f])=>opt(k,f.label,(match&&match.frequency)||'monthly')).join('')}</select></label>
+      <label>Next expected order<input type="date" name="nextOrderDate"></label></div>`}
+  body+='</div>';
+  const title=mode==='won'?`Mark as won: ${visit.place}`:mode==='client'?`Log order: ${client.name}`:'Add a sale';
+  const sub=mode==='won'?'Records the sale. Cancel keeps the visit as it was.':mode==='client'&&client.recurring?`Recurring ${esc((FREQ[client.frequency]||{}).label||'')} — next order date moves forward automatically.`:'';
+  openModal({title,sub,body,submit:'Save sale',
+    onOpen:f=>{const tot=$('[data-total]',f),fl=$('[data-floor]',f);
+      const up=()=>{const c=num(f.cases.value),p=num(f.price.value);
+        const floor=num(cfg().floorPrice);fl.className='hint'+(floor&&p&&p<floor?' bad':'');fl.textContent=floor&&p&&p<floor?`Below ${money2(floor)} floor — needs approval`:''};
+      f.cases.addEventListener('input',up);f.price.addEventListener('input',up);up();bindPayFields(f);bindTotals(f);bindMix(f);if(mode==='manual'){const fill=()=>{if(!f.clientId.value&&!f.price.value){const p=tierPrice(f.cases.value);if(p){f.price.value=p.toFixed(2);f.price.dispatchEvent(new Event('input'))}}};f.cases.addEventListener('change',fill)}
+      if(mode==='manual'){const nn=$('[data-newname]',f);const sw=()=>{const c=S.clients.find(x=>x.id===f.clientId.value);nn.style.display=f.clientId.value?'none':'';
+          if(c){if(!f.cases.value&&c.casesPerOrder)f.cases.value=c.casesPerOrder;if(!f.price.value&&c.pricePerCase)f.price.value=c.pricePerCase;up()}};
+        f.clientId.addEventListener('change',()=>{const c=S.clients.find(x=>x.id===f.clientId.value);f.taxable.checked=!c||c.taxable!==false;f.taxable.dispatchEvent(new Event('change'))});
+        f.clientId.addEventListener('change',sw);sw()}
+      if(mode==='won'){const rs=$('[data-rec]',f);const sw=()=>{rs.style.display=f.recurring.checked?'':'none';
+          if(f.recurring.checked&&!f.nextOrderDate.value)f.nextOrderDate.value=nextOrder(f.date.value||t,f.frequency.value)};
+        f.recurring.addEventListener('change',sw);f.frequency.addEventListener('change',()=>{f.nextOrderDate.value=nextOrder(f.date.value||t,f.frequency.value)});sw()}},
+    onSubmit:async f=>{if(!needWrite())return false;
+      const d=validDate(f.date.value)?f.date.value:t,cs=num(f.cases.value),pr=num(f.price.value);
+      if(!(cs>0)||!(pr>0)){toast('Enter cases and price per case');return false}
+      let clientId=null,clientName='',cl=client||null,repId=S.uid||null;
+      if(mode==='client'){clientId=client.id;clientName=client.name;repId=client.repId||repId}
+      if(mode==='manual'){clientId=f.clientId.value||null;
+        if(clientId){cl=S.clients.find(c=>c.id===clientId);clientName=cl?cl.name:'';repId=(cl&&cl.repId)||repId}
+        else{clientName=f.clientName.value.trim();if(!clientName){toast('Add the buyer name');return false}}}
+      if(mode==='won'){clientName=visit.place;repId=visit.repId||repId;
+        const rec=f.recurring.checked,freq=f.frequency.value,nod=validDate(f.nextOrderDate.value)?f.nextOrderDate.value:nextOrder(d,freq);
+        if(match){clientId=match.id;
+          if(rec&&!match.recurring)await S.db.doc('clients/'+match.id).update({recurring:true,frequency:freq,nextOrderDate:nod,recurringSince:d,casesPerOrder:num(match.casesPerOrder)||cs,pricePerCase:num(match.pricePerCase)||pr});
+          else if(match.recurring&&(!validDate(match.nextOrderDate)||match.nextOrderDate<=d))await S.db.doc('clients/'+match.id).update({nextOrderDate:nextOrder(d,match.frequency)})}
+        else if(f.addClient.checked||rec){
+          const ref=await S.db.collection('clients').add({name:visit.place,businessType:visit.businessType||'',contact:visit.contact||'',phone:visit.phone||'',address:visit.address||'',
+            recurring:rec,frequency:freq,casesPerOrder:cs,pricePerCase:pr,size:f.size.value,taxable:f.taxable.checked,nextOrderDate:rec?nod:'',recurringSince:rec?d:'',notes:'',repId,createdAt:iso(),firstOrderDate:d});
+          clientId=ref.id}}
+      const a=amounts(cs,pr,f.taxable.checked);
+      
+      const rp=splitPay(readPay(f,a.invoiceTotal));const saleRef=await S.db.collection('sales').add({clientId,clientName,date:d,cases:cs,pricePerCase:pr,sizes:readSizes(f),countsAgainstStock:true,...a,...rp.rest,size:f.size.value,repId,visitId:visit?visit.id:null,loggedBy:S.uid||null,createdAt:iso()});await savePay(saleRef.id,rp.pay);
+      if(mode==='won'){await S.db.doc('visits/'+visit.id).update({status:'won',clientId,wonDate:d});if(visit.leadId)await S.db.doc('leads/'+visit.leadId).update({status:'won',clientId}).catch(()=>{})}
+      if(mode!=='won'&&cl&&cl.recurring&&FREQ[cl.frequency]&&(!validDate(cl.nextOrderDate)||cl.nextOrderDate<=d))
+        await S.db.doc('clients/'+cl.id).update({nextOrderDate:nextOrder(d,cl.frequency)});
+      toast(`Sale saved: ${money2(a.invoiceTotal)}`)}})}
+
+/* ---------- client modal ---------- */
+function openClientModal(c){const isNew=!c;c=c||{};
+  const body=`<div class="grid2">
+    <label class="full">Business name *<input name="name" value="${esc(c.name)}"></label>
+    <label>Business type<select name="businessType">${TYPES.map(t=>opt(t,t,c.businessType||TYPES[0])).join('')}</select></label>
+    <label>Contact person<input name="contact" value="${esc(c.contact)}"></label>
+    <label>Phone<input name="phone" type="tel" value="${esc(c.phone)}"></label>
+    <label>Usual glove size<select name="size">${SIZES.map(s=>opt(s,s||'—',c.size||'')).join('')}</select></label>
+    <label class="full">Address<input name="address" value="${esc(c.address)}"></label>
+    <label class="check full"><input type="checkbox" name="taxable" ${c.taxable===false?'':'checked'}> Charge Florida sales tax (uncheck if they gave you a resale/exemption certificate)</label>
+    <label class="check full"><input type="checkbox" name="recurring" ${c.recurring?'checked':''}> Recurring client</label>
+    <div class="full grid2" data-rec>
+      <label>How often${freqSelect(c.frequency)}</label>
+      <label>Next expected order<input type="date" name="nextOrderDate" value="${esc(c.nextOrderDate||'')}"></label>
+      <label>Cases per order<input name="casesPerOrder" type="number" min="0" step="1" inputmode="numeric" value="${c.casesPerOrder??''}"></label>
+      <label>Price per case<input name="pricePerCase" type="number" min="0" step="0.01" inputmode="decimal" value="${c.pricePerCase??''}"></label>
     </div>
-    <button id="installBtn" class="btn small" hidden>Install app</button>
-  </header>
+    <label class="full">Notes<textarea name="notes" rows="2">${esc(c.notes)}</textarea></label></div>`;
+  openModal({title:isNew?'Add client':'Edit client',body,
+    onOpen:f=>{const r=$('[data-rec]',f);const sw=()=>r.style.opacity=f.recurring.checked?1:.45;f.recurring.addEventListener('change',sw);sw()},
+    onSubmit:async f=>{if(!needWrite())return false;const g=n=>f[n].value.trim();
+      const data={name:g('name'),businessType:g('businessType'),contact:g('contact'),phone:g('phone'),size:g('size'),address:g('address'),
+        taxable:f.taxable.checked,recurring:f.recurring.checked,frequency:g('frequency'),nextOrderDate:validDate(g('nextOrderDate'))?g('nextOrderDate'):'',
+        casesPerOrder:num(g('casesPerOrder')),pricePerCase:num(g('pricePerCase')),notes:g('notes')};
+      if(!data.name){toast('Add the business name');return false}
+      if(!isNew&&lc(data.name)!==lc(c.name)&&findClientByName(data.name)||isNew&&findClientByName(data.name)){toast('A client with that name already exists');return false}
+      if(data.recurring&&!c.recurring)data.recurringSince=today();
+      if(data.recurring&&!data.nextOrderDate)data.nextOrderDate=nextOrder(today(),data.frequency);
+      if(isNew)await S.db.collection('clients').add({...data,repId:S.uid||null,createdAt:iso()});
+      else await S.db.doc('clients/'+c.id).update(data);
+      toast(isNew?'Client added':'Client updated')}})}
 
-  <main id="view" tabindex="-1"></main>
+function openEditVisit(v){openModal({title:'Edit visit',body:visitFormHTML(v),onOpen:bindVisitForm,
+  onSubmit:async f=>{if(!needWrite())return false;const d=readVisit(f);if(!validVisit(d))return false;
+    const toWon=d.status==='won'&&v.status!=='won';if(toWon)d.status=v.status;
+    await S.db.doc('visits/'+v.id).update(d);toast('Visit updated');
+    if(toWon)setTimeout(()=>openOrderModal({mode:'won',visit:{...v,...d,id:v.id}}),0)}})}
 
-  <button id="fab" class="fab" aria-label="Add new">+</button>
+/* ---------- views ---------- */
+const views={};
 
-  <nav class="tabbar" aria-label="Main">
-    <button data-tab="dashboard" class="active"><span class="ico">◧</span><span>Home</span></button>
-    <button data-tab="pipeline"><span class="ico">▤</span><span>Pipeline</span></button>
-    <button data-tab="contacts"><span class="ico">☺</span><span>Contacts</span></button>
-    <button data-tab="tasks"><span class="ico">✓</span><span>Tasks</span></button>
-    <button data-tab="settings"><span class="ico">⚙</span><span>More</span></button>
-  </nav>
+/* DASHBOARD */
+views.dashboard={
+  shell:()=>`<div class="pagehead"><div><h1>Sales HQ</h1><p>${new Date().toLocaleDateString(LOC(),{weekday:'long',month:'long',day:'numeric'})}</p></div>
+    <a class="btn p" href="#log">+ Log a visit</a></div><div id="dash"></div>`,
+  update(){const el=$('#dash');if(!el)return;const c=cfg();const P=periods();const cr=closeRate();
+    let h='';
+    if(!num(c.monthlyRevenueGoal)&&!pushWindow())h+=`<div class="callout"><span>No sales goal set yet. Set the monthly target so the team can see what to hit.</span><a class="btn p sm" href="#goals">Set goals</a></div>`;
+    /* period cards */
+    h+='<div class="cards3">';
+    for(const p of [P.day,P.week,P.month]){const f=forecast(p);const g=f.goal.rev;const prog=g?Math.min(1,f.booked.revenue/g):0;
+      const gap=f.expected-g;
+      const chip=!g?'':gap>=0?`<span class="chip ok">On track</span>`:`<span class="chip bad">${money(-gap)} short</span>`;
+      h+=`<div class="pcard"><div class="row"><span class="k">${p.label}</span>${chip}</div>
+        <div class="big">${money(f.booked.revenue)}</div>
+        <div class="sub">booked · ${int(f.booked.cases)} cases · ${f.booked.list.length} order${f.booked.list.length===1?'':'s'}</div>
+        <div class="prog ${prog>=1?'g':''}"><i style="width:${(prog*100).toFixed(1)}%"></i></div>
+        <div class="row sub"><span>${g?`Goal ${money(g)}${f.goal.cases?` · ${int(Math.ceil(f.goal.cases))} cases`:''}`:pushNote(p)}</span><span>${g?pct(f.booked.revenue/g):''}</span></div>
+        <div class="exp"><div class="row"><span class="sub">Expected revenue</span><b>${money(f.expected)}</b></div>
+        <div class="sub" style="margin-top:4px">${money(f.booked.revenue)} booked + ${money(f.rec.total)} recurring reorders + ${money(f.weighted)} likely from open quotes</div></div></div>`}
+    h+='</div>';
+    /* what it takes + pipeline */
+    const ST=stockStatus();const sold=S.sales.reduce((t,s)=>t+num(s.cases),0);const inv=ST.total;const remaining=ST.totalLeft;
+    const t=today();const daysLeft=validDate(c.sellByDate)?Math.max(0,daysBetween(t,c.sellByDate)):0;const weeksLeft=Math.max(daysLeft/7,1/7);
+    const wd=num(c.workDaysPerWeek)||6;const avgP=avgSalePrice();
+    const casesPerDeal=S.sales.length?sold/S.sales.length:(()=>{const q=S.visits.filter(v=>num(v.cases)>0);return q.length?q.reduce((a,v)=>a+num(v.cases),0)/q.length:5})();
+    const pw=pushWindow();const fromP=pw?(pw.start&&pw.start>t?pw.start:t):t;const wdl=pw?workDays(fromP,pw.end):0;
+    const cpw=pw&&wdl?remaining/wdl*wd:inv&&daysLeft?remaining/weeksLeft:goalFor('week').cases;
+    let paceRow='';if(pw&&pw.start&&t>pw.start){const tot=workDays(pw.start,pw.end),done=workDays(pw.start,addDays(t,-1));const soldP=stockSoldSince(pw.start);const exp=tot?(pw.ST.totalLeft+soldP)*done/tot:0;const diff=soldP-exp;
+      paceRow=`<div class="stat"><span class="l">Sold since ${fmtDate(pw.start)}<small>${int(Math.round(exp))} should be sold by now to finish on time</small></span><span class="v">${int(soldP)} <span class="chip ${diff>=0?'ok':'bad'}">${diff>=0?'On pace':`${int(Math.ceil(-diff))} behind`}</span></span></div>`}
+    const dealsW=casesPerDeal?cpw/casesPerDeal:0;const visitsW=cr.rate?dealsW/cr.rate:0;
+    const wk=salesIn(P.week.start,P.week.end);const visitsThisWeek=S.visits.filter(v=>inRange(v.date,P.week.start,P.week.end)).length;
+    const activeReps=new Set(S.visits.filter(v=>validDate(v.date)&&daysBetween(v.date,t)<=30).map(v=>v.repId).filter(Boolean)).size||1;
+    const teamVisitGoalW=num(c.visitsPerRepPerDay)*wd*activeReps;
+    h+='<div class="cols"><section class="panel"><h2>What it takes</h2><div class="stats">';
+    if(inv)h+=`<div class="stat"><span class="l">Cases left to sell<small>${int(inv)} in stock − ${int(ST.soldAll)} sold</small></span><span class="v hi">${int(remaining)}</span></div>`;
+    if(pw)h+=`<div class="stat"><span class="l">Selling window<small>${pw.start?`${fmtDate(pw.start)} – `:'until '}${fmtDateY(pw.end)} · ${int(daysLeft)} days left</small></span><span class="v">${int(wdl)} work days</span></div>`+paceRow+
+      `<div class="stat"><span class="l">Cases needed per work day<small>${int(remaining)} cases ÷ ${int(wdl)} work days</small></span><span class="v hi">${wdl?one(Math.ceil(remaining/wdl*10)/10):'—'}</span></div>`;
+    else if(inv&&daysLeft)h+=`<div class="stat"><span class="l">Days until sell-by date<small>${fmtDateY(c.sellByDate)}</small></span><span class="v">${int(daysLeft)}</span></div>`;
+    h+=`<div class="stat"><span class="l">Cases needed per week<small>${pw||inv&&daysLeft?'to sell out by the sell-by date':'from monthly cases goal'} · ${int(wk.cases)} sold this week</small></span><span class="v hi">${int(Math.ceil(cpw))}</span></div>
+      <div class="stat"><span class="l">Revenue needed per week<small>at ${money2(goalPrice())} avg per case</small></span><span class="v">${money(cpw*goalPrice())}</span></div>
+      <div class="stat"><span class="l">Deals to close per week<small>${one(casesPerDeal)} cases per order${S.sales.length?'':' (estimated)'}</small></span><span class="v">${one(Math.ceil(dealsW*10)/10)}</span></div>
+      <div class="stat"><span class="l">Visits needed per week<small>${cr.basis}</small></span><span class="v hi">${int(Math.ceil(visitsW))}</span></div>
+      <div class="stat"><span class="l">Visits needed per work day<small>${wd} work days a week</small></span><span class="v">${one(Math.ceil(visitsW/wd*10)/10)}</span></div>
+      <div class="stat"><span class="l">Team visits this week${teamVisitGoalW?`<small>goal ${int(teamVisitGoalW)} (${num(c.visitsPerRepPerDay)}/rep/day × ${activeReps} rep${activeReps>1?'s':''})</small>`:''}</span><span class="v">${int(visitsThisWeek)}${teamVisitGoalW?` <span class="chip ${visitsThisWeek>=teamVisitGoalW?'ok':'warn'}">${pct(visitsThisWeek/teamVisitGoalW)}</span>`:''}</span></div>`;
+    if(S.isOwner&&S.costs&&num(S.costs.ddpCostPerCase)){const ms=salesIn(P.month.start,P.month.end);const profit=ms.revenue-ms.cases*num(S.costs.ddpCostPerCase);
+      h+=`<div class="stat"><span class="l">Gross profit this month<small>only you see this · at ${money2(S.costs.ddpCostPerCase)} DDP cost/case</small></span><span class="v">${money(profit)}</span></div>`}
+    h+='</div></section>';
+    const open=S.visits.filter(isOpen);const openVal=open.reduce((a,v)=>a+visitValue(v),0);
+    const due=open.filter(v=>validDate(v.followUpDate)&&v.followUpDate<=addDays(t,2)).sort((a,b)=>a.followUpDate<b.followUpDate?-1:1);
+    h+=`<section class="panel"><h2>Pipeline</h2><div class="mini"><div><b>${open.length}</b><span>open quotes</span></div><div><b>${money(openVal)}</b><span>quoted value</span></div><div><b>${pct(cr.rate)}</b><span>close rate</span></div></div>
+      <div class="sec-title" style="margin-top:6px">Follow-ups due</div>`;
+    h+=due.length?`<div class="tscroll"><table><tbody>${due.slice(0,8).map(v=>`<tr><td><b>${esc(v.place)}</b><div class="sub">${esc(nameOf(v.repId))} · ${money2(v.price)}/case${v.cases?` × ${int(v.cases)}`:''}</div></td>
+      <td class="n"><span class="chip ${v.followUpDate<t?'bad':v.followUpDate===t?'warn':''}">${v.followUpDate<t?'Overdue · ':''}${fmtDate(v.followUpDate)}</span></td></tr>`).join('')}</tbody></table></div>`
+      :`<div class="empty" style="padding:14px">No follow-ups due in the next 2 days.</div>`;
+    h+=`</section></div>`;
+    /* stock by size */
+    if(ST.sized){h+=`<section class="panel"><div class="ph"><h2>Stock by size</h2><span class="sub">${int(ST.totalLeft)} of ${int(ST.total)} cases left</span></div><div class="mini">${STOCK_SIZES.map(z=>{const st=ST.start[z],l=ST.left[z],p=st?Math.max(0,l)/st:0;
+      const chip=l<=0?'<span class="chip bad">Sold out</span>':p<=.15?'<span class="chip warn">Low</span>':'';
+      return `<div><div class="row"><span class="k" style="font-size:12px;letter-spacing:.1em;color:var(--mut);font-weight:700">SIZE ${z}</span>${chip}</div><b style="margin-top:4px">${int(Math.max(0,l))}</b><span>of ${int(st)} cases · ${int(ST.sold[z])} sold</span><div class="prog ${p<=.15?'':'g'}" style="margin:8px 0 0"><i style="width:${(p*100).toFixed(1)}%"></i></div></div>`}).join('')}</div>
+      ${ST.unassigned?`<p class="sub" style="margin:0">${int(ST.unassigned)} sold cases have no size breakdown. Edit those sales and choose the size, or Mixed with cases per size.</p>`:''}</section>`}
+    /* money owed: the owner sees everything, a team member sees only their own sales */
+    if(moneyView()){const mine=S.isOwner?S.sales:S.sales.filter(canSeePay);const unpaid=mine.filter(isUnpaid).sort((a,b)=>(a.dueDate||'9')<(b.dueDate||'9')?-1:1);const owedTot=unpaid.reduce((a,s)=>a+owedOf(s),0);
+    const allGrand=mine.reduce((a,s)=>a+grandOf(s),0);const allTax=S.isOwner?mine.reduce((a,s)=>a+taxOf(s),0):0;const overdue=unpaid.filter(isOverdue);const myCases=mine.reduce((a,s)=>a+num(s.cases),0);
+    h+=`<section class="panel"><div class="ph"><h2>${S.isOwner?'Money owed':'Your money owed'}</h2><a class="btn sm" href="#sales">All sales</a></div>
+      ${S.isOwner?'':'<p class="sub" style="margin:-4px 0 12px">Only the sales credited to you. Ask the owner to mark an invoice paid.</p>'}
+      <div class="mini"><div><b style="color:${owedTot?'var(--amber)':'inherit'}">${money(owedTot)}</b><span>${unpaid.length} unpaid invoice${unpaid.length===1?'':'s'}${overdue.length?` · ${overdue.length} overdue`:''}</span></div><div><b>${money(allGrand-owedTot)}</b><span>collected to date</span></div><div><b>${money(mine.reduce((a,s)=>a+num(s.total),0))}</b><span>sold to date (before tax) · ${int(S.isOwner?sold:myCases)} cases</span></div></div>
+      ${allTax?`<p class="sub" style="margin:-2px 0 12px">Sales tax charged so far: <b>${money2(allTax)}</b>. That money goes to the Florida Department of Revenue, so it is left out of revenue and goals.</p>`:''}`;
+    if(unpaid.length){const byClient={};unpaid.forEach(s=>{const k=s.clientId||lc(s.clientName);(byClient[k]=byClient[k]||{name:(S.clients.find(c=>c.id===s.clientId)||{}).name||s.clientName,list:[]}).list.push(s)});
+      h+=`<div class="tscroll"><table><thead><tr><th>Client</th><th>Order</th><th class="n">Due</th><th class="n">Owed</th><th></th></tr></thead><tbody>${unpaid.map(s=>`<tr><td><b>${esc((S.clients.find(c=>c.id===s.clientId)||{}).name||s.clientName)}</b></td>
+        <td>${int(s.cases)} cases${s.size?` ${esc(s.size)}`:''} @ ${money2(s.pricePerCase)}${taxOf(s)?' + tax':''}${s.invoiceNo?`<div class="sub">#${esc(s.invoiceNo)}</div>`:''}${s.date?`<div class="sub">${fmtDate(s.date)}</div>`:''}</td>
+        <td class="n">${validDate(s.dueDate)?`<span class="chip ${isOverdue(s)?'bad':''}">${isOverdue(s)?'Overdue · ':''}${fmtDate(s.dueDate)}</span>`:'<span class="sub">—</span>'}</td>
+        <td class="n"><b>${money2(owedOf(s))}</b>${s.paymentStatus==='partial'?'<div class="sub">partly paid</div>':''}</td>
+        <td class="n">${S.isOwner&&S.db?`<button class="btn sm g" data-markpaid="${esc(s.id)}">Mark paid</button>`:''}</td></tr>`).join('')}</tbody></table></div>`;
+      const totals=Object.values(byClient).map(x=>`${esc(x.name)} ${money(x.list.reduce((a,s)=>a+owedOf(s),0))}`);
+      if(totals.length>1)h+=`<p class="sub" style="margin:10px 0 0">By client: ${totals.join(' · ')}</p>`}
+    else h+=`<div class="empty" style="padding:14px">Nothing owed. Every invoice is paid.</div>`;
+    h+='</section>'}
+    /* recurring */
+    const rec=S.clients.filter(x=>x.recurring);const mrr=rec.reduce((a,x)=>a+clientMRR(x),0);
+    const newRec=rec.filter(x=>inRange(x.recurringSince,P.month.start,P.month.end));
+    const repeat=S.clients.filter(x=>!x.recurring&&clientOrders(x).length>=2);
+    h+=`<section class="panel"><div class="ph"><h2>Recurring clients</h2><a class="btn sm" href="#clients">All clients</a></div>
+      <div class="mini"><div><b>${rec.length}</b><span>recurring clients</span></div><div><b>${money(mrr)}</b><span>expected per month</span></div><div><b>${newRec.length}</b><span>new this month</span></div></div>`;
+    if(rec.length){const rows=[...rec].sort((a,b)=>(a.nextOrderDate||'9')<(b.nextOrderDate||'9')?-1:1);
+      h+=`<div class="tscroll"><table><thead><tr><th>Client</th><th>Schedule</th><th class="n">Per month</th><th class="n">Next order</th></tr></thead><tbody>${rows.map(x=>{
+        const nd=x.nextOrderDate;const st=!validDate(nd)?'':nd<t?'bad':daysBetween(t,nd)<=7?'warn':'';
+        return `<tr><td><b>${esc(x.name)}</b>${inRange(x.recurringSince,P.month.start,P.month.end)?' <span class="chip pink">New</span>':''}<div class="sub">${esc(x.businessType||'')}${x.recurringSince?` · since ${fmtDate(x.recurringSince)}`:''}</div></td>
+        <td>${esc((FREQ[x.frequency]||{}).label||'—')}<div class="sub">${int(x.casesPerOrder)} cases @ ${money2(x.pricePerCase)}</div></td>
+        <td class="n">${money(clientMRR(x))}</td><td class="n"><span class="chip ${st}">${nd&&nd<t?'Overdue · ':''}${fmtDate(nd)}</span></td></tr>`}).join('')}</tbody></table></div>`}
+    else h+=`<div class="empty">No recurring clients yet. When you mark a visit as won, tick “Recurring client”.</div>`;
+    if(repeat.length)h+=`<p class="sub" style="margin:12px 0 0">Bought 2+ times but not marked recurring: <b>${repeat.map(x=>esc(x.name)).join(', ')}</b>. Mark them recurring in Clients so their reorders count in the forecast.</p>`;
+    h+='</section>';
+    /* team */
+    const reps=new Set();const mVisits=S.visits.filter(v=>inRange(v.date,P.month.start,P.month.end));const mSales=salesIn(P.month.start,P.month.end).list;
+    mVisits.forEach(v=>v.repId&&reps.add(v.repId));mSales.forEach(s=>s.repId&&reps.add(s.repId));
+    const visitGoalWk=num(c.visitsPerRepPerDay)*wd;
+    const rows=[...reps].map(id=>({id,vw:S.visits.filter(v=>v.repId===id&&inRange(v.date,P.week.start,P.week.end)).length,vm:mVisits.filter(v=>v.repId===id).length,
+      open:S.visits.filter(v=>v.repId===id&&isOpen(v)).length,won:mVisits.filter(v=>v.repId===id&&v.status==='won').length,
+      rev:mSales.filter(s=>s.repId===id).reduce((a,s)=>a+num(s.total),0),cases:mSales.filter(s=>s.repId===id).reduce((a,s)=>a+num(s.cases),0)})).sort((a,b)=>b.rev-a.rev||b.vm-a.vm);
+    h+=`<section class="panel"><h2>Team this month</h2>`;
+    h+=rows.length?`<div class="tscroll"><table><thead><tr><th>Rep</th><th class="n">Visits this week</th><th class="n">Visits (month)</th><th class="n">Open quotes</th><th class="n">Won</th><th class="n">Cases</th><th class="n">Revenue</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><td><b>${esc(nameOf(r.id))}</b></td><td class="n">${r.vw}${visitGoalWk?` <span class="sub">/ ${int(visitGoalWk)}</span>`:''}</td><td class="n">${r.vm}</td><td class="n">${r.open}</td><td class="n">${r.won}</td><td class="n">${int(r.cases)}</td><td class="n"><b>${money(r.rev)}</b></td></tr>`).join('')}</tbody></table></div>`
+      :`<div class="empty">No visits logged this month yet.</div>`;
+    h+='</section>';
+    el.innerHTML=h}};
 
-  <dialog id="modal">
-    <form id="modalForm" method="dialog"></form>
-  </dialog>
+/* LOG VISIT */
+views.log={
+  shell:()=>`<div class="pagehead"><div><h1>Log a visit</h1><p>Where you went, what you quoted, and how it went.</p></div></div>
+    <form class="panel" id="logForm" novalidate>${visitFormHTML()}<div class="formfoot"><button class="btn p" type="submit">Save visit</button></div></form>
+    <div class="sec-title">Your visits today</div><div id="myToday"></div>`,
+  bind(m){const f=$('#logForm',m);bindVisitForm(f);
+    f.onsubmit=async e=>{e.preventDefault();if(!needWrite())return;const v=readVisit(f);if(!validVisit(v))return;
+      const btn=$('button[type=submit]',f);btn.disabled=true;const wantWon=v.status==='won';if(wantWon)v.status='quoted';
+      try{const ref=await S.db.collection('visits').add({...v,repId:S.uid||null,createdAt:iso()});
+        toast('Visit saved');f.innerHTML=visitFormHTML()+`<div class="formfoot"><button class="btn p" type="submit">Save visit</button></div>`;bindVisitForm(f);
+        if(wantWon)openOrderModal({mode:'won',visit:{...v,id:ref.id,repId:S.uid||null}})}
+      catch(err){writeErr(err)}finally{const b=$('button[type=submit]',f);if(b)b.disabled=false}}},
+  update(){const el=$('#myToday');if(!el)return;const t=today();const mine=S.visits.filter(v=>v.date===t&&(!S.uid||v.repId===S.uid)).sort((a,b)=>(b.createdAt||'')>(a.createdAt||'')?1:-1);
+    const g=num(cfg().visitsPerRepPerDay);
+    el.innerHTML=(g?`<p class="sub" style="margin:-4px 0 10px">${mine.length} of ${g} visits today ${mine.length>=g?'— goal hit 🎯':''}</p>`:'')+
+      (mine.length?`<div class="list">${mine.map(visitCard).join('')}</div>`:`<div class="empty">Nothing logged yet today.</div>`);bindCards(el)}};
 
-  <div id="toast" role="status" aria-live="polite"></div>
+/* VISITS */
+function visitCard(v){const t=today();return `<div class="item" data-id="${esc(v.id)}"><div class="top"><div><h3>${esc(v.place)}</h3>
+  <div class="meta">${esc(v.businessType||'')} · ${fmtDate(v.date)} · ${esc(nameOf(v.repId))}${v.address?` · ${esc(v.address)}`:''}</div>
+  ${v.contact||v.phone?`<div class="meta">${esc(v.contact||'')}${v.contact&&v.phone?' · ':''}${esc(v.phone||'')}</div>`:''}</div>
+  <div><div class="money">${money2(v.price)}<span class="sub">/case</span></div><div class="sub" style="text-align:right">${v.cases?`${int(v.cases)} cases · ${money(visitValue(v))}`:''}${v.size?` · ${esc(v.size)}`:''}</div></div></div>
+  ${v.notes?`<div class="notes">${esc(v.notes)}</div>`:''}
+  <div class="acts"><span class="chip ${STATUS_CHIP[v.status]||''}">${STATUS[v.status]||'Quoted'}</span>
+  ${isOpen(v)&&validDate(v.followUpDate)?`<span class="chip ${v.followUpDate<t?'bad':''}">Follow up ${fmtDate(v.followUpDate)}</span>`:''}
+  ${num(cfg().floorPrice)&&num(v.price)<num(cfg().floorPrice)?`<span class="chip warn">Below floor</span>`:''}
+  <span style="flex:1"></span>
+  ${S.canWrite&&S.db?`${v.status!=='won'?`<button class="btn sm g" data-act="won">Mark won</button>`:''}
+  ${isOpen(v)?`<select class="sel-inline" data-act="status">${['quoted','followup','lost'].map(k=>opt(k,STATUS[k],v.status)).join('')}</select>`:''}
+  <button class="btn sm" data-act="edit">Edit</button><button class="btn sm d" data-act="del">Delete</button>`:''}</div></div>`}
+function bindCards(root){root.querySelectorAll('.item[data-id]').forEach(card=>{const v=S.visits.find(x=>x.id===card.dataset.id);if(!v)return;
+  card.querySelectorAll('[data-act]').forEach(b=>{const a=b.dataset.act;
+    if(a==='status')b.onchange=async()=>{if(!needWrite())return;try{await S.db.doc('visits/'+v.id).update({status:b.value});if(v.leadId)await S.db.doc('leads/'+v.leadId).update({status:visitStatusToLead(b.value)}).catch(()=>{});toast('Updated')}catch(e){writeErr(e)}};
+    else b.onclick=()=>{if(a==='won')openOrderModal({mode:'won',visit:v});if(a==='edit')openEditVisit(v);if(a==='del')confirmDelete('visit to '+v.place,S.db.doc('visits/'+v.id))}})})}
+views.visits={
+  shell:()=>`<div class="pagehead"><div><h1>Visits</h1><p>Every place the team visited and the price quoted.</p></div><a class="btn p" href="#log">+ Log a visit</a></div>
+    <div class="filters"><input type="search" id="vq" placeholder="Search place, area, notes…">
+    <select id="vs"><option value="">All results</option><option value="open">Open (quoted + follow-up)</option>${Object.entries(STATUS).map(([k,l])=>`<option value="${k}">${l}</option>`).join('')}</select>
+    <select id="vr"><option value="all">All time</option><option value="day">Today</option><option value="week">This week</option><option value="month" selected>This month</option></select>
+    <select id="vp"><option value="">Everyone</option><option value="me">Just me</option></select></div>
+    <div id="vsum" class="sub" style="margin-bottom:10px"></div><div id="vlist"></div>`,
+  bind(m){['#vq','#vs','#vr','#vp'].forEach(s=>$(s,m).addEventListener('input',()=>this.update()))},
+  update(){const el=$('#vlist');if(!el)return;const q=lc($('#vq').value),st=$('#vs').value,r=$('#vr').value,me=$('#vp').value==='me';const P=periods();
+    let list=S.visits.filter(v=>(!q||lc([v.place,v.address,v.notes,v.contact,v.businessType].join(' ')).includes(q))&&(!st||(st==='open'?isOpen(v):v.status===st))&&(r==='all'||inRange(v.date,P[r].start,P[r].end))&&(!me||v.repId===S.uid));
+    list.sort((a,b)=>(b.date||'')===(a.date||'')?((b.createdAt||'')>(a.createdAt||'')?1:-1):((b.date||'')>(a.date||'')?1:-1));
+    const prices=list.filter(v=>num(v.price)>0).map(v=>num(v.price));
+    $('#vsum').innerHTML=list.length?`${list.length} visit${list.length>1?'s':''} · ${list.filter(v=>v.status==='won').length} won · avg quote ${money2(prices.reduce((a,b)=>a+b,0)/(prices.length||1))}/case${prices.length?` (range ${money2(Math.min(...prices))}–${money2(Math.max(...prices))})`:''}`:'';
+    el.innerHTML=list.length?`<div class="list">${list.slice(0,300).map(visitCard).join('')}</div>`:`<div class="empty">No visits match. ${S.visits.length?'Try “All time”.':'Log the first one!'}</div>`;bindCards(el)}};
 
-  <script src="app.js"></script>
+/* CLIENTS */
+views.clients={
+  shell:()=>`<div class="pagehead"><div><h1>Clients</h1><p>Who's buying, and who reorders on a schedule.</p></div>${S.canWrite&&S.db?`<button class="btn p" id="addClient">+ Add client</button>`:''}</div>
+    <div class="filters"><input type="search" id="cq" placeholder="Search clients…"><select id="cf"><option value="">All clients</option><option value="rec">Recurring</option>${moneyView()?'<option value="owes">Owes money</option>':''}<option value="repeat">Bought 2+ times</option><option value="new">Recurring since this month</option></select></div>
+    <div id="clist"></div>`,
+  bind(m){const b=$('#addClient',m);b&&(b.onclick=()=>openClientModal());['#cq','#cf'].forEach(s=>$(s,m).addEventListener('input',()=>this.update()))},
+  update(){const el=$('#clist');if(!el)return;const q=lc($('#cq').value),f=$('#cf').value,P=periods(),t=today();
+    let list=S.clients.map(c=>{const o=clientOrders(c);return{c,o,spent:o.reduce((a,s)=>a+num(s.total),0),owed:moneyView()?o.reduce((a,s)=>a+owedOf(s),0):0,last:o.reduce((a,s)=>(s.date||'')>a?s.date:a,'')}})
+      .filter(x=>(!q||lc([x.c.name,x.c.contact,x.c.address,x.c.businessType].join(' ')).includes(q))&&(!f||(f==='rec'&&x.c.recurring)||(f==='owes'&&x.owed>0)||(f==='repeat'&&x.o.length>=2)||(f==='new'&&x.c.recurring&&inRange(x.c.recurringSince,P.month.start,P.month.end))));
+    list.sort((a,b)=>(b.c.recurring?1:0)-(a.c.recurring?1:0)||b.spent-a.spent);
+    el.innerHTML=list.length?`<div class="list">${list.map(({c,o,spent,owed,last})=>{const nd=c.nextOrderDate;return `<div class="item" data-cid="${esc(c.id)}"><div class="top"><div>
+      <h3>${esc(c.name)} ${c.recurring?'<span class="chip ok">Recurring</span>':''}${!c.recurring&&o.length>=2?' <span class="chip pink">Repeat buyer</span>':''}</h3>
+      <div class="meta">${esc(c.businessType||'')}${c.contact?` · ${esc(c.contact)}`:''}${c.phone?` · ${esc(c.phone)}`:''}${c.address?` · ${esc(c.address)}`:''}</div>
+      ${c.recurring?`<div class="meta">${esc((FREQ[c.frequency]||{}).label||'')} · ${int(c.casesPerOrder)} cases @ ${money2(c.pricePerCase)} · ${money(clientMRR(c))}/month${c.recurringSince?` · since ${fmtDateY(c.recurringSince)}`:''}</div>`:''}</div>
+      <div><div class="money">${money(spent)}</div><div class="sub" style="text-align:right">${o.length} order${o.length===1?'':'s'}${last?` · last ${fmtDate(last)}`:''}</div>${owed?`<div style="text-align:right;margin-top:4px"><span class="chip warn">Owes ${money2(owed)}</span></div>`:''}</div></div>
+      ${c.notes?`<div class="notes">${esc(c.notes)}</div>`:''}
+      <div class="acts">${c.recurring&&validDate(nd)?`<span class="chip ${nd<t?'bad':daysBetween(t,nd)<=7?'warn':''}">Next order ${nd<t?'overdue · ':''}${fmtDate(nd)}</span>`:''}<span style="flex:1"></span>
+      ${S.canWrite&&S.db?`<button class="btn sm g" data-act="order">Log order</button><button class="btn sm" data-act="edit">Edit</button><button class="btn sm d" data-act="del">Delete</button>`:''}</div></div>`}).join('')}</div>`
+      :`<div class="empty">${S.clients.length?'No clients match.':'No clients yet. They appear here when a visit is marked won, or add one directly.'}</div>`;
+    el.querySelectorAll('[data-cid]').forEach(card=>{const c=S.clients.find(x=>x.id===card.dataset.cid);if(!c)return;card.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>{
+      if(b.dataset.act==='order')openOrderModal({mode:'client',client:c});if(b.dataset.act==='edit')openClientModal(c);if(b.dataset.act==='del')confirmDelete('client '+c.name,S.db.doc('clients/'+c.id))})})}};
+
+/* SALES */
+views.sales={
+  shell:()=>`<div class="pagehead"><div><h1>Sales</h1><p>${S.isOwner?'Every order and invoice, paid or not.':moneyView()?'Every order and invoice. Payment status shows on your own sales only.':'Every order and invoice.'}</p></div>${S.canWrite&&S.db?`<button class="btn p" id="addSale">+ Add sale</button>`:''}</div>
+    <div class="filters"><select id="sr"><option value="day">Today</option><option value="week">This week</option><option value="month">This month</option><option value="all" selected>All time</option></select>${moneyView()?'<select id="sp"><option value="">Paid &amp; unpaid</option><option value="unpaid">Not paid</option><option value="paid">Paid</option></select>':'<input type="hidden" id="sp" value="">'}</div>
+    <div id="ssum"></div><div id="slist"></div>`,
+  bind(m){const b=$('#addSale',m);b&&(b.onclick=()=>openOrderModal({mode:'manual'}));['#sr','#sp'].forEach(x=>$(x,m).addEventListener('input',()=>this.update()))},
+  update(){const el=$('#slist');if(!el)return;const r=$('#sr').value,pf=$('#sp').value,P=periods();
+    const list=S.sales.filter(s=>(r==='all'||inRange(s.date,P[r].start,P[r].end))&&(!pf||(pf==='unpaid'?isUnpaid(s):canSeePay(s)&&!isUnpaid(s)))).sort((a,b)=>(b.date||'')===(a.date||'')?((b.createdAt||'')>(a.createdAt||'')?1:-1):((b.date||'')>(a.date||'')?1:-1));
+    const rev=list.reduce((a,s)=>a+num(s.total),0),cs=list.reduce((a,s)=>a+num(s.cases),0);
+    $('#ssum').innerHTML=`<div class="mini"><div><b>${money(rev)}</b><span>revenue (before tax)</span></div><div><b>${int(cs)}</b><span>cases</span></div><div><b>${money2(list.reduce((a,s)=>a+taxOf(s),0))}</b><span>sales tax charged</span></div>${moneyView()?`<div><b style="color:${list.some(isUnpaid)?'var(--amber)':'inherit'}">${money(list.reduce((a,s)=>a+owedOf(s),0))}</b><span>${S.isOwner?'not paid yet':'your sales not paid yet'}</span></div>`:''}</div>`;
+    el.innerHTML=list.length?`<div class="panel" style="padding:6px 12px"><div class="tscroll"><table><thead><tr><th>Date</th><th>Client</th><th>Rep</th><th class="n">Cases</th><th class="n">Price</th><th class="n">Total</th>${moneyView()?'<th>Payment</th>':''}<th></th></tr></thead><tbody>
+      ${list.slice(0,500).map(s=>{const c=s.clientId&&S.clients.find(x=>x.id===s.clientId);return `<tr><td class="nowrap">${s.date?fmtDate(s.date):'<span class="sub">No date</span>'}</td><td><b>${esc(c?c.name:s.clientName)}</b>${c&&c.recurring?' <span class="chip ok">★</span>':''}<div class="sub">${s.size?`Size ${esc(s.size)}`:''}${s.invoiceNo?`${s.size?' · ':''}#${esc(s.invoiceNo)}`:''}${s.notes?`${s.size||s.invoiceNo?' · ':''}${esc(s.notes)}`:''}</div></td>
+      <td>${esc(nameOf(s.repId))}</td><td class="n">${int(s.cases)}</td><td class="n">${money2(s.pricePerCase)}</td><td class="n"><b>${money2(grandOf(s))}</b>${taxOf(s)?`<div class="sub">incl. ${money2(taxOf(s))} tax</div>`:''}</td>
+      ${moneyView()?(canSeePay(s)?payCell(s):'<td><span class="sub">—</span></td>'):''}
+      <td class="n nowrap">${S.canWrite&&S.db?`${S.isOwner&&isUnpaid(s)?`<button class="btn sm g" data-markpaid="${esc(s.id)}">Mark paid</button> `:''}<button class="btn sm" data-invoice="${esc(s.id)}">Invoice</button> <button class="btn sm" data-sedit="${esc(s.id)}">Edit</button> <button class="btn sm d" data-sdel="${esc(s.id)}">✕</button>`:''}</td></tr>`}).join('')}</tbody></table></div></div>`
+      :`<div class="empty">No sales in this period.</div>`;
+    el.querySelectorAll('[data-sdel]').forEach(b=>b.onclick=()=>confirmDelete('this sale',S.db.doc('sales/'+b.dataset.sdel)));
+    el.querySelectorAll('[data-sedit]').forEach(b=>b.onclick=()=>{const s=S.sales.find(x=>x.id===b.dataset.sedit);s&&openEditSale(s)})}};
+
+/* GOALS */
+const GOAL_FIELDS=[
+  ['_h1','Sales goals','Set a start date and a sell-by date and the app works out the day, week and month goals from the cases left in stock.','heading'],
+  ['pushStartDate','Selling starts','First day of this push','date'],
+  ['sellByDate','Sell-by date','Every case in stock should be sold by this day','date'],
+  ['goalAvgPrice','Expected average price per case ($)','Turns the cases goal into a dollar goal. Leave empty to use your real average from sales','0.01'],
+  ['monthlyRevenueGoal','Monthly revenue goal ($)','Only used when there is no sell-by date or stock','0.01'],
+  ['monthlyCasesGoal','Monthly cases goal','Only used when there is no sell-by date or stock','1'],
+  ['visitsPerRepPerDay','Visits per rep per day','Daily visit target for each salesperson','1'],
+  ['workDaysPerWeek','Work days per week','Used to split weekly goals into daily ones','1'],
+  ['_h2','Stock','','heading'],
+  ['stockS','Cases in stock: S','Starting stock for this push','1'],
+  ['stockM','Cases in stock: M','','1'],
+  ['stockL','Cases in stock: L','','1'],
+  ['stockXL','Cases in stock: XL','Sales logged here are subtracted automatically by size','1'],
+  ['casesSoldBefore','Cases already sold before using this app','Leave at 0 if the stock above is what you have now','1'],
+  ['_h3','Pricing & tax','','heading'],
+  ['floorPrice','Floor price per case ($)','Quotes below this get flagged for approval','0.01'],
+  ['listPrice','List price per case ($)','Shown as a hint when logging a quote','0.01'],
+  ['defaultCloseRatePct','Expected close rate (%)','Used until 10 visits are won or lost; then the real rate takes over','1'],
+  ['taxRatePct','Sales tax rate (%)','Miami-Dade: 6% Florida + 1% county = 7%','0.01'],
+  ['tierPrice1','Price: 1–9 cases ($)','Starting price. Suggested automatically when quoting, and shown on every lead','0.01'],['tierPrice2','Price: 10–19 cases ($)','','0.01'],
+  ['tierPrice3','Price: 20–49 cases ($)','','0.01'],['tierPrice4','Price: 50+ cases ($)','','0.01'],
+  ['_h4','Invoices','','heading'],
+  ['companyName','Invoice: company name','Shown at the top of every invoice','text'],['companyPhone','Invoice: phone','','text'],
+  ['companyAddress','Invoice: address','','text'],['companyEmail','Invoice: email','','text'],['companyWeb','Invoice: website','','text'],
+  ['_h5','Payment options on invoices','Fill in the ones you accept. Empty ones are left off the invoice.','heading'],
+  ['payZelle','Zelle','Email or phone your Zelle is under','text'],['payCheckTo','Checks payable to','e.g. 1ST TRY CORP','text'],
+  ['payLink','Card / online payment link','e.g. a Square or Stripe payment link','text'],['payCash','Cash','e.g. Accepted on delivery','text'],
+  ['payOther','Other payment option','e.g. ACH / bank transfer — details on request','text'],['paymentTermsDays','Payment terms (days)','Due date = invoice date + these days. 0 = due on receipt','1']];
+views.goals={
+  shell(){const c=cfg();const ro=!(S.canEdit&&S.db);return `<div class="pagehead"><div><h1>Goals & settings</h1><p>${ro?'Set by Sebastian. Shown here so everyone knows the targets.':'Targets the dashboard measures the team against.'}</p></div></div>
+    <form class="panel" id="gForm" novalidate><div class="grid2">${GOAL_FIELDS.map(([k,l,h,step])=>step==='heading'?`<div class="full gh"><h3>${l}</h3>${h?`<span class="hint">${h}</span>`:''}</div>`:`<label>${l}<input name="${k}" ${step==='date'?'type="date"':step==='text'?'type="text"':`type="number" step="${step}" min="0" inputmode="decimal"`} value="${esc(c[k]===0&&!S.config?'':c[k])}" ${ro?'disabled':''}>${h?`<span class="hint">${h}</span>`:''}</label>`).join('')}
+    ${S.isOwner?`<label class="full" style="border-top:1px solid var(--line);padding-top:14px">DDP cost per case ($) — only you can see this<input name="ddpCostPerCase" type="number" step="0.01" min="0" inputmode="decimal" value="${esc(S.costs&&S.costs.ddpCostPerCase||'')}"><span class="hint">Used to show gross profit on your dashboard. Hidden from the team.</span></label>`:''}
+    </div>${ro?'':`<div class="formfoot"><button class="btn p" type="submit">Save goals</button></div>`}</form>
+    <section class="panel"><h2>This phone</h2><p class="sub" style="margin:0 0 14px">Your visits, clients and sales are saved on this phone only. Download a backup often, and use it to move your data to a new phone.</p>
+    <div class="grid2"><label>Your name<input id="repName" value="${esc(window.UCKER_LOCAL?window.UCKER_LOCAL.getName():'')}" placeholder="e.g. Sebastian" autocomplete="name"><span class="hint">Shown in the Team table</span></label></div>
+    <div class="btnrow" style="margin-top:14px"><button type="button" class="btn" id="nameSave">Save name</button><button type="button" class="btn" id="bkExport">Download backup</button><button type="button" class="btn" id="bkImport">Restore backup</button><input type="file" id="bkFile" accept=".json,application/json" hidden></div></section>`},
+  bind(m){const f=$('#gForm',m);f.addEventListener('input',()=>S.goalsDirty=true);bindPhonePanel(m);
+    f.onsubmit=async e=>{e.preventDefault();if(!S.canEdit){toast('Only editors can change goals');return}
+      const data={};for(const [k,,,step] of GOAL_FIELDS){if(step==='heading')continue;const v=f[k].value.trim();data[k]=step==='date'?(validDate(v)?v:''):step==='text'?v:num(v)}
+      data.inventoryCases=STOCK_SIZES.reduce((a,z)=>a+num(data['stock'+z]),0)||num(cfg().inventoryCases);data.taxRatePct=data.taxRatePct||7;data.updatedAt=iso();const btn=$('button[type=submit]',f);btn.disabled=true;
+      try{await S.db.doc('config/goals').set(data);
+        if(S.isOwner&&f.ddpCostPerCase)await S.db.doc('ownerOnly/costs').set({ddpCostPerCase:num(f.ddpCostPerCase.value)});
+        S.goalsDirty=false;toast('Goals saved')}catch(err){writeErr(err)}finally{btn.disabled=false}}},
+  update(){if(S.goalsDirty)return;const key=JSON.stringify([S.config,S.costs,S.canEdit,S.isOwner]);if(key===this._key)return;this._key=key;
+    const m=$('#main');m.innerHTML=this.shell();this.bind(m)}};
+
+function bindPhonePanel(m){const L=window.UCKER_LOCAL;if(!L)return;const ns=$('#nameSave',m),ex=$('#bkExport',m),im=$('#bkImport',m),fi=$('#bkFile',m);
+  ns&&(ns.onclick=()=>{L.setName($('#repName',m).value.trim());S.names={};loadNames();toast('Name saved')});
+  ex&&(ex.onclick=()=>{const blob=new Blob([JSON.stringify(L.exportData(),null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`ucker-sales-hq-backup-${today()}.json`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);toast('Backup downloaded')});
+  im&&(im.onclick=()=>fi.click());
+  fi&&(fi.onchange=()=>{const file=fi.files&&fi.files[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);
+    openModal({title:'Restore backup?',body:`<p class="muted" style="margin:0">This replaces the visits, clients and sales on this phone with the ones in the backup.</p>`,submit:'Restore',danger:true,onSubmit:async()=>{L.importData(o);S.names={};toast('Backup restored')}})}
+    catch(e){toast('That file is not a Sales HQ backup')}fi.value=''};r.readAsText(file)})}
+
+/* ---------- price tiers ---------- */
+const TIER_MINS=[1,10,20,50];
+const TIER_LABELS=['1–9 cases','10–19 cases','20–49 cases','50+ cases'];
+function tierPrices(){const c=cfg();return [1,2,3,4].map(i=>num(c['tierPrice'+i]))}
+function tierPrice(cases){const p=tierPrices();if(!p.some(x=>x>0))return 0;const n=Math.max(1,num(cases)||1);let r=0;TIER_MINS.forEach((m,i)=>{if(n>=m&&p[i]>0)r=p[i]});return r||p.find(x=>x>0)||0}
+function tierLabel(cases){const n=Math.max(1,num(cases)||1);let k=0;TIER_MINS.forEach((m,i)=>{if(n>=m)k=i});return TIER_LABELS[k]}
+/* auto-fill price from tiers until the user types a price */
+function bindTierPrice(f){let manual=f.price.value!=='';
+  const set=()=>{if(manual)return;const p=tierPrice(f.cases.value);if(p){f.price.value=p.toFixed(2);f.price.dispatchEvent(new Event('input'))}};
+  f.price.addEventListener('input',e=>{if(e.isTrusted)manual=f.price.value!==''});f.cases.addEventListener('input',set);set()}
+function tierHintHTML(){const p=tierPrices();if(!p.some(x=>x>0))return '';
+  return `<div class="full tiers">${p.map((x,i)=>x?`<span><b>${money2(x)}</b> ${TIER_LABELS[i]}</span>`:'').join('')}</div>`}
+
+/* ---------- leads ---------- */
+const LEAD_STATUS={new:'Not visited',called:'Called',visited:'Visited',quoted:'Quoted',won:'Client',no:'Not interested'};
+const LEAD_CHIP={new:'',called:'pink',visited:'pink',quoted:'warn',won:'ok',no:'bad'};
+const telHref=p=>{const d=String(p||'').replace(/[^\d+]/g,'');return d?'tel:'+d:''};
+const mapsHref=a=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(a||'');
+const zipOf=a=>{const m=String(a||'').match(/\b(\d{5})\b(?!.*\b\d{5}\b)/);return m?m[1]:'99999'};
+const estMax=l=>{const m=String(l.estCases||'').match(/(\d+)\D*$/);return m?+m[1]:0};
+const leadDue=l=>validDate(l.followUpDate)&&l.followUpDate<=today()&&l.status!=='won'&&l.status!=='no';
+/* how easy a type of business is to close on exam gloves: 0 = easiest (dentists use gloves on every patient and the owner decides on the spot) */
+const LEAD_EASE=[[/dental/i,0],[/urgent|podiat|dermat|plastic|tattoo|med spa/i,1],[/clinic|medical lab|assisted|nursing/i,2],[/nail|lash|brow|wax|spa|skin|barber|veterin/i,3],[/salon|home health|funeral|pet|pharmac|daycare|gym/i,4],[/food truck|physical|rehab|cater|bakery|cafe|butcher|seafood|sushi/i,5]];
+function leadEase(l){const t=(l.type||'')+' '+(l.group||'');for(const [re,v] of LEAD_EASE)if(re.test(t))return v;return 6}
+/* closest and easiest first: miles from the warehouse plus 1.5 miles per step of difficulty */
+const leadRank=l=>(typeof l.miles==='number'?l.miles:12)+leadEase(l)*1.5;
+function leadScore(l){if(leadDue(l))return 0;if(l.status==='quoted'||l.status==='visited'||l.status==='called')return 1;if(l.status==='new')return l.buyerType==='Reseller'?4:2;return 9}
+function leadsSorted(list){return [...list].sort((a,b)=>{const d=leadScore(a)-leadScore(b);if(d)return d;const fa=a.followUpDate||'9',fb=b.followUpDate||'9';if(fa!==fb)return fa<fb?-1:1;const ra=leadRank(a),rb=leadRank(b);if(ra!==rb)return ra-rb;return zipOf(a.address).localeCompare(zipOf(b.address))||lc(a.name).localeCompare(lc(b.name))})}
+function visitStatusToLead(st){return st==='won'?'won':st==='lost'?'no':'quoted'}
+
+/* today's route: one per person, starts fresh every day */
+function routeIds(){return S.routeDoc&&S.routeDoc.date===today()&&Array.isArray(S.routeDoc.leadIds)?S.routeDoc.leadIds:[]}
+async function saveRoute(ids){S.routeDoc={date:today(),leadIds:ids};refresh();
+  if(S.db&&S.uid){try{await S.db.doc('data/users/'+S.uid+'/route').set(S.routeDoc)}catch(e){}}
+  else{try{localStorage.setItem('ucker-route',JSON.stringify(S.routeDoc))}catch(e){}}}
+function toggleRoute(id){const ids=routeIds();saveRoute(ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]);toast(ids.includes(id)?'Removed from today\'s route':'Added to today\'s route')}
+function routeStops(){const ids=routeIds();return ids.map(id=>S.leads.find(l=>l.id===id)).filter(Boolean).sort((a,b)=>zipOf(a.address).localeCompare(zipOf(b.address))||lc(a.address).localeCompare(lc(b.address)))}
+function routeLinks(stops){const out=[];for(let i=0;i<stops.length;i+=10){const leg=stops.slice(i,i+10);const dest=leg[leg.length-1];const wps=leg.slice(0,-1).map(s=>s.address);
+  out.push({label:stops.length>10?`Stops ${i+1}–${i+leg.length}`:'Open route in Google Maps',href:'https://www.google.com/maps/dir/?api=1&travelmode=driving&destination='+encodeURIComponent(dest.address)+(wps.length?'&waypoints='+encodeURIComponent(wps.join('|')):'')})}return out}
+function openRouteModal(){const stops=routeStops();
+  const body=stops.length?`<ol class="route">${stops.map(l=>`<li><div><b>${esc(l.name)}</b><div class="sub">${esc(l.address)}</div></div><button type="button" class="btn sm" data-rmroute="${esc(l.id)}">Remove</button></li>`).join('')}</ol>
+    <div class="btnrow">${routeLinks(stops).map(x=>`<a class="btn p" href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.label)}</a>`).join('')}</div>
+    <p class="sub" style="margin:12px 0 0">Stops are grouped by ZIP code. Google Maps starts from where you are; tap its menu to reorder stops if needed.</p>`
+    :`<p class="muted" style="margin:0">No stops yet. On the Leads page, tap “+ Route” on the businesses you want to visit today.</p>`;
+  openModal({title:'Today\'s route',sub:stops.length?`${stops.length} stop${stops.length===1?'':'s'}`:'',body,submit:'Done',onSubmit:async()=>true,
+    onOpen:f=>{f.querySelectorAll('[data-rmroute]').forEach(b=>b.onclick=()=>{toggleRoute(b.dataset.rmroute);closeModal();setTimeout(openRouteModal,0)})}})}
+
+function leadCard(l){const inRoute=routeIds().includes(l.id);const tel=telHref(l.phone);const t=today();
+  return `<div class="item" data-lid="${esc(l.id)}"><div class="top"><div><h3>${esc(l.name)}</h3>
+    <div class="meta">${esc(l.type||'')} · ${esc(l.area||'')}${typeof l.miles==='number'?` · ${l.miles<1?'<1':one(l.miles)} mi`:''}</div>
+    <div class="meta">${esc(l.address||'')}</div></div>
+    <div style="text-align:right">${tierPrice(1)?`<div class="sub">starts at</div><div class="money">${money2(tierPrice(1))}</div><div class="sub">per case</div>`:''}${l.estCases?`<div class="sub" style="margin-top:4px">uses ~${esc(l.estCases)} cases/mo</div>`:''}</div></div>
+    ${l.pitch?`<div class="notes" style="color:var(--mut)">${esc(l.pitch)}</div>`:''}
+    ${l.notes?`<div class="notes">${esc(l.notes)}</div>`:''}
+    <div class="acts"><span class="chip ${LEAD_CHIP[l.status]||''}">${LEAD_STATUS[l.status]||'Not visited'}</span>${l.isNewShop?`<span class="chip pink">New shop</span>${validDate(l.licenseDate)?`<span class="sub">licensed ${fmtDate(l.licenseDate)}</span>`:''}`:''}
+    ${validDate(l.followUpDate)&&l.status!=='won'&&l.status!=='no'?`<span class="chip ${l.followUpDate<t?'bad':l.followUpDate===t?'warn':''}">Follow up ${fmtDate(l.followUpDate)}</span>`:''}
+    ${l.lastVisit?`<span class="sub">Last visit ${fmtDate(l.lastVisit)}</span>`:''}
+    <span style="flex:1"></span>
+    ${tel?`<a class="btn sm" href="${tel}">Call ${esc(l.phone)}</a>`:''}
+    ${l.address?`<a class="btn sm" href="${esc(mapsHref(l.address))}" target="_blank" rel="noopener">Directions</a>`:''}
+    <button class="btn sm ${inRoute?'g':''}" data-lact="route">${inRoute?'✓ In route':'+ Route'}</button>
+    ${S.canWrite&&S.db?`<button class="btn sm p" data-lact="visit">Log visit</button><button class="btn sm" data-lact="edit">Edit</button>`:''}</div></div>`}
+
+function typeForLead(t){const map={'Barber':'Barbershop','Salon / Nails':'Nail / lash salon','Lash & brow studio':'Nail / lash salon','Tattoo':'Tattoo studio','Restaurant':'Restaurant / food truck','Food truck':'Restaurant / food truck','Cleaning company':'Cleaning service','Dental / Medical':'Medical / dental','Medical clinic / Urgent care':'Medical / dental','Auto / Body shop':'Auto shop'};return map[t]||t||'Other'}
+function openLeadVisit(l){const v={place:l.name,businessType:typeForLead(l.type),address:l.address,phone:l.phone,price:'',status:'quoted'};
+  openModal({title:`Log visit: ${l.name}`,body:visitFormHTML(v),submit:'Save visit',onOpen:f=>{bindVisitForm(f)},
+    onSubmit:async f=>{if(!needWrite())return false;const d=readVisit(f);if(!validVisit(d))return false;const wantWon=d.status==='won';if(wantWon)d.status='quoted';
+      const ref=await S.db.collection('visits').add({...d,leadId:l.id,repId:S.uid||null,createdAt:iso()});
+      await S.db.doc('leads/'+l.id).update({status:visitStatusToLead(wantWon?'won':d.status),lastVisit:d.date,followUpDate:d.followUpDate||'',lastVisitId:ref.id});
+      toast('Visit saved');if(wantWon)setTimeout(()=>openOrderModal({mode:'won',visit:{...d,id:ref.id,leadId:l.id,repId:S.uid||null}}),0)}})}
+function openLeadEdit(l){const body=`<div class="grid2">
+    <label>Status<select name="status">${Object.entries(LEAD_STATUS).map(([k,x])=>opt(k,x,l.status||'new')).join('')}</select></label>
+    <label>Follow-up date<input type="date" name="followUpDate" value="${esc(l.followUpDate||'')}"></label>
+    <label>Phone<input name="phone" type="tel" value="${esc(l.phone||'')}"></label>
+    
+    <label class="full">Address<input name="address" value="${esc(l.address||'')}"></label>
+    <label class="full">Notes<textarea name="notes" rows="3">${esc(l.notes||'')}</textarea></label></div>`;
+  openModal({title:l.name,body,onSubmit:async f=>{if(!needWrite())return false;
+    await S.db.doc('leads/'+l.id).update({status:f.status.value,followUpDate:validDate(f.followUpDate.value)?f.followUpDate.value:'',phone:f.phone.value.trim(),address:f.address.value.trim(),notes:f.notes.value.trim()});toast('Lead updated')}})}
+function openNewLead(){const body=`<div class="grid2">
+    <label class="full">Business name *<input name="name"></label>
+    <label>Type of business<input name="type" placeholder="e.g. Barber"></label><label>Area<input name="area" placeholder="e.g. Doral"></label>
+    <label>Phone<input name="phone" type="tel"></label>
+    <label class="full">Address<input name="address"></label><label class="full">Notes<textarea name="notes" rows="2"></textarea></label></div>`;
+  openModal({title:'Add lead',body,onSubmit:async f=>{if(!needWrite())return false;const name=f.name.value.trim();if(!name){toast('Add the business name');return false}
+    await S.db.collection('leads').add({name,type:f.type.value.trim(),area:f.area.value.trim(),phone:f.phone.value.trim(),address:f.address.value.trim(),notes:f.notes.value.trim(),
+      buyerType:'End user',group:'',estCases:'',pitch:'',status:'new',followUpDate:'',createdAt:iso(),addedBy:S.uid||null});toast('Lead added')}})}
+
+const SEEDS=[];let seedCache=null;
+async function loadSeeds(){if(seedCache)return seedCache;const all=[];for(const f of SEEDS){try{const r=await fetch(f);if(r.ok)all.push(...await r.json())}catch(e){}}seedCache=all;return all}
+async function importLeads(btn){if(!S.db||!S.isOwner)return;btn.disabled=true;const list=await loadSeeds();if(!list.length){toast('Couldn\'t load the call list file.');btn.disabled=false;return}
+  const have=new Set(S.leads.map(l=>l.id));const todo=list.filter(l=>!have.has(l.id));let n=0,stop=false;
+  const worker=async()=>{while(todo.length&&!stop){const l=todo.shift();const {id,...data}=l;
+    try{await S.db.doc('leads/'+id).set({...data,createdAt:iso()});n++;btn.textContent=`Importing… ${n} / ${n+todo.length}`}
+    catch(e){if(e&&(e.code==='resource_exhausted'||e.code==='unavailable')){todo.push(l);await new Promise(r=>setTimeout(r,1500))}else{stop=true;writeErr(e)}}}};
+  await Promise.all([worker(),worker(),worker(),worker()]);toast(`${n} leads imported`);btn.disabled=false;S.pendingSeeds=todo.length;refresh()}
+async function checkPendingSeeds(){if(!S.isOwner||!S.db||S._seedChecked)return;S._seedChecked=true;const list=await loadSeeds();const have=new Set(S.leads.map(l=>l.id));S.pendingSeeds=list.filter(l=>!have.has(l.id)).length;refresh()}
+views.leads={
+  shell:()=>`<div class="pagehead"><div><h1>Leads</h1><p>Businesses that use gloves themselves, closest and easiest to sell first. Medical and dental lead the list.</p></div>
+    <div class="btnrow"><button class="btn" id="routeBtn">Today's route</button>${S.canWrite&&S.db?`<button class="btn p" id="addLead">+ Add lead</button>`:''}</div></div>
+    <div class="filters"><input type="search" id="lq" placeholder="Search name, address, type…">
+      <select id="ls"><option value="todo">To do (not visited, follow-ups)</option><option value="newshop">New shops (licensed in last 90 days)</option><option value="due">Follow-ups due</option><option value="new">Not visited</option><option value="quoted">Quoted</option><option value="won">Clients</option><option value="no">Not interested</option><option value="">All leads</option></select>
+      <select id="la"><option value="">All areas</option></select><select id="lt"><option value="">All types</option></select>
+      <select id="lb"><option value="">All business types</option><option value="Healthcare">Medical &amp; dental</option><option value="Beauty & body art">Beauty &amp; body art</option><option value="Food">Food</option><option value="other">Other</option></select></div>
+    <div id="lsum" class="sub" style="margin-bottom:10px"></div><div id="llist"></div>`,
+  bind(m){this.limit=40;const rb=$('#routeBtn',m);rb.onclick=openRouteModal;const ab=$('#addLead',m);ab&&(ab.onclick=openNewLead);
+    ['#lq','#ls','#la','#lt','#lb'].forEach(s=>$(s,m).addEventListener('input',()=>{this.limit=40;this.update()}));this._opts='';},
+  update(){const el=$('#llist');if(!el)return;
+    const rb=$('#routeBtn');if(rb){const n=routeIds().length;rb.textContent=n?`Today's route (${n})`:'Today\'s route'}
+    const areas=[...new Set(S.leads.map(l=>l.area).filter(Boolean))].sort(),types=[...new Set(S.leads.map(l=>l.type).filter(Boolean))].sort();
+    const key=areas.join('|')+'#'+types.join('|');if(key!==this._opts){this._opts=key;
+      const la=$('#la'),lt=$('#lt'),va=la.value,vt=lt.value;
+      la.innerHTML='<option value="">All areas</option>'+areas.map(a=>`<option ${a===va?'selected':''}>${esc(a)}</option>`).join('');
+      lt.innerHTML='<option value="">All types</option>'+types.map(a=>`<option ${a===vt?'selected':''}>${esc(a)}</option>`).join('')}
+    checkPendingSeeds();
+    if(!S.leads.length){el.innerHTML=`<div class="empty">No leads yet.${S.isOwner&&S.db?`<div style="margin-top:14px"><button class="btn p" id="impLeads">Import leads</button></div>`:''}</div>`;
+      const ib=$('#impLeads');ib&&(ib.onclick=()=>importLeads(ib));$('#lsum').textContent='';return}
+    const q=lc($('#lq').value),st=$('#ls').value,ar=$('#la').value,ty=$('#lt').value,bt=$('#lb').value;
+    let list=S.leads.filter(l=>(!q||lc([l.name,l.address,l.type,l.area,l.notes].join(' ')).includes(q))&&(!ar||l.area===ar)&&(!ty||l.type===ty)&&(!bt||(bt==='other'?!['Healthcare','Beauty & body art','Food'].includes(l.group):l.group===bt))&&
+      (st===''||(st==='newshop'?(l.isNewShop&&l.status!=='won'&&l.status!=='no'):st==='todo'?(l.status==='new'||leadDue(l)||l.status==='called'):st==='due'?leadDue(l):st==='quoted'?(l.status==='quoted'||l.status==='visited'):l.status===st)));
+    list=leadsSorted(list);
+    const due=S.leads.filter(leadDue).length,fresh=S.leads.filter(l=>l.status==='new').length,won=S.leads.filter(l=>l.status==='won').length;
+    $('#lsum').textContent=`${list.length} shown · ${fresh} not visited · ${due} follow-ups due · ${won} became clients`;
+    const imp=S.isOwner&&S.pendingSeeds>0?`<div class="callout"><span>${int(S.pendingSeeds)} more businesses (dental offices, clinics and other medical end users) are ready to add.</span><button class="btn p sm" id="impMore">Import more leads</button></div>`:'';
+    el.innerHTML=imp+(list.length?`<div class="list">${list.slice(0,this.limit).map(leadCard).join('')}</div>${list.length>this.limit?`<div style="text-align:center;margin-top:14px"><button class="btn" id="moreLeads">Show more (${list.length-this.limit} left)</button></div>`:''}`
+      :`<div class="empty">No leads match these filters.</div>`);
+    const im=$('#impMore');im&&(im.onclick=()=>importLeads(im));
+    const mb=$('#moreLeads');mb&&(mb.onclick=()=>{this.limit+=40;this.update()});
+    el.querySelectorAll('[data-lid]').forEach(card=>{const l=S.leads.find(x=>x.id===card.dataset.lid);if(!l)return;card.querySelectorAll('[data-lact]').forEach(b=>b.onclick=()=>{
+      const a=b.dataset.lact;if(a==='route')toggleRoute(l.id);if(a==='visit')openLeadVisit(l);if(a==='edit')openLeadEdit(l)})})}};
+
+/* ---------- invoices ---------- */
+const INV_ES={'INVOICE':'FACTURA','Invoice #':'Factura #','Date':'Fecha','Due':'Vence','Due on receipt':'Al recibir','Bill to':'Facturar a','Description':'Descripción','Qty (cases)':'Cant. (cajas)',
+  'Unit price':'Precio unit.','Amount':'Importe','Subtotal':'Subtotal','Sales tax':'Impuesto de venta','Total':'Total','Paid':'Pagado','Balance due':'Saldo pendiente','PAID':'PAGADA','Thank you for your business!':'¡Gracias por su compra!',
+  'UCKER Black Nitrile Exam Gloves':'Guantes de examen de nitrilo negro UCKER','3.5 mil, powder-free · case = 10 boxes × 100 gloves':'3.5 mil, sin polvo · caja = 10 cajas × 100 guantes','Size':'Talla','case = 10 boxes × 100 gloves':'caja = 10 cajas × 100 guantes','Notes':'Notas','Payment':'Pago','From':'De','Pay securely online by card':'Pague en línea con tarjeta','Amount due':'Monto a pagar','PAID IN FULL':'PAGADA','How to pay':'Cómo pagar','Zelle':'Zelle','Check':'Cheque','Payable to':'A nombre de','Card / online':'Tarjeta / en línea','Cash':'Efectivo','Other':'Otro'};
+const IT=k=>LANG==='es'&&INV_ES[k]?INV_ES[k]:k;
+function nextInvoiceNo(){let mx=1000;S.sales.forEach(s=>{const m=String(s.invoiceNo||'').match(/^UCK-(\d+)$/);if(m)mx=Math.max(mx,+m[1])});return 'UCK-'+(mx+1)}
+let jsPDFp=null;
+function loadJsPDF(){if(window.jspdf)return Promise.resolve(window.jspdf);if(jsPDFp)return jsPDFp;
+  jsPDFp=new Promise((res,rej)=>{const s=document.createElement('script');s.src='vendor/jspdf.umd.min.js';s.onload=()=>res(window.jspdf);s.onerror=()=>{jsPDFp=null;rej(new Error('jspdf'))};document.head.appendChild(s)});return jsPDFp}
+function loadImg(src){return new Promise(res=>{const i=new Image();i.onload=()=>{try{const k=Math.min(1,500/i.naturalWidth);const c=document.createElement('canvas');c.width=Math.round(i.naturalWidth*k);c.height=Math.round(i.naturalHeight*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);res({data:c.toDataURL('image/png'),w:c.width,h:c.height})}catch(e){res(null)}};i.onerror=()=>res(null);i.src=src})}
+async function ensureInvoiceNo(s){if(s.invoiceNo)return s.invoiceNo;const no=nextInvoiceNo();try{await S.db.doc('sales/'+s.id).update({invoiceNo:no})}catch(e){}return no}
+async function buildInvoicePDF(s,no){const {jsPDF}=await loadJsPDF();const doc=new jsPDF({unit:'pt',format:'letter'});const c=cfg();const W=612,H=792,M=50;
+  /* UCKER website palette */
+  const INK=[17,17,17],PINK=[231,156,185],ROSE=[168,51,106],SOFT=[251,238,243],LINE=[236,228,232],MUTED=[111,100,108],WHITE=[255,255,255];
+  const money=canSeePay(s);const cl=S.clients.find(x=>x.id===s.clientId)||{};
+  const font=(w,sz,col)=>{doc.setFont('helvetica',w);doc.setFontSize(sz);doc.setTextColor(...col)};
+  const issue=s.date||today();
+  let due='';if(money&&s.paymentStatus!=='paid'){due=validDate(s.dueDate)?s.dueDate:num(c.paymentTermsDays)>0?addDays(issue,num(c.paymentTermsDays)):''}
+  /* top band: black bar with a pink slash, like the website hero */
+  doc.setFillColor(...INK);doc.rect(0,0,W,16,'F');doc.setFillColor(...PINK);doc.triangle(W-210,16,W-180,0,W-150,0,'F');doc.triangle(W-210,16,W-150,0,W-180,16,'F');
+  let y=46;const logo=await loadImg('logo-dark.png');
+  if(logo){const h=50,w=h*logo.w/logo.h;doc.addImage(logo.data,'PNG',M,y,w,h)}else{font('bold',28,INK);doc.text('UCKER',M,y+34)}
+  font('bold',24,INK);doc.text(IT('INVOICE'),W-M,y+20,{align:'right'});
+  const meta=[[IT('Invoice #'),no],[IT('Date'),fmtDateY(issue)]];if(money&&s.paymentStatus!=='paid')meta.push([IT('Due'),due?fmtDateY(due):IT('Due on receipt')]);
+  let my=y+38;meta.forEach(([k,v])=>{font('normal',9,MUTED);doc.text(k.toUpperCase(),W-M-120,my);font('bold',10,INK);doc.text(String(v),W-M,my,{align:'right'});my+=15});
+  y=Math.max(y+70,my)+14;doc.setDrawColor(...LINE);doc.setLineWidth(1);doc.line(M,y,W-M,y);y+=24;
+  /* from / bill to */
+  const col=(x,label,title,lines)=>{font('bold',8,ROSE);doc.text(label.toUpperCase(),x,y);font('bold',11,INK);doc.text(title,x,y+16);font('normal',9.5,MUTED);let yy=y+31;
+    lines.filter(Boolean).forEach(t=>doc.splitTextToSize(String(t),220).forEach(l=>{doc.text(l,x,yy);yy+=13}));return yy};
+  const y1=col(M,IT('From'),c.companyName||'1ST TRY CORP',[c.companyAddress,c.companyPhone,c.companyEmail]);
+  const y2=col(330,IT('Bill to'),cl.name||s.clientName||'',[cl.contact,cl.address,cl.phone]);
+  y=Math.max(y1,y2)+22;
+  /* items */
+  font('bold',8,MUTED);doc.text(IT('Description').toUpperCase(),M,y);doc.text(IT('Qty (cases)').toUpperCase(),392,y,{align:'right'});doc.text(IT('Unit price').toUpperCase(),478,y,{align:'right'});doc.text(IT('Amount').toUpperCase(),W-M,y,{align:'right'});
+  y+=8;doc.setDrawColor(...INK);doc.setLineWidth(1.2);doc.line(M,y,W-M,y);y+=4;
+  const sz=saleSizes(s);const keys=STOCK_SIZES.filter(k=>num(sz[k])>0);const lines=keys.length?keys.map(k=>({size:k,q:num(sz[k])})):[{size:s.size&&s.size!=='Mixed'?s.size:'',q:num(s.cases)}];
+  const assigned=lines.reduce((a,l)=>a+l.q,0);if(keys.length&&assigned<num(s.cases))lines.push({size:'',q:num(s.cases)-assigned});
+  lines.forEach(l=>{y+=20;font('bold',10.5,INK);doc.text(IT('UCKER Black Nitrile Exam Gloves')+(l.size?` — ${IT('Size')} ${l.size}`:''),M,y);
+    font('normal',10.5,INK);doc.text(String(l.q),392,y,{align:'right'});doc.text(money2(s.pricePerCase),478,y,{align:'right'});doc.text(money2(l.q*num(s.pricePerCase)),W-M,y,{align:'right'});
+    font('normal',8.5,MUTED);doc.text(IT('3.5 mil, powder-free · case = 10 boxes × 100 gloves'),M,y+13);y+=22;doc.setDrawColor(...LINE);doc.setLineWidth(.8);doc.line(M,y,W-M,y)});
+  /* totals */
+  y+=22;const tx=430;const row=(k,v,b)=>{font(b?'bold':'normal',b?11:10,b?INK:MUTED);doc.text(k,tx,y);font(b?'bold':'normal',b?11:10,INK);doc.text(v,W-M,y,{align:'right'});y+=17};
+  row(IT('Subtotal'),money2(s.total));if(taxOf(s))row(`${IT('Sales tax')} (${one(s.taxRate)}%)`,money2(taxOf(s)));
+  doc.setDrawColor(...LINE);doc.line(tx,y-9,W-M,y-9);y+=3;row(IT('Total'),money2(grandOf(s)),true);
+  const isPaid=money&&s.paymentStatus==='paid';const paid=money?(isPaid?grandOf(s):num(s.amountPaid)):0;
+  if(money&&paid&&!isPaid)row(IT('Paid'),'−'+money2(paid));
+  y+=6;const boxY=y;
+  if(isPaid){doc.setFillColor(...SOFT);doc.roundedRect(tx-14,boxY,W-M-tx+14,40,6,6,'F');font('bold',13,ROSE);doc.text(IT('PAID IN FULL'),(tx-14+W-M)/2,boxY+25,{align:'center'})}
+  else if(money){const bal=Math.max(0,grandOf(s)-paid);doc.setFillColor(...INK);doc.roundedRect(tx-14,boxY,W-M-tx+14,44,6,6,'F');font('bold',8,PINK);doc.text(IT('Amount due').toUpperCase(),tx,boxY+17);
+    font('bold',17,WHITE);doc.text(money2(bal),W-M-12,boxY+30,{align:'right'})}
+  /* how to pay */
+  const pays=[[IT('Zelle'),c.payZelle],[IT('Check'),c.payCheckTo?`${IT('Payable to')} ${c.payCheckTo}`:''],[IT('Card / online'),s.payLinkUrl||c.payLink],[IT('Cash'),c.payCash],[IT('Other'),c.payOther||c.paymentInstructions]].filter(p=>p[1]);
+  let py=boxY;if(!isPaid&&pays.length){const bw=tx-14-M-24,bh=30+pays.length*16;doc.setFillColor(...SOFT);doc.roundedRect(M,py,bw,bh,6,6,'F');
+    font('bold',8,ROSE);doc.text(IT('How to pay').toUpperCase(),M+14,py+18);let ly=py+36;
+    pays.forEach(([k,v])=>{font('bold',9.5,INK);doc.text(k,M+14,ly);font('normal',9.5,INK);const x=M+96;const t=doc.splitTextToSize(String(v),bw-110)[0];
+      if(/^https?:\/\//i.test(v)){doc.setTextColor(...ROSE);doc.setFont('helvetica','bold');doc.textWithLink(IT('Pay securely online by card')+' ›',x,ly,{url:v})}else doc.text(t,x,ly);ly+=16});
+    py+=bh}
+  y=Math.max(y+44,py)+26;
+  if(s.notes){font('bold',8,ROSE);doc.text(IT('Notes').toUpperCase(),M,y);font('normal',9.5,MUTED);y+=14;doc.splitTextToSize(String(s.notes),W-2*M).forEach(l=>{doc.text(l,M,y);y+=13})}
+  /* footer */
+  doc.setDrawColor(...LINE);doc.line(M,H-70,W-M,H-70);font('bold',11,ROSE);doc.text(IT('Thank you for your business!'),W/2,H-50,{align:'center'});
+  font('normal',8.5,MUTED);doc.text([c.companyName,c.companyWeb||'ucker.us',c.companyPhone].filter(Boolean).join('  ·  '),W/2,H-34,{align:'center'});
+  doc.setFillColor(...INK);doc.rect(0,H-10,W,10,'F');doc.setFillColor(...PINK);doc.rect(0,H-13,W,3,'F');
+  return doc.output('blob')}
+
+function waText(s,no){const cl=S.clients.find(x=>x.id===s.clientId)||{};const name=cl.contact||cl.name||s.clientName||'';const due=!canSeePay(s)||s.paymentStatus==='paid'?'':validDate(s.dueDate)?fmtDateY(s.dueDate):'';
+  const bal=canSeePay(s)?Math.max(0,grandOf(s)-(s.paymentStatus==='paid'?grandOf(s):num(s.amountPaid))):0;
+  return LANG==='es'?`Hola ${name}, le envío la factura ${no} de UCKER: ${int(s.cases)} cajas de guantes, total ${money2(grandOf(s))}${bal?`, saldo ${money2(bal)}`:''}${due?`, vence ${due}`:''}.${s.payLinkUrl&&(bal||!canSeePay(s))?` Puede pagar con tarjeta aquí: ${s.payLinkUrl}`:''} ¡Gracias por su compra!`
+    :`Hi ${name}, here is UCKER invoice ${no}: ${int(s.cases)} cases of gloves, total ${money2(grandOf(s))}${bal?`, balance ${money2(bal)}`:''}${due?`, due ${due}`:''}.${s.payLinkUrl&&(bal||!canSeePay(s))?` Pay by card here: ${s.payLinkUrl}`:''} Thank you for your business!`}
+function waHref(s,no){const cl=S.clients.find(x=>x.id===s.clientId)||{};let d=String(cl.phone||'').replace(/\D/g,'');if(d.length===10)d='1'+d;return 'https://wa.me/'+(d||'')+'?text='+encodeURIComponent(waText(s,no))}
+/* ---------- Shopify card payment links (owner only, via the owner's Shopify connector) ---------- */
+function parseShopify(r){const blocks=[];if(r&&r.payload!==undefined)blocks.push(typeof r.payload==='string'?r.payload:JSON.stringify(r.payload));
+  (r&&r.content||[]).forEach(b=>{if(b&&b.type==='text')blocks.push(b.text)});
+  for(const t of blocks){const i=t.indexOf('{"data"');if(i>=0){try{return JSON.parse(t.slice(i))}catch(e){}}}return null}
+function balanceOf(s){return r2(Math.max(0,grandOf(s)-(s.paymentStatus==='paid'?grandOf(s):num(s.amountPaid))))}
+async function createPayLink(s,no){const mcp=await window.claude.use('mcp').catch(()=>null);if(!mcp)throw{code:'no_mcp'};
+  const bal=balanceOf(s);if(!(bal>0))throw{code:'nothing_due'};
+  const q='mutation($input: DraftOrderInput!) { draftOrderCreate(input: $input) { draftOrder { id invoiceUrl } userErrors { field message } } }';
+  const input={lineItems:[{title:`UCKER invoice ${no}: ${int(s.cases)} cases black nitrile exam gloves${taxOf(s)?` (incl. ${one(s.taxRate)}% FL sales tax)`:''}`,quantity:1,
+    originalUnitPriceWithCurrency:{amount:bal.toFixed(2),currencyCode:'USD'},requiresShipping:false,taxable:false}],taxExempt:true,
+    note:`UCKER Sales HQ invoice ${no} for ${s.clientName||''}`,poNumber:no,tags:['ucker-invoice',no]};
+  const r=await mcp.callTool('Shopify','graphql_mutation',{query:q,variables:{input}});const j=parseShopify(r);
+  const d=j&&j.data&&j.data.draftOrderCreate;if(!d||!d.draftOrder||(d.userErrors&&d.userErrors.length))throw{code:'shopify',message:d&&d.userErrors&&d.userErrors[0]&&d.userErrors[0].message||'Shopify did not return a link'};
+  await S.db.doc('sales/'+s.id).update({payLinkUrl:d.draftOrder.invoiceUrl,payLinkId:d.draftOrder.id,payLinkAmount:bal});return d.draftOrder.invoiceUrl}
+let payCheckDone=false;
+async function checkShopifyPayments(){if(payCheckDone||!canMoney()||!S.db||!S.ready.sales)return;const open=S.sales.filter(s=>s.payLinkId&&isUnpaid(s));if(!open.length)return;payCheckDone=true;
+  const mcp=await window.claude.use('mcp').catch(()=>null);if(!mcp)return;
+  try{const ids=open.map(s=>s.payLinkId);const r=await mcp.callTool('Shopify','graphql_query',{query:'query($ids:[ID!]!){ nodes(ids:$ids){ ... on DraftOrder { id status } } }',variables:{ids}});
+    const j=parseShopify(r);const nodes=(j&&j.data&&j.data.nodes)||[];let n=0;
+    for(const nd of nodes){if(nd&&nd.status==='COMPLETED'){const s=open.find(x=>x.payLinkId===nd.id);if(s){await savePay(s.id,{paymentStatus:'paid',amountPaid:grandOf(s),paidDate:today(),dueDate:''});n++}}}
+    if(n)toast(n===1?'1 invoice was paid by card on Shopify and is now marked paid':`${n} invoices were paid by card on Shopify and are now marked paid`)}catch(e){}}
+async function openInvoice(id){let s=S.sales.find(x=>x.id===id);if(!s)return;const no=await ensureInvoiceNo(s);s={...s,invoiceNo:no};
+  const dl=await window.claude?.use?.('downloads').catch(()=>null);
+  const showLink=canMoney()&&isUnpaid(s)&&balanceOf(s)>0;
+  const linkHTML=s.payLinkUrl?`<div class="paylink"><span class="chip ok">Card payment link ready</span><a href="${esc(s.payLinkUrl)}" target="_blank" rel="noopener" class="sub" style="word-break:break-all">${esc(s.payLinkUrl)}</a></div>`
+    :showLink?`<div class="paylink"><span class="sub"><b>Card payment:</b> in the Shopify app, create an invoice or payment link for ${money2(balanceOf(s))} and paste it here. It's printed on the invoice and added to the WhatsApp message. In person, use <b>Tap to Pay</b> in the Shopify app, then mark the sale paid.</span><input data-paylink type="url" inputmode="url" placeholder="https://…" autocomplete="off"><div class="btnrow"><button type="button" class="btn" data-inv="link">Save link</button><a class="btn" href="https://admin.shopify.com/" target="_blank" rel="noopener">Open Shopify</a></div></div>`:'';
+  const body=`<p class="muted" style="margin:0 0 14px">${esc(s.clientName||'')} · ${int(s.cases)} cases · <b>${money2(grandOf(s))}</b></p>${linkHTML}
+    <div class="btnrow">${dl?`<button type="button" class="btn p" data-inv="pdf">Download PDF</button>`:''}<a class="btn g" href="${esc(waHref(s,no))}" target="_blank" rel="noopener">Send on WhatsApp</a></div>
+    <p class="sub" style="margin:12px 0 0">${dl?'Download the PDF first, then attach it in the WhatsApp chat that opens.':'Downloads aren\'t available in this view. You can still send the invoice details on WhatsApp.'}</p>`;
+  openModal({title:`Invoice ${no}`,body,submit:'Done',onSubmit:async()=>true,onOpen:f=>{const lb=$('[data-inv=link]',f);lb&&(lb.onclick=async()=>{lb.disabled=true;lb.textContent='Saving…';
+      try{const u=(($('[data-paylink]',f)||{}).value||'').trim();if(!/^https?:\/\//i.test(u)){toast('Paste the Shopify payment link first');lb.disabled=false;lb.textContent='Save link';return}
+        await S.db.doc('sales/'+s.id).update({payLinkUrl:u});toast('Card payment link saved');closeModal();setTimeout(()=>openInvoice(s.id),300)}
+      catch(e){const c=e&&e.code;toast(c==='no_mcp'||c==='not_granted'||c==='server_not_connected'?'Connect Shopify to Claude to create card links.':c==='approval_required'||c==='consent_required'?'Allow Shopify access when asked, then try again.':c==='needs_reauth'?'Reconnect Shopify in Claude settings, then try again.':'Couldn\'t create the Shopify link'+(e&&e.message&&c==='shopify'?': '+e.message:'.'));lb.disabled=false;lb.textContent='Save link'}});
+    const b=$('[data-inv=pdf]',f);b&&(b.onclick=async()=>{b.disabled=true;b.textContent='Preparing…';
+    try{const blob=await buildInvoicePDF(s,no);const safe=String(s.clientName||'client').replace(/[^\w]+/g,'-').replace(/^-|-$/g,'');await dl.save({filename:`${no}-${safe}.pdf`,data:blob});toast('Invoice saved')}
+    catch(e){if(!(e&&e.code==='declined'))toast(e&&e.message==='jspdf'?'Couldn\'t load the PDF maker. Check your connection.':'Couldn\'t create the PDF.')}
+    finally{b.disabled=false;b.textContent='Download PDF'}})}})}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-invoice]');if(b){e.preventDefault();openInvoice(b.dataset.invoice)}});
+
+/* ---------- names ---------- */
+let namesBusy=false;
+async function loadNames(){if(!S.user||namesBusy||typeof S.user.profiles!=='function')return;const ids=new Set();
+  [...S.visits,...S.sales,...S.clients].forEach(x=>x.repId&&ids.add(x.repId));if(S.uid)ids.add(S.uid);
+  const miss=[...ids].filter(i=>!(i in S.names));if(!miss.length)return;namesBusy=true;
+  try{const ps=await S.user.profiles(miss);miss.forEach(i=>S.names[i]=(ps&&ps[i]&&ps[i].name)||'')}catch(e){miss.forEach(i=>S.names[i]='')}
+  namesBusy=false;refresh()}
+
+/* ---------- boot ---------- */
+async function init(){
+  $('#langBtn').onclick=()=>setLang(LANG==='es'?'en':'es');document.documentElement.lang=LANG;if(LANG==='es'){$('#langBtn').textContent='EN';$('#langBtn').setAttribute('aria-label','Switch to English')}
+  window.addEventListener('hashchange',route);route();renderBanner();if(LANG==='es')translateTree(document.body);
+  if(!window.claude||typeof window.claude.use!=='function'){S.status='nodb';renderBanner();return}
+  const timer=setTimeout(()=>{if(!allReady()&&S.status==='loading'){S.status='slow';renderBanner()}},10000);
+  let db=null,user=null;
+  try{[db,user]=await Promise.all([window.claude.use('db'),window.claude.use('user')])}catch(e){}
+  if(!db){clearTimeout(timer);S.status='nodb';renderBanner();route();return}
+  S.db=db;S.user=user;
+  if(user){try{S.uid=await user.id()}catch(e){}try{S.isOwner=!!(await user.isOwner())}catch(e){}try{S.canEdit=!!(await user.canEdit())}catch(e){}
+    try{const w=await user.can('data.write');if(w===false)S.canWrite=false}catch(e){}}
+  renderBanner();route();
+  const after=()=>{if(allReady()){clearTimeout(timer);if(S.status==='loading'||S.status==='slow')S.status='ok';setTimeout(checkShopifyPayments,1500);scheduleRepSync()}renderBanner();refresh();loadNames()};
+  const onErr=k=>e=>{S.ready[k]=true;clearTimeout(timer);S.status=e&&e.code==='revoked'?'revoked':'error';renderBanner();refresh()};
+  for(const k of ['visits','clients','sales'])db.collection(k).onSnapshot(s=>{const docs=s.docs.map(d=>({...d.data(),id:d.id}));if(k==='sales'){S.salesRaw=docs;mergeSales()}else S[k]=docs;if(!s.metadata.fromCache)S.ready[k]=true;after()},onErr(k));
+  db.collection('leads').onSnapshot(s=>{S.leads=s.docs.map(d=>({...d.data(),id:d.id}));refresh()},()=>{});
+  if(S.uid)db.doc('data/users/'+S.uid+'/route').onSnapshot(s=>{S.routeDoc=s.exists?s.data():null;refresh()},()=>{});
+  else{try{S.routeDoc=JSON.parse(localStorage.getItem('ucker-route')||'null')}catch(e){}}
+  db.doc('config/goals').onSnapshot(s=>{S.config=s.exists?s.data():null;if(!s.metadata.fromCache)S.ready.config=true;after()},onErr('config'));
+  if(S.isOwner)db.collection('ownerOnly/ledger/payments').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const x=d.data();m[d.id]={};PAY_KEYS.forEach(k=>{if(x[k]!==undefined)m[d.id][k]=x[k]})});S.payments=m;mergeSales();refresh()},()=>{});
+  if(!S.isOwner&&S.uid)db.collection('repPay/'+S.uid+'/sales').onSnapshot(s=>{const m={};s.docs.forEach(d=>{m[d.id]=d.data()});S.myPay=m;mergeSales();refresh()},()=>{});
+  if(S.isOwner)db.doc('ownerOnly/costs').onSnapshot(s=>{S.costs=s.exists?s.data():null;refresh()},()=>{});
+}
+init();
+if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
 </body>
 </html>
