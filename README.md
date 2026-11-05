@@ -14,7 +14,7 @@ The UCKER sales team app: leads, visits, clients, sales, invoices and goals, in 
 - **Log a visit:** place, quote, cases and size. Prices fill in from the price tiers, and quotes below the floor price get flagged.
 - **Leads:** 4,609 Miami-area businesses (medical, dental, beauty, food and more), sorted closest and easiest first. Each lead has call and directions buttons, and you can build today's route in Google Maps.
 - **Clients and sales:** recurring reorders, payment status, and PDF invoices you can send on WhatsApp.
-- **Goals:** stock push dates, stock by size (matches Shopify's Case of 1,000 stock as of Nov 5, 2026: S 139 · M 487 · L 487 · XL 487), stock by size, prices and tax, invoice details and payment options. Preloaded with the current UCKER settings.
+- **Goals:** stock push dates, stock by size (matches Shopify's Case of 1,000 stock as of Nov 5, 2026: S 139 · M 487 · L 487 · XL 487), prices and tax, invoice details and payment options. Preloaded with the current UCKER settings.
 - **ES / EN** button switches the whole app between Spanish and English.
 
 ## Shopify payments
